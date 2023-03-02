@@ -1,0 +1,38 @@
+<!-- <app-spinner *ngIf="spinnerService.blockUI | async"></app-spinner> -->
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="basic" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="example-app-name" routerLink="menu" style="cursor: pointer;" >Gestor Gastos</span><img class="icono" src="/assets/favicon.png" alt="">
+    <span class="spacer"></span>
+    <div class="name"> {{userName}} </div>
+    <button mat-icon-button class="example-icon favorite-icon" [matTooltip]="'Nuevo Expediente'" aria-label="Example icon-button with heart icon" routerLink="expediente">
+      <mat-icon>assignment_add</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon favorite-icon" [matTooltip]="'Expedientes'" aria-label="Example icon-button with heart icon" routerLink="expedientes">
+      <mat-icon>folder_copy</mat-icon>
+    </button>
+    <button mat-icon-button class="button-login" [color]="isAdmin? 'warn': 'disabled'" [matTooltip]="isAdmin? 'Cerrar sesión': 'Ingresar'" (click)="toggleLogin()">
+      <mat-icon>person</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 48 : 0">
+    <mat-sidenav class="sidenav" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="48">
+      <mat-nav-list class="nav-list">
+        <div class="center" *ngFor="let nav of fillerNav">
+          <a class="nav-span" mat-list-item routerLink={{nav.routerlink}} > <mat-icon class="nav-icon">{{nav.icon}}</mat-icon>  {{nav.nombre}}</a>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>      
+      <router-outlet></router-outlet>
+      <div class="spacer"></div>
+      <app-footer></app-footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

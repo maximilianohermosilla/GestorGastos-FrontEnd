@@ -1,0 +1,205 @@
+:host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;   
+  }
+
+  body{    
+    background-color: #323232;
+    min-height: 90vh;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  mat-sidenav-container{
+    min-height: 90vh;
+  }
+
+  mat-sidenav-content{
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+  }
+
+  .button-login{     
+    margin: 0 6px;
+  }
+
+  .mat-drawer{    
+    box-shadow: rgba(0, 0, 0, 0.54) 5px 5px 18px;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 16px;
+    background-color: #323232;
+  }
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .example-is-mobile .example-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+  }
+  
+  .example-app-name {
+    margin-left: 8px;
+    background: -webkit-linear-gradient(#FFFFFF, #CCCDDD);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .example-app-name:hover {
+    margin-left: 8px;
+    background: -webkit-linear-gradient(#CCCDDD, #666666);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .example-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+    causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+  }
+  
+  .example-is-mobile .example-sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+    `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+  }
+
+  .sidenav{
+    color: white;
+    /* background: rgb(6,0,115);
+    background: linear-gradient(0deg, rgba(6,0,115,1) 0%, rgba(9,9,121,1) 34%, rgba(4,68,189,1) 49%); */
+  }
+  
+  .nav-list{
+    color: white;
+    min-width: 200px;
+  }
+
+ .nav-span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: -webkit-linear-gradient(#FFFFFF, #EEEEEE);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .nav-icon{
+    padding-top: 4px;
+  }
+  
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 20px;
+    color: white;
+  }
+  
+  .center-icon{
+    margin-left: 8px;
+  }
+
+  .icono{
+    margin-left: 0.5rem;
+    animation: shake 1.5s;
+    /*animation-iteration-count: infinite;*/
+    /*animation: 0.5s ease-out 0s 1 transitionLeft;*/
+  }
+
+  .name{
+    margin-right: 5px;
+  }
+
+  .example-icon{
+    margin-right: 6px;
+  }
+  
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      display: none;
+      visibility: hidden;
+    }
+
+    .name{
+      display: none;
+    }
+
+    .example-icon{
+      margin-right: 0px;
+    }
+    
+    .button-login{
+      margin: 0px 10px;
+    }
+
+    .example-app-name{
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .mat-toolbar-row, .mat-toolbar-single-row{
+      padding: 0;
+    }
+  }
+  
+  @keyframes shake {
+    0% { transform: rotate(0deg); }  
+    10% { transform: rotate(10deg); }  
+    20% { transform: rotate(15deg); }  
+    30% { transform: rotate(10deg); }  
+    40% { transform: rotate(5deg); }  
+    50% { transform: rotate(-5deg); }  
+    60% { transform: rotate(-10deg); }
+    70% { transform: rotate(-15deg); }
+    80% { transform: rotate(-10deg); }
+    90% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  @keyframes transitionLeft{
+    0% {
+        opacity: 0.1;
+        transform: translateX(50vw);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

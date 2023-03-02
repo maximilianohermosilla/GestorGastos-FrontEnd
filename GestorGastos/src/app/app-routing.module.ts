@@ -1,0 +1,57 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { LoginComponent } from './components/login/login.component';
+
+const routes: Routes = [
+  {
+    path: '',    
+    redirectTo: 'menu',
+    pathMatch: 'full' 
+  },
+  {
+    path: 'menu',
+    component: LandingPageComponent
+  },
+  // {
+  //   path: 'expedientes',
+  //   component: ExpedientesListaComponent,
+  //   canActivate: [GuardGuard] 
+  // },
+  // {
+  //   path: 'expediente',
+  //   component: ExpedienteAbmComponent,
+  //   canActivate: [GuardGuard]
+  // },
+  // {
+  //   path: 'reportes',
+  //   component: ReportesComponent,
+  //   canActivate: [GuardGuard]
+  // },
+  // {
+  //   path: 'configuracion',
+  //   component: ConfiguracionComponent,
+  //   canActivate: [GuardGuard]
+  // },
+  // {
+  //   path: '404',
+  //    component:NotfoundComponent 
+  // },
+  // { 
+  //   path: '**',
+  //   redirectTo: 'menu',
+  //   pathMatch: 'full' 
+  // }
+  // {
+  //   path: 'dashboard',
+  //   component: DashboardComponent, data :{ idPais :'1', idEstilo: '2', idMarca: '3', idCiudad: 4}
+  //   component: DashboardComponent
+  // },
+];
+
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
