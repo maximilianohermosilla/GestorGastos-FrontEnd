@@ -14,7 +14,7 @@ import { TokenService } from './token.service';
   providedIn: 'root'
 })
 export class LoginService {
-  apiUrl = environment.urlBase() + "Usuario/";
+  apiUrl = environment.urlBase();
   token: any;
   isLogin: boolean = false;
   currentUserSubject: BehaviorSubject<any>;

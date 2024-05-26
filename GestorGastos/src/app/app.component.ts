@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Navitem } from './models/navitem';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -35,11 +35,11 @@ export class AppComponent {
   ngOnInit(): void{    
     this.isAdmin  = (this.tokenService.getToken() != null)? true: false;
     this.fillerNav.push({nombre: "Inicio",routerlink: "menu",icon: "home"}); 
-    if (this.isAdmin) {
+    if (!this.isAdmin) {
       this.userName = this.tokenService.getUserName();
       this.userId = this.tokenService.getUserId();
-      this.fillerNav.push({nombre: "Registros",routerlink: "expedientes",icon: "folder_copy"});
-      this.fillerNav.push({nombre: "Alta Registro",routerlink: "expediente",icon: "assignment_add"});
+      this.fillerNav.push({nombre: "Balance",routerlink: "expedientes",icon: "balance"});
+      this.fillerNav.push({nombre: "Alta Tarjeta",routerlink: "tarjeta",icon: "assignment_add"});
       this.fillerNav.push({nombre: "Búsquedas",routerlink: "expedientes",icon: "search"}); 
       this.fillerNav.push({nombre: "Configuración",routerlink: "configuracion",icon: "settings"});       
       this.fillerNav.push({nombre: "Reportes",routerlink: "reportes",icon: "leaderboard"}); 

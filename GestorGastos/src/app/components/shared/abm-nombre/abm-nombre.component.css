@@ -1,0 +1,17 @@
+.dialog-actions{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+  }
+
+  .dialog-content{
+    padding-bottom: 0;
+  }
+  
+  .center{
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+    margin-bottom: 10px;
+    /* padding: 0 20px;   */
+  }

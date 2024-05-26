@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { LoginComponent } from './components/login/login.component';
+import { AbmNombreComponent } from './components/shared/abm-nombre/abm-nombre.component';
+import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 
 const routes: Routes = [
   {
@@ -13,11 +15,11 @@ const routes: Routes = [
     path: 'menu',
     component: LandingPageComponent
   },
-  // {
-  //   path: 'expedientes',
-  //   component: ExpedientesListaComponent,
-  //   canActivate: [GuardGuard] 
-  // },
+  {
+    path: 'tarjeta',
+    component: TarjetaComponent
+   // canActivate: [GuardGuard] 
+  },
   // {
   //   path: 'expediente',
   //   component: ExpedienteAbmComponent,

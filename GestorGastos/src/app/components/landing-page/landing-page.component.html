@@ -28,6 +28,8 @@
         <div class="row center" [hidden]="!isAdmin">
           <h5 class="header center teal-text text-lighten-2 welcome">Bienvenido/a {{userName}}</h5>
         </div>
+        <button mat-raised-button color="accent" (click)="getRegistros()">Registros</button>        
+        <button mat-raised-button color="primary" (click)="getIngresos()">Ingresos</button>
         <br><br>
 
       </div>

@@ -24,6 +24,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 
 import { SpinnerInterceptorService } from './services/spinner-interceptor.service';
 import { InterceptorService } from './services/interceptor.service';
+import { AbmNombreComponent } from './components/shared/abm-nombre/abm-nombre.component';
+import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { InterceptorService } from './services/interceptor.service';
     FooterComponent,
     SpinnerComponent,
     ToolbarComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    AbmNombreComponent,
+    TarjetaComponent
   ],
   imports: [
     BrowserModule,
