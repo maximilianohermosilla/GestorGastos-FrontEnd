@@ -1,3 +1,4 @@
+import { CategoriaGasto } from "./categoria-gasto"
 import { Cuenta } from "./cuenta"
 import { Suscripcion } from "./suscripcion"
 
@@ -10,6 +11,7 @@ export interface Registro{
     suscripcion?: Suscripcion,
     idCategoriaGasto: number,
     categoriaGastoNombre?: string,
+    categoriaGasto?: CategoriaGasto,
     idCuenta: number,
     cuenta?: Cuenta,
     idRegistroVinculado?: number,

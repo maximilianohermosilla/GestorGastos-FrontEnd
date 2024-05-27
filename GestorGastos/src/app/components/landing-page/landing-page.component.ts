@@ -6,13 +6,9 @@ import { Usuario } from 'src/app/models/usuario';
 import { LoginService } from 'src/app/services/login.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { TokenService } from 'src/app/services/token.service';
-import { RegistroService } from 'src/app/services/registro.service';
-import { IngresoService } from 'src/app/services/ingreso.service';
 import { LoginComponent } from '../login/login.component';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { DialogComponent } from '../shared/dialog/dialog.component';
-import { Registro } from 'src/app/models/registro';
-import { Ingreso } from 'src/app/models/ingreso';
 
 @Component({
   selector: 'app-landing-page',
@@ -30,26 +26,24 @@ export class LandingPageComponent {
   userName = "";
   loginUsuario: Usuario = {
     Login: '',
-    Password: ''
+    Password: '',
+    IdSistema: 3
   };
   
   isLogged: boolean = false;
   isLoginFail = false;
   perfil: string = "";
   errMsj: string = "";
-
   
-  listaRegistros: Registro[] = [];
-  listaIngresos: Ingreso[] = [];
-
   constructor(private formBuilder: FormBuilder, private authService: LoginService, private route: Router, private tokenService: TokenService, 
-    private spinnerService: SpinnerService, private registroService: RegistroService, private ingresoService: IngresoService, public dialogoConfirmacion: MatDialog, public dialog: MatDialog){
+    private spinnerService: SpinnerService, public dialogoConfirmacion: MatDialog, public dialog: MatDialog){
 
   this.isAdmin  = (this.tokenService.getToken() != null)? true: false;
   this.userName = this.tokenService.getUserName();
   this.formGroup = this.formBuilder.group({
     Login: ['',[Validators.required]],
-    Password: ['',[Validators.required]]
+    Password: ['',[Validators.required]],
+    IdSistema: 3
     })  
   }
 
@@ -112,27 +106,5 @@ export class LandingPageComponent {
       this.spinnerService.hide();
       this.login();
     }    
-  }
-
-  getRegistros(){
-    let idUsuario: number = 1;
-    let periodo: string = "2022-12";
-
-    this.registroService.GetAll(idUsuario, periodo).subscribe((rta: Registro[]) => {
-      this.listaRegistros = rta;    
-      console.log(rta);
-    });
-
-  }
-
-  getIngresos(){
-    let idUsuario: number = 1;
-    let periodo: string = "2022-12";
-
-    this.ingresoService.GetAll(idUsuario, periodo).subscribe((rta: Ingreso[]) => {
-      this.listaIngresos = rta;    
-      console.log(rta);
-    });
-
   }
 }

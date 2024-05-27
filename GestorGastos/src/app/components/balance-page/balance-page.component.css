@@ -1,0 +1,25 @@
+.container__balance{
+    min-height: 100vh;
+    padding-top: 2rem;
+}
+
+
+.mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+    padding: 5px 0;
+  }
+  
+  .mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+  }
+  
+  .demo-row-is-clicked {
+    font-weight: bold;
+  }
+
+  .mat-mdc-row .mat-mdc-cell:hover {
+    border: 0;
+    opacity: 0.5;
+  }

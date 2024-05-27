@@ -4,6 +4,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { LoginComponent } from './components/login/login.component';
 import { AbmNombreComponent } from './components/shared/abm-nombre/abm-nombre.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
+import { BalancePageComponent } from './components/balance-page/balance-page.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
   {
     path: 'tarjeta',
     component: TarjetaComponent
+   // canActivate: [GuardGuard] 
+  },
+  {
+    path: 'balance',
+    component: BalancePageComponent
    // canActivate: [GuardGuard] 
   },
   // {

@@ -4,13 +4,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable } from 'rxjs';
 import { DialogComponent } from '../components/shared/dialog/dialog.component';
 import { environment } from '../environment';
-import { Registro } from '../models/registro';
+import { CategoriaIngreso } from '../models/categoria-ingreso';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegistroService {
-  apiUrl = environment.urlBase() + "gestorGastos/Registro";
+export class CategoriaIngresoService {
+  apiUrl = environment.urlBase() + "gestorGastos/CategoriaIngreso";
   
   constructor(private http: HttpClient, public dialogoConfirmacion: MatDialog) { }
 
@@ -18,17 +18,16 @@ export class RegistroService {
     return this.http.get<any>(this.apiUrl + "/" + id);
   }
   
-  //'https://localhost:7011/gestorGastos/Registro?idUsuario=1&periodo=2022-12'
-  public GetAll(idUsuario: number, periodo: string): Observable<any> {
-    return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${idUsuario.toString()}&periodo=${periodo}`);    
+  public GetAll(): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}`);    
   }
   
-  public nuevo(element: Registro): Observable<any> {
-    return this.http.post<Registro>(this.apiUrl, element);
+  public nuevo(element: CategoriaIngreso): Observable<any> {
+    return this.http.post<CategoriaIngreso>(this.apiUrl, element);
   }
 
-  public actualizar(element: Registro): Observable<Registro>{
-    return this.http.put<Registro>(this.apiUrl, element);
+  public actualizar(element: CategoriaIngreso): Observable<CategoriaIngreso>{
+    return this.http.put<CategoriaIngreso>(this.apiUrl, element);
   }
 
   public eliminarById(id: number): Observable<any>{

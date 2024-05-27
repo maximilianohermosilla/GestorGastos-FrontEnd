@@ -107,7 +107,7 @@
   
   .nav-list{
     color: white;
-    min-width: 200px;
+    min-width: 100px;
   }
 
  .nav-span{
@@ -149,6 +149,16 @@
 
   .example-icon{
     margin-right: 6px;
+  }
+
+  .header__toolbar{
+    box-shadow: 1px 1px 5px rgba(100, 100, 100, 0.54);  
+    z-index: 100;
+  }
+
+  .container__sidenav{
+    max-width: 200px;
+    border-radius: 0;
   }
   
   @media screen and (max-width: 575px) {

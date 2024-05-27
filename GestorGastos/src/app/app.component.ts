@@ -8,11 +8,13 @@ import { SpinnerService } from './services/spinner.service';
 import { LoginComponent } from './components/login/login.component';
 import { ConfirmDialogComponent } from './components/shared/confirm-dialog/confirm-dialog.component';
 import { TokenService } from './services/token.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'GestorGastos';
   showFiller = false;
@@ -38,7 +40,7 @@ export class AppComponent {
     if (!this.isAdmin) {
       this.userName = this.tokenService.getUserName();
       this.userId = this.tokenService.getUserId();
-      this.fillerNav.push({nombre: "Balance",routerlink: "expedientes",icon: "balance"});
+      this.fillerNav.push({nombre: "Balance",routerlink: "balance",icon: "balance"});
       this.fillerNav.push({nombre: "Alta Tarjeta",routerlink: "tarjeta",icon: "assignment_add"});
       this.fillerNav.push({nombre: "Búsquedas",routerlink: "expedientes",icon: "search"}); 
       this.fillerNav.push({nombre: "Configuración",routerlink: "configuracion",icon: "settings"});       

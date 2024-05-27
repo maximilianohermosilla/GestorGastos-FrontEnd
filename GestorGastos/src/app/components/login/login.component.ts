@@ -21,7 +21,9 @@ export class LoginComponent {
 
   loginUsuario: Usuario = {
     Login: '',
-    Password: ''
+    Password: '',
+    PasswordNew: '',
+    IdSistema: 3
   };
   
   isLogged: boolean = false;
@@ -34,7 +36,8 @@ export class LoginComponent {
 
     this.formGroup = this.formBuilder.group({
       Login: ['',[Validators.required]],
-      Password: ['',[Validators.required]]
+      Password: ['',[Validators.required]],
+      IdSistema: 3
       })  
     }
   
@@ -109,6 +112,7 @@ export class LoginComponent {
     loginInvitado(){
       this.loginUsuario.Login = "invitado";
       this.loginUsuario.Password = "CLAve123**";
+      this.loginUsuario.IdSistema = 3;
       this.onLogin();
     }
   

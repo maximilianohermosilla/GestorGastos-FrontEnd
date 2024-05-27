@@ -1,3 +1,5 @@
+import { CategoriaIngreso } from "./categoria-ingreso";
+
 export interface Ingreso{
     id: number,
     valor: number,
@@ -6,5 +8,6 @@ export interface Ingreso{
     periodo: "",
     idUsuario: number,
     idCategoriaIngreso: number,
-    categoriaIngresoNombre?: string
+    categoriaIngresoNombre?: string,
+    categoriaIngreso?: CategoriaIngreso
   }

@@ -1,6 +1,6 @@
 <!-- <app-spinner *ngIf="spinnerService.blockUI | async"></app-spinner> -->
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="basic" class="example-toolbar">
+  <mat-toolbar color="basic" class="example-toolbar header__toolbar">
     <button mat-icon-button (click)="snav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
@@ -20,11 +20,11 @@
 
   <mat-sidenav-container class="example-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 48 : 0">
-    <mat-sidenav class="sidenav" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+    <mat-sidenav class="sidenav container__sidenav" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="48">
       <mat-nav-list class="nav-list">
-        <div class="center" *ngFor="let nav of fillerNav">
-          <a class="nav-span" mat-list-item routerLink={{nav.routerlink}} > <mat-icon class="nav-icon">{{nav.icon}}</mat-icon>  {{nav.nombre}}</a>
+        <div class="center rounded-1" *ngFor="let nav of fillerNav">
+          <a class="nav-span rounded-1" mat-list-item routerLink={{nav.routerlink}} > <mat-icon class="nav-icon">{{nav.icon}}</mat-icon>  {{nav.nombre}}</a>
         </div>
       </mat-nav-list>
     </mat-sidenav>

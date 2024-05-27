@@ -20,7 +20,6 @@ export class IngresoService {
   
   //'https://localhost:7011/gestorGastos/Ingreso?idUsuario=1&periodo=2022-12'
   public GetAll(idUsuario: number, periodo: string): Observable<any> {
-    console.log(idUsuario, periodo)
     return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${idUsuario.toString()}&periodo=${periodo}`);    
   }
   

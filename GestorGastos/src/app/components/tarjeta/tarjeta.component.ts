@@ -5,9 +5,6 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MatCalendarCellClassFunction, MatDatepicker } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../shared/dialog/dialog.component';
-import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import 'moment/locale/ja';
-import 'moment/locale/fr';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpinnerService } from 'src/app/services/spinner.service';
@@ -17,6 +14,9 @@ import { Tarjeta } from 'src/app/models/tarjeta';
 import { TarjetaService } from 'src/app/services/tarjeta.service';
 import { NombreService } from 'src/app/services/nombre.service';
 import { ObjetoNombre } from 'src/app/models/objeto-nombre';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import 'moment/locale/ja';
+import 'moment/locale/fr';
 import * as _moment from 'moment';
 import {default as _rollupMoment, Moment} from 'moment';
 
