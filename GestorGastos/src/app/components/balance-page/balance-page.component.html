@@ -1,59 +1,71 @@
 <div id="container__balance" class="parallax-container container__balance">
+    <header _ngcontent-ng-c330766891="" focusonnavigation="" aria-label="Get started" id="homepage-header"
+        class="docs-header-background" tabindex="-1" style="outline: none;">
+        <div _ngcontent-ng-c330766891="" class="docs-header-section">
+            <div _ngcontent-ng-c330766891="" class="docs-header-headline">
+                <h3 _ngcontent-ng-c330766891="" class="mat-h1">Balance de gastos</h3>
+            </div>            
+        </div>
+    </header>
     <div class="section__balance">
         <div class="container">
             <div class="d-flex justify-content-center gap-3">
-                <mat-form-field color="primary" appearance="fill" hidden>
-                    <mat-label>Año</mat-label>
-                    <input matInput [formControl]="anio" [matDatepicker]="dpAnio">
-                    <mat-datepicker-toggle matSuffix [for]="dpAnio"></mat-datepicker-toggle>
-                    <mat-datepicker #dpAnio startView="multi-year" (yearSelected)="setYear($event, dpAnio)"
-                        panelClass="example-month-picker">
-                    </mat-datepicker>
-                </mat-form-field>
-                <mat-form-field color="primary" appearance="fill">
-                    <mat-label>Periodo</mat-label>
-                    <input matInput placeholder="AAAA/MM" [formControl]="periodo" [matDatepicker]="dp">
-                    <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
-                    <mat-datepicker #dp startView="multi-year" (monthSelected)="setMonthAndYear($event, dp)"
-                        panelClass="example-month-picker">
-                    </mat-datepicker>
-                </mat-form-field>       
+                <mat-tab-group>
+                    <mat-tab label="Mes">
+                        <mat-form-field color="primary" appearance="fill">
+                            <mat-label>Periodo</mat-label>
+                            <input matInput placeholder="AAAA/MM" [formControl]="periodo" [matDatepicker]="dp">
+                            <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+                            <mat-datepicker #dp startView="multi-year" (monthSelected)="setMonthAndYear($event, dp)"
+                                panelClass="example-month-picker">
+                            </mat-datepicker>
+                        </mat-form-field>
+                    </mat-tab>
+                    <mat-tab label="Año">
+                        <mat-form-field color="primary" appearance="fill">
+                            <mat-label>Año</mat-label>
+                            <input matInput [formControl]="anio" [matDatepicker]="dpAnio">
+                            <mat-datepicker-toggle matSuffix [for]="dpAnio"></mat-datepicker-toggle>
+                            <mat-datepicker #dpAnio startView="multi-year" (yearSelected)="setYear($event, dpAnio)"
+                                panelClass="example-month-picker">
+                            </mat-datepicker>
+                        </mat-form-field>
+                    </mat-tab>
+                </mat-tab-group>
             </div>
-            <div class="d-none justify-content-center gap-3">
-                <button mat-flat-button color="warn" class="rounded-1" (click)="getRegistros('')">Registros</button>
-                <button mat-flat-button color="primary" class="rounded-1" (click)="getIngresos('')">Ingresos</button>
+            <div class="container justify-content-center text-info" [hidden]="true">
+                <h4>No se encontraron resultados</h4>
             </div>
 
-            <div class="row shadow p-2">
-                <div class="col-12 col-sm-6 chart__container">
+            <div class="row shadow">
+                <!-- Chart Bar Horizontal -->
+                <div class="col-12 col-sm-6 chart__container bg-dark">
                     <mat-card-header class="d-flex text-center justify-content-center">
-                        <h6 class="border-bottom border-success pb-2 px-3">Categorías de gastos</h6>
-                    </mat-card-header> 
-                    <app-chart-bar-vertical-balance                        
-                        class="d-flex justify-content-center gap-2"
-                        [dataRegistros]="listaRegistros"
-                        [dataIngresos]="listaIngresos"
-                        [hidden]="listaRegistros.length==0 && listaIngresos.length==0"
-                    ></app-chart-bar-vertical-balance>
+                        <h6 class="border-bottom border-success pb-2 px-3">Gastos por categoría</h6>
+                    </mat-card-header>
+                    <app-chart-bar-vertical-balance class="d-flex justify-content-center gap-2"
+                        [dataRegistros]="listaRegistros" [dataIngresos]="listaIngresos"
+                        [hidden]="listaRegistros.length==0 && listaIngresos.length==0"></app-chart-bar-vertical-balance>
                 </div>
-                
-                <div class="col-12 col-sm-6 chart__container">
+
+                <!-- Chart Pie -->
+                <div class="col-12 col-sm-6 chart__container bg-dark">
                     <mat-card-header class="d-flex text-center justify-content-center">
                         <h6 class="border-bottom border-success pb-2 px-3">Balance Ingresos/Egresos</h6>
-                    </mat-card-header> 
-                    <app-chart-pie-balance 
-                        class="d-flex justify-content-center gap-2"
-                        [dataRegistros]="listaRegistros"
-                        [dataIngresos]="listaIngresos"
-                        [hidden]="listaRegistros.length==0 && listaIngresos.length==0"
-                    ></app-chart-pie-balance>
+                    </mat-card-header>
+                    <app-chart-pie-balance class="d-flex justify-content-center align-items-start h-100 gap-2"
+                        [dataRegistros]="listaRegistros" [dataIngresos]="listaIngresos"
+                        [hidden]="listaRegistros.length==0 && listaIngresos.length==0"></app-chart-pie-balance>
                 </div>
-              
+
+                <!-- Grilla Gastos -->
                 <div class="col-12 col-sm-6 grilla">
                     <app-grilla-card [data]="listaRegistros"></app-grilla-card>
                 </div>
+
+                <!-- Grilla Ingresos -->
                 <div class="col-12 col-sm-6 grilla">
-                   <app-grilla-card-ingreso [data]="listaIngresos"></app-grilla-card-ingreso>
+                    <app-grilla-card-ingreso [data]="listaIngresos"></app-grilla-card-ingreso>
                 </div>
                 <div class="row d-none">
                     <div class="col-6 d-flex flex-column justify-content-start gap-3 py-3">

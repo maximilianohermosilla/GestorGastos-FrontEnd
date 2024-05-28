@@ -54,6 +54,7 @@ export class BalancePageComponent {
   showFiller = false;
   isAdmin: boolean = false;
   userName = "";
+  emptyResults: boolean = false;
 
   loginUsuario: Usuario = {
     Login: '',
@@ -82,20 +83,23 @@ export class BalancePageComponent {
     private categoriaGasto: CategoriaGastoService, private categoriaIngreso: CategoriaIngresoService, private liveAnnouncer: LiveAnnouncer,
     private ingresoService: IngresoService, private dateAdapter: DateAdapter<Date>,
     @Inject(MAT_DATE_LOCALE) private _locale: string) {
-    this._locale = 'fr';
-    this.dateAdapter.setLocale(this._locale);
-    this.formGroup = this.formBuilder.group({
-      periodo: ['', [Validators.required]]
-    })
-    this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
-    this.isAdmin = (this.tokenService.getToken() != null) ? true : false;
-    this.userName = this.tokenService.getUserName();
-    this.fechaActual = new Date().getFullYear() + "-" + ("0" + (new Date().getMonth() + 1)).slice(-2);
-    this.fechaActual = "2022"
-    this.getIngresos(this.fechaActual);
-    this.getRegistros(this.fechaActual);
-    this.getCategoriaGastos();
-    this.getCategoriaIngresos();
+      this._locale = 'fr';
+      this.dateAdapter.setLocale(this._locale);
+      this.formGroup = this.formBuilder.group({
+        periodo: ['', [Validators.required]]
+      })
+      this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
+      this.isAdmin = (this.tokenService.getToken() != null) ? true : false;
+      this.userName = this.tokenService.getUserName();
+      this.fechaActual = new Date().getFullYear() + "-" + ("0" + (new Date().getMonth() + 1)).slice(-2);
+      //this.fechaActual = "2022"
+      this.getIngresos(this.fechaActual);
+      this.getRegistros(this.fechaActual);
+      this.getCategoriaGastos();
+      this.getCategoriaIngresos();
+  }
+
+  ngOnChanges() {   
   }
 
   setMonthAndYear(normalizedMonthAndYear: Moment, datepicker: MatDatepicker<Moment>) {
@@ -103,7 +107,6 @@ export class BalancePageComponent {
     const year = normalizedMonthAndYear.year();
     var monthWithZero = month < 9 ? "0" + month : month;
     let datePeriodo = year + "-" + monthWithZero;
-    console.log(datePeriodo)
 
     this.getRegistros(datePeriodo);
     this.getIngresos(datePeriodo);
@@ -113,7 +116,9 @@ export class BalancePageComponent {
     ctrlValue.year(normalizedMonthAndYear.year());
     this.periodo.setValue(ctrlValue);
 
-    datepicker.close();
+    datepicker.close();  
+    this.emptyResults = this.listaRegistros.length == 0 && this.listaIngresos.length == 0;
+    console.log(this.emptyResults)  
   }
 
   setYear(normalizedYear: Moment, datepicker: MatDatepicker<Moment>) {
@@ -132,6 +137,8 @@ export class BalancePageComponent {
     this.getIngresos(datePeriodo.toString());
 
     datepicker.close();
+    this.emptyResults = this.listaRegistros.length == 0 && this.listaIngresos.length == 0;
+    console.log(this.emptyResults)
   }
 
   getRegistros(periodo: string) {
@@ -140,10 +147,10 @@ export class BalancePageComponent {
 
     this.registroService.GetAll(idUsuario, periodo).subscribe((rta: any[]) => {
       this.listaRegistros = rta;
-      // console.log(rta);
-      // this.dataSource = new MatTableDataSource<any[]>(rta);
-      // this.dataSource.paginator = this.paginator;
-      // this.dataSource.sort = this.sort;
+      console.log(rta);
+      this.dataSource = new MatTableDataSource<any[]>(rta);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
 
   }
@@ -161,14 +168,12 @@ export class BalancePageComponent {
   getCategoriaGastos(){
     this.categoriaGasto.GetAll().subscribe((rta: CategoriaGasto[]) => {
       this.listaCategoriaGasto = rta;
-      console.log(rta);
     });
   }
   
   getCategoriaIngresos(){
     this.categoriaIngreso.GetAll().subscribe((rta: CategoriaIngreso[]) => {
       this.listaCategoriaIngreso = rta;
-      console.log(rta);
     });
   }
 

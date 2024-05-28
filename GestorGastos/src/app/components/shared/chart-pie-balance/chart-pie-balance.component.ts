@@ -51,7 +51,6 @@ export class ChartPieBalanceComponent {
 
       this.legendTitle = "Ingresos: $" + resultadoIngresos.Ingreso.toString();
       this.single = chartValues;
-      console.log(this.single)
     }, 500);
   } 
 
@@ -75,7 +74,9 @@ export class ChartPieBalanceComponent {
       chartValues.push({name: "Disponible", value: resultadoIngresos.Ingreso - resultadoRegistros.NoPagado - resultadoRegistros.Pagado})
       chartValues.push({name: "A pagar", value: resultadoRegistros.NoPagado})
       chartValues.push({name: "Pagado", value: resultadoRegistros.Pagado})
-    this.single = chartValues;
+
+      this.legendTitle = "Ingresos: $" + resultadoIngresos.Ingreso.toString();
+      this.single = chartValues;
   }
 
   onSelect(data: any): void {
@@ -83,10 +84,10 @@ export class ChartPieBalanceComponent {
   }
 
   onActivate(data: any): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
+    //console.log('Activate', JSON.parse(JSON.stringify(data)));
   }
 
   onDeactivate(data: any): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+    //console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 }
