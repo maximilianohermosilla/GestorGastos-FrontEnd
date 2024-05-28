@@ -1,0 +1,22 @@
+<mat-tab-group>
+    <mat-tab label="Mes">
+        <mat-form-field color="primary" appearance="fill">
+            <mat-label>Periodo</mat-label>
+            <input matInput placeholder="AAAA/MM" [formControl]="periodo" [matDatepicker]="dp">
+            <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp startView="multi-year" (monthSelected)="setMonthAndYear($event, dp)"
+                panelClass="example-month-picker">
+            </mat-datepicker>
+        </mat-form-field>
+    </mat-tab>
+    <mat-tab label="Año">
+        <mat-form-field color="primary" appearance="fill">
+            <mat-label>{{fechaAnio || "Año"}}</mat-label>
+            <input matInput [formControl]="anio" [matDatepicker]="dpAnio">
+            <mat-datepicker-toggle matSuffix [for]="dpAnio"></mat-datepicker-toggle>
+            <mat-datepicker #dpAnio startView="multi-year" (yearSelected)="setYear($event, dpAnio)"
+                panelClass="example-month-picker">
+            </mat-datepicker>
+        </mat-form-field>
+    </mat-tab>
+</mat-tab-group>

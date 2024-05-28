@@ -19,25 +19,13 @@ import 'moment/locale/ja';
 import 'moment/locale/fr';
 import * as _moment from 'moment';
 import {default as _rollupMoment, Moment} from 'moment';
+import { FORMAT_DATE } from 'src/app/models/format-date';
 
 
 const moment = _rollupMoment || _moment;
 
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
-export const MY_FORMATS = {
-  parse: {
-    dateInput: 'MM/YYYY',
-  },
-  display: {
-    dateInput: 'MM/YYYY',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
-
-
 
 @Component({
   selector: 'app-tarjeta',
@@ -56,7 +44,7 @@ export const MY_FORMATS = {
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    {provide: MAT_DATE_FORMATS, useValue: FORMAT_DATE},
   ],
   encapsulation: ViewEncapsulation.None,
 })

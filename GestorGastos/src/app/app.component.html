@@ -24,7 +24,9 @@
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="48">
       <mat-nav-list class="nav-list">
         <div class="center rounded-1" *ngFor="let nav of fillerNav">
-          <a class="nav-span rounded-1" mat-list-item routerLink={{nav.routerlink}} > <mat-icon class="nav-icon">{{nav.icon}}</mat-icon>  {{nav.nombre}}</a>
+          <a class="nav-span rounded-1" mat-list-item routerLink={{nav.routerlink}} > 
+            <mat-icon class="nav-icon" >{{nav.icon}}</mat-icon>  {{nav.nombre}}
+          </a>
         </div>
       </mat-nav-list>
     </mat-sidenav>

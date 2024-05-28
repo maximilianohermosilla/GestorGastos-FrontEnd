@@ -75,7 +75,7 @@ export class ChartPieBalanceComponent {
       chartValues.push({name: "A pagar", value: resultadoRegistros.NoPagado})
       chartValues.push({name: "Pagado", value: resultadoRegistros.Pagado})
 
-      this.legendTitle = "Ingresos: $" + resultadoIngresos.Ingreso.toString();
+      this.legendTitle = "Ingresos: $" + resultadoIngresos.Ingreso.toLocaleString("es-AR");
       this.single = chartValues;
   }
 

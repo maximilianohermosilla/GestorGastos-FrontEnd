@@ -1,0 +1,7 @@
+::ng-deep .mdc-tab {
+    border: 1px solid rgb(200, 200, 200, 0.2) !important;    
+}
+
+::ng-deep .mdc-tab:focus {
+    background-color: rgb(150, 150, 150, 0.5);
+}

@@ -1,11 +1,45 @@
 <app-header-banner title="Registrar Gastos"></app-header-banner>
 
+<div class="d-flex justify-content-center gap-3">
+    <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
+</div>
+
+<section class="container-fluid p-2">
+    <mat-tab-group class="bg-dark p-2">
+
+        <mat-tab label="Agregar Gasto"> 
+            <div class="col-12 grilla">
+                <app-grilla-card [data]="listaRegistros" *ngIf="!(listaRegistros.length == 0)"></app-grilla-card>
+                
+                <div class="container d-flex justify-content-center text-info py-5" *ngIf="(listaRegistros.length == 0)">
+                    <h6 class="mb-0">No se encontraron resultados</h6>
+                </div>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Suscripción">
+             Suscripción 
+            <div class="container d-flex justify-content-center text-info py-5" *ngIf="(listaRegistros.length == 0)">
+                <h6 class="mb-0">No se encontraron resultados</h6>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Cuotas">
+             Cuotas 
+            <div class="container d-flex justify-content-center text-info py-5" *ngIf="(listaRegistros.length == 0)">
+                <h6 class="mb-0">No se encontraron resultados</h6>
+            </div>
+        </mat-tab>
+
+    </mat-tab-group>
+</section>
+
 <section class="container">
     <h5 class="text-center py-3 border bg-dark mb-2">Categoria Gastos</h5>
     <div class="d-flex align-content-start justify-content-center flex-wrap pt-5">
-        <div class="d-flex flex-column text-center align-items-center w-25 mb-2" *ngFor="let cat of listaCategoriaGasto">
-            <button mat-fab color="primary"
-                [ngStyle]="{backgroundColor: cat.color, color: '#000', opacity: 0.7}"
+        <div class="d-flex flex-column text-center align-items-center w-25 mb-2"
+            *ngFor="let cat of listaCategoriaGasto">
+            <button mat-fab color="primary" [ngStyle]="{backgroundColor: cat.color, color: '#000', opacity: 0.7}"
                 aria-label="Categoria gasto" class="me-2">
                 <mat-icon>{{cat.icono}}</mat-icon>
             </button>
@@ -17,7 +51,7 @@
 <section class="container">
     <h5 class="text-center py-3 border bg-dark mb-2">Empresas</h5>
     <div class="d-flex align-content-start justify-content-center flex-wrap pt-5">
-        <div class="d-flex flex-column text-center align-items-center w-25 mb-2" *ngFor="let item of listaEmpresas">           
+        <div class="d-flex flex-column text-center align-items-center w-25 mb-2" *ngFor="let item of listaEmpresas">
             {{item.nombre}}
         </div>
     </div>
@@ -27,7 +61,7 @@
 <section class="container">
     <h5 class="text-center py-3 border bg-dark mb-2">Cuentas</h5>
     <div class="d-flex align-content-start justify-content-center flex-wrap pt-5">
-        <div class="d-flex flex-column text-center align-items-center w-25 mb-2" *ngFor="let item of listaCuentas">           
+        <div class="d-flex flex-column text-center align-items-center w-25 mb-2" *ngFor="let item of listaCuentas">
             {{item.nombre}}
         </div>
     </div>

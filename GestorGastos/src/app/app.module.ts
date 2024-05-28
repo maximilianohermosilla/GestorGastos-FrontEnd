@@ -35,6 +35,7 @@ import { ChartBarVerticalBalanceComponent } from './components/shared/chart-bar-
 import { RegistroGastosPageComponent } from './components/registro-gastos-page/registro-gastos-page.component';
 import { HeaderBannerComponent } from './components/shared/header-banner/header-banner.component';
 import { RegistroIngresosPageComponent } from './components/registro-ingresos-page/registro-ingresos-page.component';
+import { FormPeriodoComponent } from './components/shared/form-periodo/form-periodo.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { RegistroIngresosPageComponent } from './components/registro-ingresos-pa
     ChartPieBalanceComponent,
     ChartBarVerticalBalanceComponent,
     RegistroGastosPageComponent,
-    RegistroIngresosPageComponent
+    RegistroIngresosPageComponent,
+    FormPeriodoComponent
   ],
   imports: [
     BrowserModule,

@@ -26,16 +26,22 @@ export class GrillaCardComponent {
   }
   ngOnInit(): void {
     setTimeout(() => {
-      this.dataSource = new MatTableDataSource<any[]>(this.data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }, 2000);
+      this.setDatasource();
+    }, 1000);
   } 
   
   ngOnChanges() {
+    this.setDatasource();
+  }
+
+  setDatasource(){
     this.dataSource = new MatTableDataSource<any[]>(this.data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string){
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   announceSortChange(sort: Sort){
