@@ -21,13 +21,17 @@ import { SpinnerComponent } from './components/shared/spinner/spinner.component'
 import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { BalancePageComponent } from './components/balance-page/balance-page.component';
-
-
 import { SpinnerInterceptorService } from './services/spinner-interceptor.service';
 import { InterceptorService } from './services/interceptor.service';
 import { AbmNombreComponent } from './components/shared/abm-nombre/abm-nombre.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { GrillaCardComponent } from './components/shared/grilla-card/grilla-card.component';
+import { GrillaCardIngresoComponent } from './components/shared/grilla-card-ingreso/grilla-card-ingreso.component';
+
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartPieBalanceComponent } from './components/shared/chart-pie-balance/chart-pie-balance.component';
+import { ChartBarVerticalBalanceComponent } from './components/shared/chart-bar-vertical-balance/chart-bar-vertical-balance.component';
 
 @NgModule({
   declarations: [
@@ -42,14 +46,19 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     LandingPageComponent,
     AbmNombreComponent,
     TarjetaComponent,
-    BalancePageComponent
+    BalancePageComponent,
+    GrillaCardComponent,
+    GrillaCardIngresoComponent,
+    ChartPieBalanceComponent,
+    ChartBarVerticalBalanceComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    NgxChartsModule
   ],
   providers: [DatePipe, FilterPipe,
     { provide: MAT_DATE_LOCALE, useValue: 'fr' },

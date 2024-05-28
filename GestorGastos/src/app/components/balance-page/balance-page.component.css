@@ -3,6 +3,11 @@
     padding-top: 2rem;
 }
 
+.chart__container{
+  padding: 2rem 0;
+  min-height: 450px;
+}
+
 
 .mat-mdc-row .mat-mdc-cell {
     border-bottom: 1px solid transparent;
@@ -22,4 +27,12 @@
   .mat-mdc-row .mat-mdc-cell:hover {
     border: 0;
     opacity: 0.5;
+  }
+
+  .example-month-picker .mat-calendar-period-button {
+    pointer-events: none;
+  }
+  
+  .example-month-picker .mat-calendar-arrow {
+    display: none;
   }

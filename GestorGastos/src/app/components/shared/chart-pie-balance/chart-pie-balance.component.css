@@ -1,0 +1,9 @@
+.ngx-charts text { fill: #fff!important; }
+
+::ng-deep .ngx-charts { 
+    text{
+        fill: #fff!important; 
+    }
+}
+
+#pie-chart-parent { display: grid; }

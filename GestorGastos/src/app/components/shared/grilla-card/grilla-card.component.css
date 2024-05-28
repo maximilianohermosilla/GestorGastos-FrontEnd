@@ -1,0 +1,19 @@
+
+
+
+
+@media screen and (max-width: 360px){
+    .card__grilla p{
+        font-size: 12px;
+        line-height: 14px;
+    }
+    
+    .mdc-fab{
+        width: 44px;
+        height: 44px;
+    }   
+
+    .mdc-data-table__cell, .mdc-data-table__header-cell {
+        padding: 5px;        
+    }
+}

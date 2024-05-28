@@ -49,8 +49,6 @@ export class BalancePageComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatPaginator) paginatorIngresos!: MatPaginator;
-  @ViewChild(MatSort) sortIngresos!: MatSort;
   formGroup: FormGroup;
   title = 'Balance';
   showFiller = false;
@@ -69,9 +67,10 @@ export class BalancePageComponent {
   errMsj: string = "";
 
   dataSource: any;  
-  dataSourceIngresos: any;  
   nombreColumnas: string[] = ["Registros"];
+  fechaActual: any;
   periodo = new FormControl(moment());
+  anio = new FormControl();
   fechaPeriodo = new FormControl();
   listaRegistros: Registro[] = [];
   listaIngresos: Ingreso[] = [];
@@ -91,10 +90,10 @@ export class BalancePageComponent {
     this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
     this.isAdmin = (this.tokenService.getToken() != null) ? true : false;
     this.userName = this.tokenService.getUserName();
-    let fechaActual: any = new Date().getFullYear() + "-" + ("0" + (new Date().getMonth() + 1)).slice(-2);
-    fechaActual = "2022"
-    this.getIngresos(fechaActual);
-    this.getRegistros(fechaActual);
+    this.fechaActual = new Date().getFullYear() + "-" + ("0" + (new Date().getMonth() + 1)).slice(-2);
+    this.fechaActual = "2022"
+    this.getIngresos(this.fechaActual);
+    this.getRegistros(this.fechaActual);
     this.getCategoriaGastos();
     this.getCategoriaIngresos();
   }
@@ -117,16 +116,34 @@ export class BalancePageComponent {
     datepicker.close();
   }
 
+  setYear(normalizedYear: Moment, datepicker: MatDatepicker<Moment>) {
+    // const ctrlValue = this.anio.value;
+    // ctrlValue.year(normalizedYear.year());
+    // this.anio.setValue(ctrlValue);
+    // datepicker.close();
+    // console.log(this.anio.value, ctrlValue);
+
+    const year = normalizedYear.year();
+    let datePeriodo = year;
+    console.log(datePeriodo.toString())
+ 
+    this.anio = new FormControl(datePeriodo.toString());
+    this.getRegistros(datePeriodo.toString());
+    this.getIngresos(datePeriodo.toString());
+
+    datepicker.close();
+  }
+
   getRegistros(periodo: string) {
     let idUsuario: number = 1;
     //let periodo: string = "2022-12";
 
     this.registroService.GetAll(idUsuario, periodo).subscribe((rta: any[]) => {
       this.listaRegistros = rta;
-      console.log(rta);
-      this.dataSource = new MatTableDataSource<any[]>(rta);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      // console.log(rta);
+      // this.dataSource = new MatTableDataSource<any[]>(rta);
+      // this.dataSource.paginator = this.paginator;
+      // this.dataSource.sort = this.sort;
     });
 
   }
@@ -138,9 +155,6 @@ export class BalancePageComponent {
     this.ingresoService.GetAll(idUsuario, periodo).subscribe((rta: any[]) => {
       this.listaIngresos = rta;
       console.log(rta);
-      this.dataSourceIngresos = new MatTableDataSource<any[]>(rta);
-      this.dataSourceIngresos.paginator = this.paginatorIngresos;
-      this.dataSourceIngresos.sort = this.sortIngresos;
     });
   }
 

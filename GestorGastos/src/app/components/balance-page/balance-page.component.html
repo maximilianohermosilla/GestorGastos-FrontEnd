@@ -2,6 +2,14 @@
     <div class="section__balance">
         <div class="container">
             <div class="d-flex justify-content-center gap-3">
+                <mat-form-field color="primary" appearance="fill" hidden>
+                    <mat-label>Año</mat-label>
+                    <input matInput [formControl]="anio" [matDatepicker]="dpAnio">
+                    <mat-datepicker-toggle matSuffix [for]="dpAnio"></mat-datepicker-toggle>
+                    <mat-datepicker #dpAnio startView="multi-year" (yearSelected)="setYear($event, dpAnio)"
+                        panelClass="example-month-picker">
+                    </mat-datepicker>
+                </mat-form-field>
                 <mat-form-field color="primary" appearance="fill">
                     <mat-label>Periodo</mat-label>
                     <input matInput placeholder="AAAA/MM" [formControl]="periodo" [matDatepicker]="dp">
@@ -9,105 +17,44 @@
                     <mat-datepicker #dp startView="multi-year" (monthSelected)="setMonthAndYear($event, dp)"
                         panelClass="example-month-picker">
                     </mat-datepicker>
-                </mat-form-field>
+                </mat-form-field>       
             </div>
             <div class="d-none justify-content-center gap-3">
                 <button mat-flat-button color="warn" class="rounded-1" (click)="getRegistros('')">Registros</button>
                 <button mat-flat-button color="primary" class="rounded-1" (click)="getIngresos('')">Ingresos</button>
             </div>
 
-            <div class="row">
-                <div class="col-6 grilla">
-                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" #table matSort
-                        (matSortChange)="announceSortChange($event)">
-                        <ng-container matColumnDef="Registros">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="h4"> Gastos </th>
-                            <td mat-cell *matCellDef="let registro">
-                                <div class="d-flex center shadow bg-dark rounded-4 p-1">
-                                    <button mat-fab color="primary"
-                                        [ngStyle]="{backgroundColor: registro.categoriaGasto?.color, color: '#000', opacity: 0.7}"
-                                        aria-label="Categoria gasto" class="me-2">
-                                        <mat-icon>{{registro.categoriaGasto?.icono}}</mat-icon>
-                                    </button>
-                                    <div class="d-flex flex-column">
-                                        <p class="m-0">{{registro.fecha.slice(0, 10)}} - <span
-                                                class="text-secondary">{{registro.descripcion}}</span></p>
-                                        <p class="m-0 text-warning">$ {{registro.valor.toLocaleString("es-AR")}}</p>
-                                        <p class="m-0"></p>
-                                    </div>
-                                </div>
-                            </td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="nombreColumnas" class="header"></tr>
-                        <tr class="fila" mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
-                    </table>
-                    <mat-divider></mat-divider>
-                    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="10" showFirstLastButtons
-                        aria-label="Select page">
-                    </mat-paginator>
+            <div class="row shadow p-2">
+                <div class="col-12 col-sm-6 chart__container">
+                    <mat-card-header class="d-flex text-center justify-content-center">
+                        <h6 class="border-bottom border-success pb-2 px-3">Categorías de gastos</h6>
+                    </mat-card-header> 
+                    <app-chart-bar-vertical-balance                        
+                        class="d-flex justify-content-center gap-2"
+                        [dataRegistros]="listaRegistros"
+                        [dataIngresos]="listaIngresos"
+                        [hidden]="listaRegistros.length==0 && listaIngresos.length==0"
+                    ></app-chart-bar-vertical-balance>
                 </div>
-                <!-- <div class="col-6 d-flex flex-column justify-content-start gap-2 py-3">
-                    <h5>Gastos</h5>
-                    <div class="d-flex center shadow bg-dark rounded-4 p-1" *ngFor="let registro of listaRegistros">
-                        <button mat-fab color="primary"
-                            [ngStyle]="{backgroundColor: registro.categoriaGasto?.color, color: '#000', opacity: 0.7}"
-                            aria-label="Categoria gasto" class="me-2">
-                            <mat-icon>{{registro.categoriaGasto?.icono}}</mat-icon>
-                        </button>
-                        <div class="d-flex flex-column">
-                            <p class="m-0">{{registro.fecha.slice(0, 10)}} - <span
-                                    class="text-secondary">{{registro.descripcion}}</span></p>
-                            <p class="m-0 text-warning">$ {{registro.valor.toLocaleString("es-AR")}}</p>
-                            <p class="m-0"></p>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="col-6 grilla">
-                    <table mat-table [dataSource]="dataSourceIngresos" class="mat-elevation-z8 demo-table" #table matSort
-                        (matSortChange)="announceSortChange($event)">
-                        <ng-container matColumnDef="Registros">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="h4"> Ingresos </th>
-                            <td mat-cell *matCellDef="let registro">
-                                <div class="d-flex center shadow bg-dark rounded-4 p-1">
-                                    <button mat-fab color="primary"
-                                        [ngStyle]="{backgroundColor: registro.categoriaIngreso?.color, color: '#000', opacity: 0.7}"
-                                        aria-label="Categoria gasto" class="me-2">
-                                        <mat-icon>{{registro.categoriaIngreso?.icono}}</mat-icon>
-                                    </button>
-                                    <div class="d-flex flex-column">
-                                        <p class="m-0">{{registro.fecha.slice(0, 10)}} - <span
-                                                class="text-secondary">{{registro.descripcion}}</span></p>
-                                        <p class="m-0 text-success">$ {{registro.valor.toLocaleString("es-AR")}}</p>
-                                        <p class="m-0"></p>
-                                    </div>
-                                </div>
-                            </td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="nombreColumnas" class="header"></tr>
-                        <tr class="fila" mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
-                    </table>
-                    <mat-divider></mat-divider>
-                    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="10" showFirstLastButtons
-                        aria-label="Select page">
-                    </mat-paginator>
+                
+                <div class="col-12 col-sm-6 chart__container">
+                    <mat-card-header class="d-flex text-center justify-content-center">
+                        <h6 class="border-bottom border-success pb-2 px-3">Balance Ingresos/Egresos</h6>
+                    </mat-card-header> 
+                    <app-chart-pie-balance 
+                        class="d-flex justify-content-center gap-2"
+                        [dataRegistros]="listaRegistros"
+                        [dataIngresos]="listaIngresos"
+                        [hidden]="listaRegistros.length==0 && listaIngresos.length==0"
+                    ></app-chart-pie-balance>
                 </div>
-                <!-- <div class="col-6 d-flex flex-column justify-content-start gap-2 py-3">
-                    <h5>Ingresos</h5>
-                    <div class="d-flex center shadow bg-dark rounded-4 p-1" *ngFor="let registro of listaIngresos">
-                        <button mat-fab color="primary"
-                            [ngStyle]="{backgroundColor: registro.categoriaIngreso?.color, color: '#000', opacity: 0.7}"
-                            aria-label="Categoria gasto" class="me-2">
-                            <mat-icon>{{registro.categoriaIngreso?.icono}}</mat-icon>
-                        </button>
-                        <div class="d-flex flex-column">
-                            <p class="m-0">{{registro.fecha.slice(0, 10)}} - <span
-                                    class="text-secondary">{{registro.descripcion}}</span></p>
-                            <p class="m-0 text-success">$ {{registro.valor.toLocaleString("es-AR")}}</p>
-                            <p class="m-0"></p>
-                        </div>
-                    </div>
-                </div> -->
-
+              
+                <div class="col-12 col-sm-6 grilla">
+                    <app-grilla-card [data]="listaRegistros"></app-grilla-card>
+                </div>
+                <div class="col-12 col-sm-6 grilla">
+                   <app-grilla-card-ingreso [data]="listaIngresos"></app-grilla-card-ingreso>
+                </div>
                 <div class="row d-none">
                     <div class="col-6 d-flex flex-column justify-content-start gap-3 py-3">
                         <h5>Categoria Gastos</h5>
