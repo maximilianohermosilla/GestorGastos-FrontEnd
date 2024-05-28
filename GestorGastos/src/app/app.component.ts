@@ -41,7 +41,9 @@ export class AppComponent {
       this.userName = this.tokenService.getUserName();
       this.userId = this.tokenService.getUserId();
       this.fillerNav.push({nombre: "Balance",routerlink: "balance",icon: "balance"});
-      this.fillerNav.push({nombre: "Alta Tarjeta",routerlink: "tarjeta",icon: "assignment_add"});
+      this.fillerNav.push({nombre: "Registrar Gastos",routerlink: "registrar-gastos",icon: "paid"});
+      this.fillerNav.push({nombre: "Registrar Ingresos",routerlink: "registrar-ingresos",icon: "account_balance"});
+      this.fillerNav.push({nombre: "Alta Tarjeta",routerlink: "tarjeta",icon: "add_card"});
       this.fillerNav.push({nombre: "Búsquedas",routerlink: "expedientes",icon: "search"}); 
       this.fillerNav.push({nombre: "Configuración",routerlink: "configuracion",icon: "settings"});       
       this.fillerNav.push({nombre: "Reportes",routerlink: "reportes",icon: "leaderboard"}); 

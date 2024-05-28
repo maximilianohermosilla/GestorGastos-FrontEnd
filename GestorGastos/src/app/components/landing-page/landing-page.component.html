@@ -1,33 +1,27 @@
- <div id="index-banner" class="parallax-container">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <br><br>
-        <mat-progress-bar mode="query" color="accent"></mat-progress-bar> 
-        <h1 id="title" class="header center teal-text text-lighten-2">Gestor de Gastos</h1>
-        <mat-progress-bar mode="query" color="accent"></mat-progress-bar> 
-        <div class="row center">
-          <h5 class="header col s12 light">Desde esta aplicación es posible gestionar el estado de los gastos mensuales, suscripciones y compras</h5>
-        </div>
-        <div class="row center" [hidden]="isAdmin">
-          <button mat-raised-button id="download-button" class="btn-large waves-effect waves-light teal lighten-1 w-100 my-3 rounded-0" (click)="toggleLogin()">Iniciar Sesión</button>
-        </div>
-        <div class="row center" [hidden]="!isAdmin">
-          <h5 class="header center teal-text text-lighten-2 welcome">Bienvenido/a {{userName}}</h5>
-        </div>
-        
-        <button mat-raised-button hidden
-              matTooltipClass="material-tooltip matTooltip"
-              matTooltip="Nombre: Maximiliano
-                        Apellido: Hermosilla" 
-              aria-label="Button that displays a tooltip when focused or hovered over">
+<main class="w-100">
+  <div class="bg-dark pb-2">
+    <app-header-banner title="Gestor de Gastos"></app-header-banner>
+    <div class="bg-dark">
+      <mat-progress-bar mode="query" color="primary"></mat-progress-bar>
+      <p class="text-center">Desde esta aplicación es posible gestionar el estado de los gastos mensuales,
+        suscripciones y compras
+      </p>
+      <div class="container" [hidden]="isAdmin">
+        <button mat-raised-button id="download-button"
+          class="btn-large waves-effect waves-light teal lighten-1 w-100 my-3 rounded-0" (click)="toggleLogin()">Iniciar
+          Sesión</button>
+      </div>
+      <div class="container" [hidden]="!isAdmin">
+        <p class="text-center border p-2 m-2">Bienvenido/a <span class="text-info">{{userName}}</span></p>
+      </div>
+
+      <button mat-raised-button hidden matTooltipClass="material-tooltip matTooltip" matTooltip="Nombre: Maximiliano
+                  Apellido: Hermosilla" aria-label="Button that displays a tooltip when focused or hovered over">
         Suscripción
       </button>
-        <br><br>
-
-      </div>
     </div>
-    <div class="parallax background1"><img src="..\..\assets\img\background1.jpg" alt="Unsplashed background img 1"></div>
   </div>
+
 
 
   <div class="container py-5">
@@ -40,7 +34,10 @@
             <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
             <h5 class="center">Speeds up development</h5>
 
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our
+              custom components. Additionally, we refined animations and transitions to provide a smoother experience
+              for
+              developers.</p>
           </div>
         </div>
 
@@ -49,7 +46,9 @@
             <h2 class="center brown-text"><i class="material-icons">group</i></h2>
             <h5 class="center">User Experience Focused</h5>
 
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework
+              that incorporates components and animations that provide more feedback to users. Additionally, a single
+              underlying responsive system across all platforms allow for a more unified user experience.</p>
           </div>
         </div>
 
@@ -58,7 +57,9 @@
             <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
             <h5 class="center">Easy to work with</h5>
 
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+            <p class="light">We have provided detailed documentation as well as specific code examples to help new users
+              get started. We are also always open to feedback and can answer any questions a user may have about
+              Materialize.</p>
           </div>
         </div>
       </div>
@@ -75,7 +76,8 @@
         </div>
       </div>
     </div>
-    <div class="parallax background2"><img src="..\..\assets\img\background2.jpg" alt="Unsplashed background img 2"></div>
+    <div class="parallax background2"><img src="..\..\assets\img\background2.jpg" alt="Unsplashed background img 2">
+    </div>
   </div>
 
   <div class="container">
@@ -85,7 +87,10 @@
         <div class="col s-12 center">
           <h3><i class="mdi-content-send brown-text"></i></h3>
           <h4>Contacto</h4>
-          <p class="left-align light">Si está interesado en este producto y desea tener acceso a un sistema de características similares, puede comunicarse por correo electrónico a: maximiliano_hermosilla&#64;hotmail.com </p>
+          <p class="left-align light">Si está interesado en este producto y desea tener acceso a un sistema de
+            características similares, puede comunicarse por correo electrónico a:
+            maximiliano_hermosilla&#64;hotmail.com
+          </p>
           <mat-form-field class="example-full-width w-100">
             <mat-label></mat-label>
             <textarea matInput placeholder=""></textarea>
@@ -105,9 +110,10 @@
         </div>
       </div>
     </div>
-    <div class="parallax background3"><img src="..\..\assets\img\background3.jpg" alt="Unsplashed background img 3"></div>
+    <div class="parallax background3"><img src="..\..\assets\img\background3.jpg" alt="Unsplashed background img 3">
+    </div>
   </div>
- 
+
   <footer class="page-footer teal py-5">
     <div class="container">
       <div class="row">
@@ -142,6 +148,9 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-      <!-- Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a> -->
+        <!-- Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a> -->
       </div>
     </div>
+  </footer>
+
+</main>

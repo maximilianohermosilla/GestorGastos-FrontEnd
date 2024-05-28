@@ -32,6 +32,9 @@ import { GrillaCardIngresoComponent } from './components/shared/grilla-card-ingr
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartPieBalanceComponent } from './components/shared/chart-pie-balance/chart-pie-balance.component';
 import { ChartBarVerticalBalanceComponent } from './components/shared/chart-bar-vertical-balance/chart-bar-vertical-balance.component';
+import { RegistroGastosPageComponent } from './components/registro-gastos-page/registro-gastos-page.component';
+import { HeaderBannerComponent } from './components/shared/header-banner/header-banner.component';
+import { RegistroIngresosPageComponent } from './components/registro-ingresos-page/registro-ingresos-page.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,7 @@ import { ChartBarVerticalBalanceComponent } from './components/shared/chart-bar-
     FilterPipe,
     ConfirmDialogComponent,
     DialogComponent,
+    HeaderBannerComponent,
     LoginComponent,
     FooterComponent,
     SpinnerComponent,
@@ -50,7 +54,9 @@ import { ChartBarVerticalBalanceComponent } from './components/shared/chart-bar-
     GrillaCardComponent,
     GrillaCardIngresoComponent,
     ChartPieBalanceComponent,
-    ChartBarVerticalBalanceComponent
+    ChartBarVerticalBalanceComponent,
+    RegistroGastosPageComponent,
+    RegistroIngresosPageComponent
   ],
   imports: [
     BrowserModule,

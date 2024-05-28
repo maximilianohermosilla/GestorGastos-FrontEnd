@@ -5,6 +5,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AbmNombreComponent } from './components/shared/abm-nombre/abm-nombre.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 import { BalancePageComponent } from './components/balance-page/balance-page.component';
+import { RegistroGastosPageComponent } from './components/registro-gastos-page/registro-gastos-page.component';
+import { RegistroIngresosPageComponent } from './components/registro-ingresos-page/registro-ingresos-page.component';
 
 const routes: Routes = [
   {
@@ -24,6 +26,16 @@ const routes: Routes = [
   {
     path: 'balance',
     component: BalancePageComponent
+   // canActivate: [GuardGuard] 
+  },
+  {
+    path: 'registrar-gastos',
+    component: RegistroGastosPageComponent
+   // canActivate: [GuardGuard] 
+  },  
+  {
+    path: 'registrar-ingresos',
+    component: RegistroIngresosPageComponent
    // canActivate: [GuardGuard] 
   },
   // {

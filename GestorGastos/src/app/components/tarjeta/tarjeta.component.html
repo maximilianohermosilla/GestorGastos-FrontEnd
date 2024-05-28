@@ -1,11 +1,6 @@
 <app-spinner *ngIf="spinnerService.blockUI | async"></app-spinner>
+<app-header-banner title="Alta Tarjeta"></app-header-banner>
 <div mat-dialog-content class="card-body">    
-    <br>
-    <div class="">
-        <div class="title__center">
-            <h3>{{title}}</h3>
-         </div>
-     </div>
     <div class="container">        
         <form [formGroup]="formGroup" class="form-horizontal row">
             <mat-divider></mat-divider><br>
@@ -40,7 +35,7 @@
                         <mat-option *ngFor="let banco of listaBancos" [value]="banco.id">{{banco.nombre}}</mat-option>
                     </mat-select>                
                 </mat-form-field>
-                <button matSuffix class="btn btn-outline-success add-button" (click)="openDialog('banco')"><mat-icon>add</mat-icon></button>
+                <button matSuffix class="btn btn-outline-info add-button" (click)="openDialog('banco')"><mat-icon>add</mat-icon></button>
             </div>
             <div class="form-add">
                 <mat-form-field color="primary" appearance="fill">
@@ -49,7 +44,7 @@
                         <mat-option *ngFor="let tipoTarjeta of listaTiposTarjeta" [value]="tipoTarjeta.id">{{tipoTarjeta.nombre}}</mat-option>
                     </mat-select>                
                 </mat-form-field>
-                <button matSuffix class="btn btn-outline-success add-button" (click)="openDialog('tipotarjeta')"><mat-icon>add</mat-icon></button>
+                <button matSuffix class="btn btn-outline-info add-button" (click)="openDialog('tipotarjeta')"><mat-icon>add</mat-icon></button>
             </div>
             <section color="primary" appearance="fill">
                 <mat-checkbox matInput class="example-margin" color="primary" formControlName="habilitado" [(ngModel)]="datos.habilitado">Habilitado</mat-checkbox>
