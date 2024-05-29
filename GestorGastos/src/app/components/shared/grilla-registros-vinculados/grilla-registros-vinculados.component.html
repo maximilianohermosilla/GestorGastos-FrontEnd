@@ -1,0 +1,55 @@
+<div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" #table matSort
+        (matSortChange)="announceSortChange($event)">
+
+        <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by descripcion" class="pe-1"> Descripcion </th>
+            <td class="border-0 py-1 pe-1" mat-cell *matCellDef="let registro">
+                <div class="d-none d-md-flex align-items-center">
+                    <button mat-fab color="primary" class=""
+                        [ngStyle]="{backgroundColor: (registro.registros[0].categoriaGasto?.color), color: '#000', opacity: 0.7, width: '42px', height: '42px'}"
+                        aria-label="Categoria gasto" class="me-2">
+                        <mat-icon>{{registro.registros[0].categoriaGasto?.icono}}</mat-icon>
+                    </button>
+                    <span>{{registro.descripcion}}</span>
+                </div>
+                <div class="d-flex d-md-none">
+                    <span>{{registro.descripcion}}</span>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="valorFinal">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by valor" class="px-0"> Valor </th>
+            <td class="border-0 py-1 px-0" mat-cell *matCellDef="let registro">
+                <span class="text-warning">$ {{registro.valorFinal.toLocaleString("es-AR")}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cuotas">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by cuotas" class="px-0"> Cuotas </th>
+            <td class="border-0 py-1 px-1" mat-cell *matCellDef="let registro">
+                {{registro.cuotas}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="registros">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by registros" class="px-0"> Detalle </th>
+            <td class="border-0 py-1 px-0" mat-cell *matCellDef="let registro">
+                <button mat-stroked-button
+                        [matTooltip]="'- Categoría: ' + registro.registros[0].categoriaGastoNombre + '
+                         Cuenta: ' + registro.registros[0].cuenta!.nombre"
+                        aria-label="Button that displays a tooltip when focused or hovered over">
+                    Detalle
+                </button>
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="nombreColumnas" class="header"></tr>
+        <tr class="fila" mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
+    </table>
+    <mat-divider></mat-divider>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="10" showFirstLastButtons aria-label="Select page">
+    </mat-paginator>
+</div>

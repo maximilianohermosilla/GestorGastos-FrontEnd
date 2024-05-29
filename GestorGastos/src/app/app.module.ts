@@ -26,7 +26,7 @@ import { InterceptorService } from './services/interceptor.service';
 import { AbmNombreComponent } from './components/shared/abm-nombre/abm-nombre.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { GrillaCardComponent } from './components/shared/grilla-card/grilla-card.component';
+import { GrillaCardRegistroComponent } from './components/shared/grilla-card-registro/grilla-card-registro.component';
 import { GrillaCardIngresoComponent } from './components/shared/grilla-card-ingreso/grilla-card-ingreso.component';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -36,6 +36,15 @@ import { RegistroGastosPageComponent } from './components/registro-gastos-page/r
 import { HeaderBannerComponent } from './components/shared/header-banner/header-banner.component';
 import { RegistroIngresosPageComponent } from './components/registro-ingresos-page/registro-ingresos-page.component';
 import { FormPeriodoComponent } from './components/shared/form-periodo/form-periodo.component';
+import { CardRegistroComponent } from './components/shared/card-registro/card-registro.component';
+import { CardIngresoComponent } from './components/shared/card-ingreso/card-ingreso.component';
+import { CardSuscripcionComponent } from './components/shared/card-suscripcion/card-suscripcion.component';
+import { CardFinanciacionComponent } from './components/shared/card-financiacion/card-financiacion.component';
+import { GrillaSuscripcionesComponent } from './components/shared/grilla-suscripciones/grilla-suscripciones.component';
+import { GrillaRegistrosVinculadosComponent } from './components/shared/grilla-registros-vinculados/grilla-registros-vinculados.component';
+import { AbmRegistroComponent } from './components/shared/abm-registro/abm-registro.component';
+import { AbmRegistroVinculadoComponent } from './components/shared/abm-registro-vinculado/abm-registro-vinculado.component';
+import { AbmSuscripcionComponent } from './components/shared/abm-suscripcion/abm-suscripcion.component';
 
 @NgModule({
   declarations: [
@@ -52,13 +61,22 @@ import { FormPeriodoComponent } from './components/shared/form-periodo/form-peri
     AbmNombreComponent,
     TarjetaComponent,
     BalancePageComponent,
-    GrillaCardComponent,
+    GrillaCardRegistroComponent,
     GrillaCardIngresoComponent,
     ChartPieBalanceComponent,
     ChartBarVerticalBalanceComponent,
     RegistroGastosPageComponent,
     RegistroIngresosPageComponent,
-    FormPeriodoComponent
+    FormPeriodoComponent,
+    CardRegistroComponent,
+    CardIngresoComponent,
+    CardSuscripcionComponent,
+    CardFinanciacionComponent,
+    GrillaSuscripcionesComponent,
+    GrillaRegistrosVinculadosComponent,
+    AbmRegistroComponent,
+    AbmRegistroVinculadoComponent,
+    AbmSuscripcionComponent
   ],
   imports: [
     BrowserModule,

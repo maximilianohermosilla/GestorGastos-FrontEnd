@@ -7,27 +7,38 @@
 <section class="container-fluid p-2">
     <mat-tab-group class="bg-dark p-2">
 
-        <mat-tab label="Agregar Gasto"> 
+        <mat-tab label="Gastos" (selectedTabChange)="getRegistros(periodo)"> 
             <div class="col-12 grilla">
-                <app-grilla-card [data]="listaRegistros" *ngIf="!(listaRegistros.length == 0)"></app-grilla-card>
-                
+                <div class="container d-flex justify-content-center text-info py-5">
+                    <!-- <button type="button" mat-flat-button color="primary" class="rounded-1"  (click)="nuevoRegistro()"><mat-icon>add</mat-icon>Agregar Gasto</button> -->
+                    <app-abm-registro></app-abm-registro>
+                </div>
+
+                <app-grilla-card-registro [data]="listaRegistros" *ngIf="!(listaRegistros.length == 0)"></app-grilla-card-registro>
+
                 <div class="container d-flex justify-content-center text-info py-5" *ngIf="(listaRegistros.length == 0)">
-                    <h6 class="mb-0">No se encontraron resultados</h6>
+                    <h6 class="mb-0">...</h6>
                 </div>
             </div>
         </mat-tab>
 
-        <mat-tab label="Suscripción">
-             Suscripción 
-            <div class="container d-flex justify-content-center text-info py-5" *ngIf="(listaRegistros.length == 0)">
-                <h6 class="mb-0">No se encontraron resultados</h6>
+        <mat-tab label="Suscripción" (selectedTabChange)="getSuscripciones(periodo)">
+            <div class="col-12 grilla">
+                <app-grilla-suscripciones [data]="listaSuscripciones" *ngIf="!(listaSuscripciones.length == 0)"></app-grilla-suscripciones>
+
+                <div class="container d-flex justify-content-center text-info py-5" *ngIf="(listaSuscripciones.length == 0)">
+                    <h6 class="mb-0">...</h6>
+                </div>
             </div>
         </mat-tab>
 
-        <mat-tab label="Cuotas">
-             Cuotas 
-            <div class="container d-flex justify-content-center text-info py-5" *ngIf="(listaRegistros.length == 0)">
-                <h6 class="mb-0">No se encontraron resultados</h6>
+        <mat-tab label="Cuotas" (selectedTabChange)="getRegistrosVinculados(periodo)">
+            <div class="col-12 grilla">
+                <app-grilla-registros-vinculados [data]="listaRegistrosVinculados" *ngIf="!(listaRegistrosVinculados.length == 0)"></app-grilla-registros-vinculados>
+
+                <div class="container d-flex justify-content-center text-info py-5" *ngIf="(listaRegistrosVinculados.length == 0)">
+                    <h6 class="mb-0">...</h6>
+                </div>
             </div>
         </mat-tab>
 

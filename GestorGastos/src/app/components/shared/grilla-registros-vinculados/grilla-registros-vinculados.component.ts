@@ -5,22 +5,20 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-grilla-card',
-  templateUrl: './grilla-card.component.html',
-  styleUrl: './grilla-card.component.css'
+  selector: 'app-grilla-registros-vinculados',
+  templateUrl: './grilla-registros-vinculados.component.html',
+  styleUrl: './grilla-registros-vinculados.component.css'
 })
-export class GrillaCardComponent {
+
+export class GrillaRegistrosVinculadosComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @Input() data: any;
-  
-  title = 'Grilla';
-  showFiller = false;
-  isAdmin: boolean = false;
-  userName = "";
+
   dataSource: any;  
-  nombreColumnas: string[] = ["Registros"];
+  sortedData: any;
+  nombreColumnas: string[] = ["descripcion", "valorFinal", "cuotas", "registros"];
 
   constructor(private liveAnnouncer: LiveAnnouncer){
   }
@@ -39,7 +37,7 @@ export class GrillaCardComponent {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
+  
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -51,6 +49,17 @@ export class GrillaCardComponent {
     else{
       this.liveAnnouncer.announce('sorting cleared');
     }
+  }
+
+  getTooltipText(event: any) {   
+    console.log(event)
+    // return `Categoria: ${event.firstEvent.name}
+    // Start: ${event.firstEvent.startDate.toLocaleString()}
+    // End: ${event.firstEvent.endDate.toLocaleString()}
+    // Name: ${event.secondEvent.name}
+    // Start: ${event.secondEvent.startDate.toLocaleString()}
+    // End: ${event.secondEvent.endDate.toLocaleString()}`;
+    return "Tooltip"
   }
 
 }

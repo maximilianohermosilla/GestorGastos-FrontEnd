@@ -5,3 +5,14 @@
 ::ng-deep .mdc-tab:focus {
     background-color: rgb(150, 150, 150, 0.5);
 }
+
+
+@media screen and (max-width: 360px) {
+    ::ng-deep .mat-mdc-tab-group{
+        padding: 0!important;
+    }
+
+    ::ng-deep td{
+        font-size: 12px!important;
+    }
+}

@@ -1,1 +1,15 @@
-<p>card-registro works!</p>
+<div class="d-flex center shadow rounded-4 p-1"
+    [ngStyle]="{backgroundColor: (registro.pagado? '#00533308':'#212529')}"
+>
+    <button mat-fab color="primary"
+        [ngStyle]="{backgroundColor: (registro.categoriaGasto?.color), color: '#000', opacity: 0.7}"
+        aria-label="Categoria gasto" class="me-2">
+        <mat-icon>{{registro.categoriaGasto?.icono}}</mat-icon>
+    </button>
+    <div class="d-flex flex-column">
+        <p class="m-0">{{registro.fecha.slice(0, 10)}} - <span class="text-secondary">{{registro.descripcion}}</span>            
+        </p>
+        <p class="m-0 text-warning">$ {{registro.valor.toLocaleString("es-AR")}}</p>
+        <span class="text-success" *ngIf="registro.pagado">Pago: ({{registro.fechaPago.slice(0, 10)}})</span>
+    </div>
+</div>

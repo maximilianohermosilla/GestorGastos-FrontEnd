@@ -1,0 +1,19 @@
+.material-tooltip {
+    white-space: pre-line !important;
+}
+
+::ng-deep .mat-tooltip {
+    white-space: pre-line !important;
+}
+
+::ng-deep .matTooltip {
+    white-space: pre-line !important;
+}
+
+.cdk-overlay-container {
+    white-space: pre-line !important;
+}
+
+::ng-deep .cdk-overlay-container {
+    white-space: pre-line !important;
+}

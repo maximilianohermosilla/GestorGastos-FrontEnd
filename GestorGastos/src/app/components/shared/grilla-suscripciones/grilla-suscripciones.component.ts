@@ -5,22 +5,20 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-grilla-card-ingreso',
-  templateUrl: './grilla-card-ingreso.component.html',
-  styleUrl: './grilla-card-ingreso.component.css'
+  selector: 'app-grilla-suscripciones',
+  templateUrl: './grilla-suscripciones.component.html',
+  styleUrl: './grilla-suscripciones.component.css'
 })
-export class GrillaCardIngresoComponent {
+
+export class GrillaSuscripcionesComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @Input() data: any;
-  
-  title = 'Grilla';
-  showFiller = false;
-  isAdmin: boolean = false;
-  userName = "";
+
   dataSource: any;  
-  nombreColumnas: string[] = ["fecha"];
+  sortedData: any;
+  nombreColumnas: string[] = ["nombre", "fechaDesde", "valorActual", "registros"];
 
   constructor(private liveAnnouncer: LiveAnnouncer){
   }
@@ -53,4 +51,7 @@ export class GrillaCardIngresoComponent {
     }
   }
 
+  getDetalle(data: any){
+    console.log(data)
+  }
 }

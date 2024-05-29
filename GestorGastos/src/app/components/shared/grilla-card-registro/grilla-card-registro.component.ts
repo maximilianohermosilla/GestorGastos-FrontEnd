@@ -5,11 +5,11 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-grilla-card-ingreso',
-  templateUrl: './grilla-card-ingreso.component.html',
-  styleUrl: './grilla-card-ingreso.component.css'
+  selector: 'app-grilla-card-registro',
+  templateUrl: './grilla-card-registro.component.html',
+  styleUrl: './grilla-card-registro.component.css'
 })
-export class GrillaCardIngresoComponent {
+export class GrillaCardRegistroComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -20,6 +20,7 @@ export class GrillaCardIngresoComponent {
   isAdmin: boolean = false;
   userName = "";
   dataSource: any;  
+  sortedData: any;
   nombreColumnas: string[] = ["fecha"];
 
   constructor(private liveAnnouncer: LiveAnnouncer){
@@ -39,7 +40,7 @@ export class GrillaCardIngresoComponent {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  
+
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -52,5 +53,4 @@ export class GrillaCardIngresoComponent {
       this.liveAnnouncer.announce('sorting cleared');
     }
   }
-
 }

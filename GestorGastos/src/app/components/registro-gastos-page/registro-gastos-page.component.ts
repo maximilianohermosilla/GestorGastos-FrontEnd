@@ -1,15 +1,16 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CategoriaGasto } from 'src/app/models/categoria-gasto';
 import { Cuenta } from 'src/app/models/cuenta';
 import { Empresa } from 'src/app/models/empresa';
 import { Registro } from 'src/app/models/registro';
+import { RegistroVinculado } from 'src/app/models/registro-vinculado';
+import { Suscripcion } from 'src/app/models/suscripcion';
 import { CategoriaGastoService } from 'src/app/services/categoria-gasto.service';
 import { CuentaService } from 'src/app/services/cuenta.service';
 import { EmpresaService } from 'src/app/services/empresa.service';
 import { RegistroService } from 'src/app/services/registro.service';
+import { RegistroVinculadoService } from 'src/app/services/registrovinculado.service';
+import { SuscripcionService } from 'src/app/services/suscripcion.service';
 
 @Component({
   selector: 'app-registro-gastos-page',
@@ -17,10 +18,6 @@ import { RegistroService } from 'src/app/services/registro.service';
   styleUrl: './registro-gastos-page.component.css'
 })
 export class RegistroGastosPageComponent {
-  @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
   dataSource: any;
   periodo: string = "";
 
@@ -29,9 +26,11 @@ export class RegistroGastosPageComponent {
   listaCuentas: Cuenta[] = [];
   
   listaRegistros: Registro[] = [];
+  listaRegistrosVinculados: RegistroVinculado[] = [];
+  listaSuscripciones: Suscripcion[] = [];
 
   constructor(private categoriaGastoService: CategoriaGastoService, private empresaService: EmpresaService, private cuentaService: CuentaService,
-    private registroService: RegistroService
+    private registroService: RegistroService, private suscripcionService: SuscripcionService, private registroVinculadoService: RegistroVinculadoService
   ){
 
   }
@@ -46,21 +45,40 @@ export class RegistroGastosPageComponent {
     console.log(periodo);
     this.periodo = periodo;
     this.getRegistros(periodo);
+    this.getRegistrosVinculados(periodo);
+    this.getSuscripciones(periodo);
   }
   
   getRegistros(periodo: string) {
     let idUsuario: number = 1;
-
+    
     this.registroService.GetAll(idUsuario, this.periodo).subscribe((rta: any[]) => {
       console.log(rta);
       this.listaRegistros = rta;
-      this.dataSource = new MatTableDataSource<any[]>(rta);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    });
+
+  }
+
+  getSuscripciones(periodo: string) {
+    let idUsuario: number = 1;
+    
+    this.suscripcionService.GetAll(idUsuario, this.periodo).subscribe((rta: any[]) => {
+      console.log(rta);
+      this.listaSuscripciones = rta;
     });
 
   }
   
+  getRegistrosVinculados(periodo: string) {
+    let idUsuario: number = 1;
+    
+    this.registroVinculadoService.GetAll(idUsuario, this.periodo).subscribe((rta: any[]) => {
+      console.log(rta);
+      this.listaRegistrosVinculados = rta;
+    });
+
+  }
+
   getCategoriaGastos(){
     this.categoriaGastoService.GetAll().subscribe((rta: CategoriaGasto[]) => {
       this.listaCategoriaGasto = rta;
@@ -80,5 +98,9 @@ export class RegistroGastosPageComponent {
       this.listaCuentas = rta;
       console.log(this.listaCuentas);
     });
+  }
+
+  nuevoRegistro(){
+    
   }
 }

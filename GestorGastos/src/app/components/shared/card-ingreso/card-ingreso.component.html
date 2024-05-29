@@ -1,1 +1,13 @@
-<p>card-ingreso works!</p>
+<div class="d-flex center shadow bg-dark rounded-4 p-1 card__grilla">
+    <button mat-fab color="primary"
+        [ngStyle]="{backgroundColor: (registro.categoriaIngreso?.color), color: '#000', opacity: 0.7}"
+        aria-label="Categoria gasto" class="me-2">
+        <mat-icon>{{registro.categoriaIngreso?.icono}}</mat-icon>
+    </button>
+    <div class="d-flex flex-column">
+        <p class="m-0">{{registro.fecha.slice(0, 10)}} - <span
+                class="text-secondary">{{registro.descripcion}}</span></p>
+        <p class="m-0 text-warning">$ {{registro.valor.toLocaleString("es-AR")}}</p>
+        <p class="m-0"></p>
+    </div>
+</div>
