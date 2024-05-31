@@ -1,46 +1,26 @@
 <app-spinner *ngIf="spinnerService.blockUI | async"></app-spinner>
-<div class="container">
-    <mat-card class="card-title">
-        <div class="login-title">
-            <!-- <div class="icon-container">
-                <mat-icon mat-fab class="beer-icon">account_circle</mat-icon>
-            </div> -->
-            <mat-card-title class="title">Bienvenido</mat-card-title>
-            <!-- <div class="icon-container">
-                <mat-icon mat-fab class="beer-icon">account_circle</mat-icon>
-            </div> -->
-        </div>
-        <br>
-        <!-- <div class="button">
-            <button type="button" class="btn btn-primary" (click)="loginInvitado()">Ingresar como invitado</button>
-        </div> -->
-        <br>
-        <mat-divider></mat-divider>
-        <mat-card-content>
-            <div class="">
-                <form [formGroup]="formGroup" class="form-horizontal row" (ngSubmit)="loginUser()">
-                    <mat-form-field color="accent" appearance="fill" class="form-field">
-                        <mat-label>Usuario</mat-label>
-                        <input formControlName="Login" matInput type="text" placeholder="" autocomplete="off">
-                    </mat-form-field>
-                    <mat-form-field color="accent" appearance="fill" class="form-field">
-                        <mat-label>Contraseña</mat-label>
-                        <input formControlName="Password" matInput type="password"  autocomplete="off">
-                    </mat-form-field>
+<div class="container-fluid py-3">
+    <div class="py-2">
+        <mat-card-title class="d-flex justify-content-center text-info py-3 m-3 bg-dark"><h6 class="m-0">Ingresar</h6></mat-card-title>
+    </div>
+    <div class="login__container">
+        <form [formGroup]="formGroup" class="" (ngSubmit)="loginUser()">
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label>Usuario</mat-label>
+                <input formControlName="Login" matInput type="text" placeholder="" [(ngModel)]="loginUsuario.Login">
+            </mat-form-field>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label>Contraseña</mat-label>
+                <input formControlName="Password" matInput type="password" [(ngModel)]="loginUsuario.Password">
+            </mat-form-field>
 
-                <p *ngIf="error" class="error">
-                    {{ error }}
-                </p>
-                <br>
-                <mat-divider></mat-divider>
-                <br>
-                <div class="button">
-                    <button type="submit" class="btn btn-success" [disabled]="!formGroup.valid">Confirmar</button>
-                </div>
-                <br>
-                </form>
+            <p *ngIf="error" class="error">
+                {{ error }}
+            </p>
+            <div class="d-flex justify-content-center my-3">
+                <button type="submit" mat-stroked-button color="primary" class="rounded-1 bg-dark"
+                    [disabled]="!formGroup.valid">Confirmar</button>
             </div>
-            <br>
-        </mat-card-content>
-    </mat-card>
+        </form>
+    </div>
 </div>

@@ -49,6 +49,7 @@ export class AppComponent {
       this.fillerNav.push({nombre: "Reportes",routerlink: "reportes",icon: "leaderboard"}); 
     }
     this.spinnerService.hide();
+    console.log(this.mobileQuery)
   }
 
   ngOnDestroy(): void {

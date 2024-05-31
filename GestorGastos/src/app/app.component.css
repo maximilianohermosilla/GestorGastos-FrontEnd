@@ -12,8 +12,19 @@ body {
   min-height: 90vh;
 }
 
+.row{
+  margin-top: 0!important;
+  margin-right: 0!important;
+  margin-left: 0!important;
+  margin-bottom: 0!important;
+}
+
 p {
   margin: 0;
+}
+
+::ng-deep .mat-mdc-dialog-surface{
+  border-radius: 5px!important;
 }
 
 mat-sidenav-container {
