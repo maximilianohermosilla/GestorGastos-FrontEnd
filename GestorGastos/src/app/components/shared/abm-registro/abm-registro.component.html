@@ -2,49 +2,64 @@
     <div class="col-md-12">
         <div>
             <mat-form-field color="primary" appearance="fill" class="w-100">
-                <mat-label class="label__tarjeta">Numero</mat-label>
-                <input formControlName="numero" matInput type="text" placeholder="" [(ngModel)]="datos.numero"
-                    maxlength="4">
+                <mat-label class="">Descripcion</mat-label>
+                <input formControlName="descripcion" matInput type="text" placeholder=""
+                    [(ngModel)]="datos.descripcion">
             </mat-form-field>
         </div>
         <div>
             <mat-form-field color="primary" appearance="fill" class="w-100">
-                <mat-label>Fecha Vencimiento</mat-label>
-                <input matInput placeholder="MM/AA" [formControl]="date" [matDatepicker]="dp">
-                <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
-                <mat-datepicker #dp startView="multi-year" (monthSelected)="setMonthAndYear($event, dp)"
-                    panelClass="example-month-picker">
-                </mat-datepicker>
+                <mat-label>Empresa</mat-label>
+                <mat-select formControlName="idEmpresa" [(ngModel)]="datos.idEmpresa">
+                    <mat-option *ngFor="let empresa of listaEmpresas"
+                        [value]="empresa.id">{{empresa.nombre}}</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
-        <div class="form-add">
+        <div>
             <mat-form-field color="primary" appearance="fill" class="w-100">
-                <mat-label>Banco</mat-label>
-                <mat-select formControlName="banco" [(ngModel)]="datos.idBanco">
-                    <mat-option *ngFor="let banco of listaBancos" [value]="banco.id">{{banco.nombre}}</mat-option>
+                <mat-label>Cuenta</mat-label>
+                <mat-select formControlName="idCuenta" [(ngModel)]="datos.idCuenta">
+                    <mat-option *ngFor="let cuenta of listaCuentas" [value]="cuenta.id">{{cuenta.nombre}}</mat-option>
                 </mat-select>
-            </mat-form-field>           
+            </mat-form-field>
         </div>
-        <div class="form-add">
+        <div>
             <mat-form-field color="primary" appearance="fill" class="w-100">
-                <mat-label>Tipo Tarjeta</mat-label>
-                <mat-select formControlName="tipotarjeta" [(ngModel)]="datos.idTipoTarjeta">
-                    <mat-option *ngFor="let tipoTarjeta of listaTiposTarjeta"
-                        [value]="tipoTarjeta.id">{{tipoTarjeta.nombre}}</mat-option>
-                </mat-select>
-            </mat-form-field>            
+                <mat-label>Fecha</mat-label>
+                <input matInput placeholder="DD/MM/AAAA" [formControl]="date" [matDatepicker]="dp">
+                <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker [dateClass]="dateClass" #dp></mat-datepicker>
+            </mat-form-field>
         </div>
-        <section color="primary" appearance="fill">
-            <mat-checkbox matInput class="example-margin" color="primary" formControlName="habilitado"
-                [(ngModel)]="datos.habilitado">Habilitado</mat-checkbox>
-        </section>
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label class="">Valor</mat-label>
+                <span matTextPrefix class="prefix__valor">$ &nbsp;</span>
+                <input formControlName="valor" matInput type="number" placeholder="" [(ngModel)]="datos.valor">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label class="">Observaciones</mat-label>
+                <input formControlName="observaciones" matInput type="text" placeholder=""
+                    [(ngModel)]="datos.observaciones">
+            </mat-form-field>
+        </div>
+
+        <!-- <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-checkbox matInput class="example-margin" color="primary" formControlName="pagado"
+                    [(ngModel)]="datos.pagado">Pagado</mat-checkbox>
+            </mat-form-field>
+        </div> -->
 
     </div>
     <mat-divider></mat-divider><br>
     <div mat-dialog-actions class="d-flex justify-content-between">
+        <button type="button" mat-stroked-button color="warn" class="rounded-1">Cancelar</button>
         <button type="button" mat-stroked-button color="primary" class="rounded-1" [disabled]="!formGroup.valid"
             (click)="save()">Guardar</button>
-        <button type="button" mat-stroked-button color="warn" class="rounded-1" (click)="cancel()">Cancelar</button>
     </div>
 </form>
-
