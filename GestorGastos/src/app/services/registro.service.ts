@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError, Observable } from 'rxjs';
+import { catchError, map, Observable, tap } from 'rxjs';
 import { DialogComponent } from '../components/shared/dialog/dialog.component';
 import { environment } from '../environment';
 import { Registro } from '../models/registro';
@@ -14,28 +14,34 @@ export class RegistroService {
   
   constructor(private http: HttpClient, public dialogoConfirmacion: MatDialog) { }
 
-  public GetById(id: Number): Observable<any> {
+  GetById(id: Number): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/" + id);
   }
   
   //'https://localhost:7011/gestorGastos/Registro?idUsuario=1&periodo=2022-12'
-  public GetAll(idUsuario: number, periodo: string): Observable<any> {
+  GetAll(idUsuario: number, periodo: string): Observable<any> {
     return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${idUsuario.toString()}&periodo=${periodo}`);    
   }
   
-  public nuevo(element: Registro): Observable<any> {
-    return this.http.post<Registro>(this.apiUrl, element);
-  }
+  Insert(element: Registro): Observable<any> {
+    console.log(element)
+    console.log(this.apiUrl)
+    return this.http.post<any>(this.apiUrl + "/", element).pipe(tap(data=>{  
+      console.log(data) 
+      console.log(data.status) 
+      return data
+      }));
+    }
 
-  public actualizar(element: Registro): Observable<Registro>{
+  actualizar(element: Registro): Observable<Registro>{
     return this.http.put<Registro>(this.apiUrl, element);
   }
 
-  public eliminarById(id: number): Observable<any>{
+  eliminarById(id: number): Observable<any>{
     return this.http.delete<any>(this.apiUrl + "/" + id);
   }
 
-  public eliminar(id: number): Observable<any>{
+  eliminar(id: number): Observable<any>{
     return this.http.delete<any>(this.apiUrl + "/" + id)
     .pipe(
       catchError(error => {
@@ -58,7 +64,7 @@ export class RegistroService {
     );
   }
 
-  private getServerErrorMessage(error: HttpErrorResponse): string {    
+  getServerErrorMessage(error: HttpErrorResponse): string {    
     switch (error.status) {
         case 404: {
             return `Not Found: ${error.error}`;

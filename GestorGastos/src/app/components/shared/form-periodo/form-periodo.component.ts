@@ -43,6 +43,10 @@ export class FormPeriodoComponent {
     })
     this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
     this.fechaPeriodo = new Date().getFullYear() + "-" + ("0" + (new Date().getMonth() + 1)).slice(-2);
+    
+    setTimeout(() => {
+      this.onChange.emit(this.fechaPeriodo);      
+    }, 1000);
   }
 
   setMonthAndYear(normalizedMonthAndYear: Moment, datepicker: MatDatepicker<Moment>) {

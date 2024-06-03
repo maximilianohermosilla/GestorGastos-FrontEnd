@@ -66,7 +66,7 @@ export class AppComponent {
     });
     dialogRef.afterClosed().subscribe( res => {
       setTimeout(() => {
-        window.location.reload();            
+        //window.location.reload();            
         this.spinnerService.hide();
       }, 1000);
     })   
@@ -94,7 +94,7 @@ export class AppComponent {
           this.spinnerService.show();
           this.tokenService.logOut();          
           setTimeout(() => {
-            window.location.reload();            
+            //window.location.reload();            
           }, 1000);
         }
       });      

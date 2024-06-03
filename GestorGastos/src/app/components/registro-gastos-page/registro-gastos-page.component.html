@@ -14,20 +14,19 @@
                         <app-abm-registro
                         [listaEmpresas]="listaEmpresas"
                         [listaCuentas]="listaCuentas"
-                        [listaSuscripciones]="listaSuscripciones"
                         [listaCategoriasGasto]="listaCategoriaGasto"
                         ></app-abm-registro>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 py-5">
-                    <div class="d-md-none d-flex justify-content-center">
-                        <h6 class="text-info">{{periodo || 'Búsqueda'}}</h6>
+                    <div class="d-flex justify-content-center">
+                        <h6 class="text-info">Historial</h6>
                     </div>
                     <div class="container-fluid">
                         <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
                     </div>
 
-                    <app-grilla-card-registro [data]="listaRegistros" *ngIf="!(listaRegistros.length == 0)">
+                    <app-grilla-card-registro [data]="listaRegistros" *ngIf="!(listaRegistros.length == 0)" [pageSize]=5>
                     </app-grilla-card-registro>
                 </div>
             </div>
@@ -35,20 +34,24 @@
 
         <mat-tab label="Suscripción" (selectedTabChange)="getSuscripciones(periodo)">
             <div class="row">
-                <div class="col-12 col-md-6 h-100">
+                <div class="col-12 col-md-6 h-100">                   
                     <div class="container d-flex justify-content-center text-info py-5">                        
-                        <!-- <app-abm-registro></app-abm-registro> -->
+                        <app-abm-suscripcion
+                        [listaEmpresas]="listaEmpresas"
+                        [listaCuentas]="listaCuentas"
+                        [listaCategoriasGasto]="listaCategoriaGasto"
+                        ></app-abm-suscripcion>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 py-5">
-                    <div class="d-md-none d-flex justify-content-center">
+                    <div class="d-flex justify-content-center">
                         <h6 class="text-info">Historial</h6>
                     </div>
-                    <div class="d-flex justify-content-center gap-3">
+                    <div class="container-fluid">
                         <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
                     </div>
 
-                    <app-grilla-suscripciones [data]="listaSuscripciones" *ngIf="!(listaSuscripciones.length == 0)">
+                    <app-grilla-suscripciones [data]="listaSuscripciones" *ngIf="!(listaSuscripciones.length == 0)" [pageSize]=5>
                     </app-grilla-suscripciones>
                 </div>
             </div>
@@ -56,21 +59,24 @@
 
         <mat-tab label="Cuotas" (selectedTabChange)="getRegistrosVinculados(periodo)">
             <div class="row">
-                <div class="col-12 col-md-6 h-100">
+                <div class="col-12 col-md-6 h-100">                    
                     <div class="container d-flex justify-content-center text-info py-5">                        
-                        <!-- <app-abm-registro></app-abm-registro> -->
+                        <app-abm-registro-vinculado
+                        [listaEmpresas]="listaEmpresas"
+                        [listaCuentas]="listaCuentas"
+                        [listaCategoriasGasto]="listaCategoriaGasto"
+                        ></app-abm-registro-vinculado>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 py-5">
-                    <div class="d-md-none d-flex justify-content-center">
+                    <div class="d-flex justify-content-center">
                         <h6 class="text-info">Historial</h6>
                     </div>
                     <div class="container-fluid">
                         <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
                     </div>
 
-                    <app-grilla-registros-vinculados [data]="listaRegistrosVinculados"
-                        *ngIf="!(listaRegistrosVinculados.length == 0)">
+                    <app-grilla-registros-vinculados [data]="listaRegistrosVinculados" *ngIf="!(listaRegistrosVinculados.length == 0)" [pageSize]=5>
                     </app-grilla-registros-vinculados>
                 </div>
             </div>

@@ -7,6 +7,11 @@ export interface Suscripcion {
   fechaHasta: string,
   valorActual: Number,
   idUsuario: number,
+  idEmpresa?: number,
+  idCuenta?: number,
+  idCategoriaGasto?: number,
   usuarioNombre: string,
-  registros?: Registro[]
+  registros?: Registro[],
+  fechaUpdate?: string,
+  proximoMes?: boolean
 }

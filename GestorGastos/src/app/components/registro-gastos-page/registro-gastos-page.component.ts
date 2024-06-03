@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { CategoriaGasto } from 'src/app/models/categoria-gasto';
 import { Cuenta } from 'src/app/models/cuenta';
 import { Empresa } from 'src/app/models/empresa';
@@ -53,7 +53,7 @@ export class RegistroGastosPageComponent {
     let idUsuario: number = 1;
     
     this.registroService.GetAll(idUsuario, this.periodo).subscribe((rta: any[]) => {
-      console.log(rta);
+      // console.log(rta);
       this.listaRegistros = rta;
     });
 
@@ -63,7 +63,7 @@ export class RegistroGastosPageComponent {
     let idUsuario: number = 1;
     
     this.suscripcionService.GetAll(idUsuario, this.periodo).subscribe((rta: any[]) => {
-      console.log(rta);
+      // console.log(rta);
       this.listaSuscripciones = rta;
     });
 
@@ -73,7 +73,7 @@ export class RegistroGastosPageComponent {
     let idUsuario: number = 1;
     
     this.registroVinculadoService.GetAll(idUsuario, this.periodo).subscribe((rta: any[]) => {
-      console.log(rta);
+      // console.log(rta);
       this.listaRegistrosVinculados = rta;
     });
 
@@ -82,25 +82,21 @@ export class RegistroGastosPageComponent {
   getCategoriaGastos(){
     this.categoriaGastoService.GetAll().subscribe((rta: CategoriaGasto[]) => {
       this.listaCategoriaGasto = rta;
-      console.log(this.listaCategoriaGasto);
+      // console.log(this.listaCategoriaGasto);
     });
   }
   
   getEmpresas(){
     this.empresaService.GetAll().subscribe((rta: Empresa[]) => {
       this.listaEmpresas = rta;
-      console.log(this.listaEmpresas);
+      // console.log(this.listaEmpresas);
     });
   }
     
   getCuentas(){
     this.cuentaService.GetAll().subscribe((rta: Cuenta[]) => {
       this.listaCuentas = rta;
-      console.log(this.listaCuentas);
+      // console.log(this.listaCuentas);
     });
-  }
-
-  nuevoRegistro(){
-    
   }
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
 
 import { MaterialModule } from './modules/material/material.module';
 import { SharedModule } from './modules/shared/shared.module';
@@ -45,6 +45,9 @@ import { GrillaRegistrosVinculadosComponent } from './components/shared/grilla-r
 import { AbmRegistroComponent } from './components/shared/abm-registro/abm-registro.component';
 import { AbmRegistroVinculadoComponent } from './components/shared/abm-registro-vinculado/abm-registro-vinculado.component';
 import { AbmSuscripcionComponent } from './components/shared/abm-suscripcion/abm-suscripcion.component';
+import { errorHandlerInterceptor } from './inteceptors/error-handler.interceptor';
+import { spinnerInterceptor } from './inteceptors/spinner.interceptor';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -87,9 +90,12 @@ import { AbmSuscripcionComponent } from './components/shared/abm-suscripcion/abm
     NgxChartsModule
   ],
   providers: [DatePipe, FilterPipe,
+    provideHttpClient(withInterceptors([spinnerInterceptor, errorHandlerInterceptor])),
     { provide: MAT_DATE_LOCALE, useValue: 'fr' },
-    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true}, 
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}, provideAnimationsAsync()
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
+    //{ provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true}, 
+    //{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}, provideAnimationsAsync()
+    //{ provide: HTTP_INTERCEPTORS, useClass: provideHttpClient(withInterceptors([errorHandlerInterceptor])), multi: true},
   ],
   bootstrap: [AppComponent]
 })

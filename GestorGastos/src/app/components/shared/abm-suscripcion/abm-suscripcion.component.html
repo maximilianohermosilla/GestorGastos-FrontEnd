@@ -1,1 +1,78 @@
-<p>abm-suscripcion works!</p>
+<div class="d-flex justify-content-center">
+    <h6 class="text-info">{{title}}</h6>
+</div>
+<form [formGroup]="formGroup" class="form-horizontal row">
+    <div class="col-md-12">
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label class="">Nombre</mat-label>
+                <input formControlName="nombre" matInput type="text" placeholder=""
+                    [(ngModel)]="datos.nombre">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label>Categoría</mat-label>
+                <mat-select formControlName="idCategoriaGasto" [(ngModel)]="datos.idCategoriaGasto">
+                    <mat-option *ngFor="let categoria of listaCategoriasGasto" [value]="categoria.id">{{categoria.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label>Cuenta</mat-label>
+                <mat-select formControlName="idCuenta" [(ngModel)]="datos.idCuenta">
+                    <mat-option *ngFor="let cuenta of listaCuentas" [value]="cuenta.id">{{cuenta.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label>Empresa</mat-label>
+                <mat-select formControlName="idEmpresa" [(ngModel)]="datos.idEmpresa">
+                    <mat-option *ngFor="let empresa of listaEmpresas"
+                        [value]="empresa.id">{{empresa.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>  
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label>Fecha Desde</mat-label>
+                <input matInput placeholder="DD/MM/AAAA" formControlName="fechaDesde" [matDatepicker]="dpDesde" [(ngModel)]="datos.fechaDesde">
+                <mat-datepicker-toggle matIconSuffix [for]="dpDesde"></mat-datepicker-toggle>
+                <mat-datepicker #dpDesde></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label>Fecha Hasta</mat-label>
+                <input matInput placeholder="DD/MM/AAAA" formControlName="fechaHasta" [matDatepicker]="dpHasta" [(ngModel)]="datos.fechaHasta">
+                <mat-datepicker-toggle matIconSuffix [for]="dpHasta"></mat-datepicker-toggle>
+                <mat-datepicker #dpHasta></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label class="">Valor</mat-label>
+                <input formControlName="valorActual" matInput type="number" class="example-right-align" placeholder="" [(ngModel)]="datos.valorActual">
+                <span matTextPrefix>$&nbsp;</span>
+                <span matTextSuffix>.00</span>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-checkbox matInput class="example-margin" color="primary" formControlName="proximoMes" [(ngModel)]="datos.proximoMes">
+                    Mes siguiente
+                    <input matInput hidden>
+                </mat-checkbox>
+            </mat-form-field>
+        </div>
+
+    </div>
+    <mat-divider></mat-divider><br>
+    <div mat-dialog-actions class="d-flex justify-content-between">
+        <button type="button" mat-stroked-button color="warn" class="rounded-1">Cancelar</button>
+        <button type="button" mat-stroked-button color="primary" class="rounded-1" [disabled]="!formGroup.valid"
+            (click)="save()">Guardar</button>
+    </div>
+</form>

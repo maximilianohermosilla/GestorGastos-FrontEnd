@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError, Observable } from 'rxjs';
+import { catchError, map, Observable } from 'rxjs';
 import { DialogComponent } from '../components/shared/dialog/dialog.component';
 import { environment } from '../environment';
 import { RegistroVinculado } from '../models/registro-vinculado';
@@ -23,8 +23,11 @@ export class RegistroVinculadoService {
     return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${idUsuario.toString()}&periodo=${periodo}`);    
   }
   
-  public nuevo(element: RegistroVinculado): Observable<any> {
-    return this.http.post<RegistroVinculado>(this.apiUrl, element);
+  public Insert(element: RegistroVinculado): Observable<any> {
+    return this.http.post<RegistroVinculado>(this.apiUrl, element).pipe(map(data=>{  
+      console.log(data) 
+      return data
+      }));
   }
 
   public actualizar(element: RegistroVinculado): Observable<RegistroVinculado>{

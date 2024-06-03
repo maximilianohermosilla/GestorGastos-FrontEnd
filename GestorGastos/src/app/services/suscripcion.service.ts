@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError, Observable } from 'rxjs';
+import { catchError, map, Observable } from 'rxjs';
 import { DialogComponent } from '../components/shared/dialog/dialog.component';
 import { environment } from '../environment';
 import { Suscripcion } from '../models/suscripcion';
@@ -23,8 +23,11 @@ export class SuscripcionService {
     return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${idUsuario.toString()}&periodo=${periodo}`);    
   }
   
-  public nuevo(element: Suscripcion): Observable<any> {
-    return this.http.post<Suscripcion>(this.apiUrl, element);
+  public Insert(element: Suscripcion): Observable<any> {
+    return this.http.post<Suscripcion>(this.apiUrl, element).pipe(map(data=>{  
+      console.log(data) 
+      return data
+      }));
   }
 
   public actualizar(element: Suscripcion): Observable<Suscripcion>{

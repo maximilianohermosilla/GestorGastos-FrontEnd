@@ -6,5 +6,10 @@ export interface RegistroVinculado{
     cuotas: number,
     valorFinal: number,
     idUsuario: number,
-    registros?: Registro[]
+    idCuenta?: number,
+    idEmpresa?: number,
+    idCategoriaGasto?: number,
+    fecha: string,
+    registros?: Registro[],
+    proximoMes?: boolean
 }

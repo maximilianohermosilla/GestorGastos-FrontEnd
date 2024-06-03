@@ -68,6 +68,7 @@ export class LoginComponent {
     }
   
     onLogin(){
+      this.spinnerService.show(); 
       this.authService.iniciarSesion(this.loginUsuario).subscribe(data=>{
         this.isLogged = true;
         this.isLoginFail = false;    

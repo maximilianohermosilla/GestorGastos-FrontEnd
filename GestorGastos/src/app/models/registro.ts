@@ -21,6 +21,7 @@ export interface Registro{
     valor: number,
     idUsuario: number,
     observaciones?: string,
+    periodo?: string,
     pagado: boolean,
     fechaPago?: string
 }

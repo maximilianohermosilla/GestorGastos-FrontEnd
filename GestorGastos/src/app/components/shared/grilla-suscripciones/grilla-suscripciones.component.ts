@@ -15,6 +15,7 @@ export class GrillaSuscripcionesComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @Input() data: any;
+  @Input() pageSize?: number;
 
   dataSource: any;  
   sortedData: any;

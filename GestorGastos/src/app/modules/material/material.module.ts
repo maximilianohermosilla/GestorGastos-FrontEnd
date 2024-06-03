@@ -21,8 +21,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSortModule} from '@angular/material/sort';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { MatNativeDateModule } from '@angular/material/core';
+import {MatNativeDateModule} from '@angular/material/core';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatDatepickerModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSnackBarModule
   ],
   exports: [
     MatFormFieldModule,
@@ -74,7 +76,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatDatepickerModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }

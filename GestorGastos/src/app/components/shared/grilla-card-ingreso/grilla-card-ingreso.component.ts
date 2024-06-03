@@ -14,6 +14,7 @@ export class GrillaCardIngresoComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @Input() data: any;
+  @Input() pageSize?: number;
   
   title = 'Grilla';
   showFiller = false;

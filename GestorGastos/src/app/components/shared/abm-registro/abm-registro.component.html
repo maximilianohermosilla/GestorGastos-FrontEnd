@@ -1,3 +1,6 @@
+<div class="d-flex justify-content-center">
+    <h6 class="text-info">{{title}}</h6>
+</div>
 <form [formGroup]="formGroup" class="form-horizontal row">
     <div class="col-md-12">
         <div>
@@ -9,10 +12,9 @@
         </div>
         <div>
             <mat-form-field color="primary" appearance="fill" class="w-100">
-                <mat-label>Empresa</mat-label>
-                <mat-select formControlName="idEmpresa" [(ngModel)]="datos.idEmpresa">
-                    <mat-option *ngFor="let empresa of listaEmpresas"
-                        [value]="empresa.id">{{empresa.nombre}}</mat-option>
+                <mat-label>Categoría</mat-label>
+                <mat-select formControlName="idCategoriaGasto" [(ngModel)]="datos.idCategoriaGasto">
+                    <mat-option *ngFor="let categoria of listaCategoriasGasto" [value]="categoria.id">{{categoria.nombre}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -26,17 +28,27 @@
         </div>
         <div>
             <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label>Empresa</mat-label>
+                <mat-select formControlName="idEmpresa" [(ngModel)]="datos.idEmpresa">
+                    <mat-option *ngFor="let empresa of listaEmpresas"
+                        [value]="empresa.id">{{empresa.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>  
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
                 <mat-label>Fecha</mat-label>
-                <input matInput placeholder="DD/MM/AAAA" [formControl]="date" [matDatepicker]="dp">
+                <input matInput placeholder="DD/MM/AAAA" formControlName="fecha" [matDatepicker]="dp" [(ngModel)]="datos.fecha">
                 <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
-                <mat-datepicker [dateClass]="dateClass" #dp></mat-datepicker>
+                <mat-datepicker #dp></mat-datepicker>
             </mat-form-field>
         </div>
         <div>
             <mat-form-field color="primary" appearance="fill" class="w-100">
                 <mat-label class="">Valor</mat-label>
-                <span matTextPrefix class="prefix__valor">$ &nbsp;</span>
-                <input formControlName="valor" matInput type="number" placeholder="" [(ngModel)]="datos.valor">
+                <input formControlName="valor" matInput type="number" class="example-right-align" placeholder="" [(ngModel)]="datos.valor">
+                <span matTextPrefix>$&nbsp;</span>
+                <span matTextSuffix>.00</span>
             </mat-form-field>
         </div>
 
@@ -48,12 +60,14 @@
             </mat-form-field>
         </div>
 
-        <!-- <div>
+        <div>
             <mat-form-field color="primary" appearance="fill" class="w-100">
                 <mat-checkbox matInput class="example-margin" color="primary" formControlName="pagado"
-                    [(ngModel)]="datos.pagado">Pagado</mat-checkbox>
+                    [(ngModel)]="datos.pagado">Pagado
+                    <input matInput hidden>
+                </mat-checkbox>
             </mat-form-field>
-        </div> -->
+        </div>
 
     </div>
     <mat-divider></mat-divider><br>
