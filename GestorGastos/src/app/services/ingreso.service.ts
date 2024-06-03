@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError, Observable } from 'rxjs';
+import { catchError, map, Observable } from 'rxjs';
 import { DialogComponent } from '../components/shared/dialog/dialog.component';
 import { environment } from '../environment';
 import { Ingreso } from '../models/ingreso';
@@ -23,8 +23,10 @@ export class IngresoService {
     return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${idUsuario.toString()}&periodo=${periodo}`);    
   }
   
-  public nuevo(element: Ingreso): Observable<any> {
-    return this.http.post<Ingreso>(this.apiUrl, element);
+  public Insert(element: Ingreso): Observable<any> {
+    return this.http.post<Ingreso>(this.apiUrl, element).pipe(map(data=>{ 
+      return data
+      }));
   }
 
   public actualizar(element: Ingreso): Observable<Ingreso>{

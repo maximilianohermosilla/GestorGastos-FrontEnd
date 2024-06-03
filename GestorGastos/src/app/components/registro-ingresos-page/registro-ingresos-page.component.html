@@ -1,1 +1,31 @@
 <app-header-banner title="Registrar Ingresos"></app-header-banner>
+<div class="row p-2">
+    <div class="col-12 col-md-6 h-100">
+        <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+                <mat-panel-title class="text-info">
+                    Nuevo Ingreso
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="container d-flex justify-content-center text-info pt-1 pb-5">
+                <app-abm-ingreso [listaCategoriaIngreso]="listaCategoriaIngreso"></app-abm-ingreso>
+            </div>
+        </mat-expansion-panel>
+    </div>
+    <div class="col-12 col-md-6 pt-1 pb-5">
+        <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+                <mat-panel-title class="text-info">
+                    Historial
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="container-fluid">
+                <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
+            </div>
+
+            <app-grilla-card-ingreso [data]="listaIngresos" *ngIf="!(listaIngresos.length == 0)"
+                [pageSize]=5>
+            </app-grilla-card-ingreso>
+        </mat-expansion-panel>
+    </div>
+</div>

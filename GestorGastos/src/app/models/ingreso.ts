@@ -3,9 +3,9 @@ import { CategoriaIngreso } from "./categoria-ingreso";
 export interface Ingreso{
     id: number,
     valor: number,
-    descripcion: "",
-    fecha: "",
-    periodo: "",
+    descripcion: string,
+    fecha: string,
+    periodo?: string,
     idUsuario: number,
     idCategoriaIngreso: number,
     categoriaIngresoNombre?: string,

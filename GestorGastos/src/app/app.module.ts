@@ -48,6 +48,7 @@ import { AbmSuscripcionComponent } from './components/shared/abm-suscripcion/abm
 import { errorHandlerInterceptor } from './inteceptors/error-handler.interceptor';
 import { spinnerInterceptor } from './inteceptors/spinner.interceptor';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { AbmIngresoComponent } from './components/shared/abm-ingreso/abm-ingreso.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
     GrillaRegistrosVinculadosComponent,
     AbmRegistroComponent,
     AbmRegistroVinculadoComponent,
-    AbmSuscripcionComponent
+    AbmSuscripcionComponent,
+    AbmIngresoComponent
   ],
   imports: [
     BrowserModule,
