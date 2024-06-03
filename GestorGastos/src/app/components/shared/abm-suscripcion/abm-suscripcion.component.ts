@@ -44,7 +44,7 @@ export class AbmSuscripcionComponent {
       idCategoriaGasto: ['', [Validators.required]],
       idCuenta: [undefined,],
       idEmpresa: [undefined,],      
-      valorActual: [0, [Validators.required]],
+      valorActual: ['', [Validators.required]],
       fechaUpdate: [moment().format("YYYY-MM-DD[T]HH:mm:ss"), ],
       proximoMes: [false,]
     })
@@ -52,7 +52,7 @@ export class AbmSuscripcionComponent {
     this.dateAdapter.setLocale('es-AR'); //dd/MM/yyyy
     this.datos = { ... this.datos, ...this.formGroup.value };
   }
-  
+
   ngOnInit(): void {
   }
 

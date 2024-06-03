@@ -20,6 +20,8 @@ import { SuscripcionService } from 'src/app/services/suscripcion.service';
 export class RegistroGastosPageComponent {
   dataSource: any;
   periodo: string = "";
+  panelOpenStateLeft = true;
+  panelOpenStateRight = false;
 
   listaCategoriaGasto: CategoriaGasto[] = [];
   listaEmpresas: Empresa[] = [];

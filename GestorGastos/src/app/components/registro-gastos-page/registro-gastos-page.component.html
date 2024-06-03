@@ -8,76 +8,101 @@
     <mat-tab-group class="bg-dark p-2">
 
         <mat-tab label="Gastos" (selectedTabChange)="getRegistros(periodo)">
-            <div class="row">
+            <div class="row p-2">
                 <div class="col-12 col-md-6 h-100">
-                    <div class="container d-flex justify-content-center text-info py-5">                        
-                        <app-abm-registro
-                        [listaEmpresas]="listaEmpresas"
-                        [listaCuentas]="listaCuentas"
-                        [listaCategoriasGasto]="listaCategoriaGasto"
-                        ></app-abm-registro>
-                    </div>
+                    <mat-expansion-panel expanded>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="text-info">
+                                Nuevo Gasto
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="container d-flex justify-content-center text-info pt-1 pb-5">
+                            <app-abm-registro [listaEmpresas]="listaEmpresas" [listaCuentas]="listaCuentas"
+                                [listaCategoriasGasto]="listaCategoriaGasto"></app-abm-registro>
+                        </div>
+                    </mat-expansion-panel>
                 </div>
-                <div class="col-12 col-md-6 py-5">
-                    <div class="d-flex justify-content-center">
-                        <h6 class="text-info">Historial</h6>
-                    </div>
-                    <div class="container-fluid">
-                        <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
-                    </div>
+                <div class="col-12 col-md-6 pt-1 pb-5">
+                    <mat-expansion-panel expanded>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="text-info">
+                                Historial
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="container-fluid">
+                            <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
+                        </div>
 
-                    <app-grilla-card-registro [data]="listaRegistros" *ngIf="!(listaRegistros.length == 0)" [pageSize]=5>
-                    </app-grilla-card-registro>
+                        <app-grilla-card-registro [data]="listaRegistros" *ngIf="!(listaRegistros.length == 0)"
+                            [pageSize]=5>
+                        </app-grilla-card-registro>
+                    </mat-expansion-panel>
                 </div>
             </div>
         </mat-tab>
 
         <mat-tab label="Suscripción" (selectedTabChange)="getSuscripciones(periodo)">
-            <div class="row">
-                <div class="col-12 col-md-6 h-100">                   
-                    <div class="container d-flex justify-content-center text-info py-5">                        
-                        <app-abm-suscripcion
-                        [listaEmpresas]="listaEmpresas"
-                        [listaCuentas]="listaCuentas"
-                        [listaCategoriasGasto]="listaCategoriaGasto"
-                        ></app-abm-suscripcion>
-                    </div>
+            <div class="row p-2">
+                <div class="col-12 col-md-6 h-100">
+                    <mat-expansion-panel expanded>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="text-info">
+                                Nueva Suscripción
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="container d-flex justify-content-center text-info pt-1 pb-5">
+                            <app-abm-suscripcion [listaEmpresas]="listaEmpresas" [listaCuentas]="listaCuentas"
+                                [listaCategoriasGasto]="listaCategoriaGasto"></app-abm-suscripcion>
+                        </div>
+                    </mat-expansion-panel>
                 </div>
-                <div class="col-12 col-md-6 py-5">
-                    <div class="d-flex justify-content-center">
-                        <h6 class="text-info">Historial</h6>
-                    </div>
-                    <div class="container-fluid">
-                        <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
-                    </div>
-
-                    <app-grilla-suscripciones [data]="listaSuscripciones" *ngIf="!(listaSuscripciones.length == 0)" [pageSize]=5>
-                    </app-grilla-suscripciones>
+                <div class="col-12 col-md-6 pt-1 pb-5">
+                    <mat-expansion-panel expanded>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="text-info">
+                                Historial
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="container-fluid">
+                            <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
+                        </div>
+                        <app-grilla-suscripciones [data]="listaSuscripciones" *ngIf="!(listaSuscripciones.length == 0)"
+                            [pageSize]=5>
+                        </app-grilla-suscripciones>
+                    </mat-expansion-panel>
                 </div>
             </div>
         </mat-tab>
 
         <mat-tab label="Cuotas" (selectedTabChange)="getRegistrosVinculados(periodo)">
-            <div class="row">
-                <div class="col-12 col-md-6 h-100">                    
-                    <div class="container d-flex justify-content-center text-info py-5">                        
-                        <app-abm-registro-vinculado
-                        [listaEmpresas]="listaEmpresas"
-                        [listaCuentas]="listaCuentas"
-                        [listaCategoriasGasto]="listaCategoriaGasto"
-                        ></app-abm-registro-vinculado>
-                    </div>
+            <div class="row p-2">
+                <div class="col-12 col-md-6 h-100">
+                    <mat-expansion-panel expanded>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="text-info">
+                                Nuevo Gasto en cuotas
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="container d-flex justify-content-center text-info pt-1 pb-5">
+                            <app-abm-registro-vinculado [listaEmpresas]="listaEmpresas" [listaCuentas]="listaCuentas"
+                                [listaCategoriasGasto]="listaCategoriaGasto"></app-abm-registro-vinculado>
+                        </div>
+                    </mat-expansion-panel>
                 </div>
-                <div class="col-12 col-md-6 py-5">
-                    <div class="d-flex justify-content-center">
-                        <h6 class="text-info">Historial</h6>
-                    </div>
-                    <div class="container-fluid">
-                        <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
-                    </div>
-
-                    <app-grilla-registros-vinculados [data]="listaRegistrosVinculados" *ngIf="!(listaRegistrosVinculados.length == 0)" [pageSize]=5>
-                    </app-grilla-registros-vinculados>
+                <div class="col-12 col-md-6 pt-1 pb-5">
+                    <mat-expansion-panel expanded>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="text-info">
+                                Historial
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="container-fluid">
+                            <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
+                        </div>
+                        <app-grilla-registros-vinculados [data]="listaRegistrosVinculados"
+                            *ngIf="!(listaRegistrosVinculados.length == 0)" [pageSize]=5>
+                        </app-grilla-registros-vinculados>
+                    </mat-expansion-panel>
                 </div>
             </div>
         </mat-tab>
@@ -85,7 +110,7 @@
     </mat-tab-group>
 </section>
 
-<section class="container">
+<!-- <section class="container">
     <h5 class="text-center py-3 border bg-dark mb-2">Categoria Gastos</h5>
     <div class="d-flex align-content-start justify-content-center flex-wrap pt-5">
         <div class="d-flex flex-column text-center align-items-center w-25 mb-2"
@@ -116,4 +141,4 @@
             {{item.nombre}}
         </div>
     </div>
-</section>
+</section> -->

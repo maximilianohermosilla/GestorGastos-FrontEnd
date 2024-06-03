@@ -44,7 +44,7 @@ export class AbmRegistroVinculadoComponent {
       idCuenta: [undefined,],
       idEmpresa: [undefined,],
       cuotas: [1, [Validators.required, Validators.min(1)]],
-      valorFinal: [0, [Validators.required]],
+      valorFinal: ['', [Validators.required]],
       proximoMes: [false,]
     })
     

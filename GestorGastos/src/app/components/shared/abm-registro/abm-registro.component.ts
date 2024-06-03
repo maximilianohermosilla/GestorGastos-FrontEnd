@@ -51,7 +51,7 @@ export class AbmRegistroComponent {
       idEmpresa: [undefined,],
       idRegistroVinculado: [undefined,],
       numeroCuota: [undefined,],
-      valor: [0, [Validators.required]],
+      valor: ['', [Validators.required]],
       observaciones: ['',],
       pagado: [false,],
       periodo: ['',],
@@ -61,7 +61,7 @@ export class AbmRegistroComponent {
     this.dateAdapter.setLocale('es-AR'); //dd/MM/yyyy
     this.datos = { ... this.datos, ...this.formGroup.value };
   }
-  
+
   ngOnInit(): void {
   }
 
