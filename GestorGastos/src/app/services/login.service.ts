@@ -37,36 +37,26 @@ export class LoginService {
   }  
 
   iniciarSesion(credenciales: Usuario): Observable<JwtDTO>{
-    console.log("iniciar sesion");
-    this.spinnerService.show();
     return this.httpClient.post<any>(this.apiUrl + 'login', credenciales).pipe(map(data=>{   
         this.decodeToken = this.jwtHelper.decodeToken(data.token);
         console.log(data);
-        //console.log(this.decodeToken);
-        //this.expirationDate = this.jwtHelper.getTokenExpirationDate(data.token);
-        //this.isExpired = this.jwtHelper.isTokenExpired(data.token);
-        //this.uiService.toggleSession();
         this.tokenService.setToken(data.token);
         this.tokenService.setUserName(this.decodeToken.unique_name);
         this.tokenService.setUserId(this.decodeToken.nameid);
         this.tokenService.setAuthorities(this.decodeToken.role);
         sessionStorage.setItem('curentUser', JSON.stringify(this.decodeToken));
         this.currentUserSubject.next(this.decodeToken);
-        this.spinnerService.hide();
 
         return this.decodeToken;
       }))
   }
 
   get UsuarioAutenticado(){
-    //console.log("Usuario aut: ", this.currentUserSubject.value);
-    //console.log(this.currentUserSubject);
     return this.currentUserSubject.value;
   }
 
 
   logout(){
-    //localStorage.removeItem('token');
     this.isLogin = false;
   }
 

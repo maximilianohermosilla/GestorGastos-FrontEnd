@@ -5,6 +5,7 @@ import { catchError, map, Observable, tap } from 'rxjs';
 import { DialogComponent } from '../components/shared/dialog/dialog.component';
 import { environment } from '../environment';
 import { Registro } from '../models/registro';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { Registro } from '../models/registro';
 export class RegistroService {
   apiUrl = environment.urlBase() + "gestorGastos/Registro";
   
-  constructor(private http: HttpClient, public dialogoConfirmacion: MatDialog) { }
+  constructor(private http: HttpClient, public dialogoConfirmacion: MatDialog, private tokenService: TokenService) { }
 
   GetById(id: Number): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/" + id);
@@ -20,7 +21,8 @@ export class RegistroService {
   
   //'https://localhost:7011/gestorGastos/Registro?idUsuario=1&periodo=2022-12'
   GetAll(idUsuario: number, periodo: string): Observable<any> {
-    return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${idUsuario.toString()}&periodo=${periodo}`);    
+    let userId = this.tokenService.getUserId();
+    return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${userId.toString()}&periodo=${periodo}`);    
   }
   
   Insert(element: Registro): Observable<any> {

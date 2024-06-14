@@ -37,7 +37,7 @@ export class AppComponent {
   ngOnInit(): void{    
     this.isAdmin  = (this.tokenService.getToken() != null)? true: false;
     this.fillerNav.push({nombre: "Inicio",routerlink: "menu",icon: "home"}); 
-    if (!this.isAdmin) {
+    if (this.isAdmin) {
       this.userName = this.tokenService.getUserName();
       this.userId = this.tokenService.getUserId();
       this.fillerNav.push({nombre: "Balance",routerlink: "balance",icon: "balance"});
@@ -80,7 +80,6 @@ export class AppComponent {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          this.spinnerService.show();
           this.userName = "";
           this.router.navigate(['menu']);
           this.dialogoConfirmacion.open(DialogComponent, {
@@ -91,7 +90,6 @@ export class AppComponent {
               clase: "class-success"
             }
           });
-          this.spinnerService.show();
           this.tokenService.logOut();          
           setTimeout(() => {
             //window.location.reload();            
@@ -100,7 +98,6 @@ export class AppComponent {
       });      
     }
     else{
-      this.spinnerService.hide();
       this.login();
     }    
   }

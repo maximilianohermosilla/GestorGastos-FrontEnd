@@ -5,6 +5,7 @@ import { catchError, Observable } from 'rxjs';
 import { DialogComponent } from '../components/shared/dialog/dialog.component';
 import { environment } from '../environment';
 import { ObjetoNombre } from '../models/objeto-nombre';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,15 @@ import { ObjetoNombre } from '../models/objeto-nombre';
 export class CuentaService {
   apiUrl = environment.urlBase() + "gestorGastos/Cuenta";
   
-  constructor(private http: HttpClient, public dialogoConfirmacion: MatDialog) { }
+  constructor(private http: HttpClient, public dialogoConfirmacion: MatDialog, private tokenService: TokenService) { }
 
   public GetById(id: Number): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/" + id);
   }
 
   public GetAll(): Observable<any> {
-    return this.http.get<any[]>(this.apiUrl + "?idUsuario=" + 1);    
+    let userId = this.tokenService.getUserId();
+    return this.http.get<any[]>(this.apiUrl + "?idUsuario=" + userId.toString());    
   }
   
   public nuevo(element: ObjetoNombre): Observable<any> {

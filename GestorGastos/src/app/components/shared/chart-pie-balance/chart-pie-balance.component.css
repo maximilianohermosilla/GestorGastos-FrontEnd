@@ -6,4 +6,8 @@
     }
 }
 
+::ng-deep .chart-legend .legend-labels{
+    overflow: auto!important;
+}
+
 #pie-chart-parent { display: grid; }

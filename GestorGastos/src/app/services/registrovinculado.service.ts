@@ -5,6 +5,7 @@ import { catchError, map, Observable } from 'rxjs';
 import { DialogComponent } from '../components/shared/dialog/dialog.component';
 import { environment } from '../environment';
 import { RegistroVinculado } from '../models/registro-vinculado';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { RegistroVinculado } from '../models/registro-vinculado';
 export class RegistroVinculadoService {
   apiUrl = environment.urlBase() + "gestorGastos/RegistroVinculado";
   
-  constructor(private http: HttpClient, public dialogoConfirmacion: MatDialog) { }
+  constructor(private http: HttpClient, public dialogoConfirmacion: MatDialog, private tokenService: TokenService) { }
 
   public GetById(id: Number): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/" + id);
@@ -20,7 +21,8 @@ export class RegistroVinculadoService {
   
   //'https://localhost:7011/gestorGastos/RegistroVinculado?idUsuario=1&periodo=2022-12'
   public GetAll(idUsuario: number, periodo: string): Observable<any> {
-    return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${idUsuario.toString()}&periodo=${periodo}`);    
+    let userId = this.tokenService.getUserId();
+    return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${userId.toString()}&periodo=${periodo}`);    
   }
   
   public Insert(element: RegistroVinculado): Observable<any> {

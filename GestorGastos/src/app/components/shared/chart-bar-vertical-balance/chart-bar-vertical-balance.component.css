@@ -1,0 +1,3 @@
+::ng-deep .chart-legend .legend-labels{
+    overflow: auto!important;
+}

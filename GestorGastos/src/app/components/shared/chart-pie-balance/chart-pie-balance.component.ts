@@ -10,7 +10,7 @@ export class ChartPieBalanceComponent {
   @Input() dataRegistros: any;
   @Input() dataIngresos: any;
   single: any[] = [];
-  view: any = [340, 300];
+  view: any = [340, 280];
 
   // options
   gradient: boolean = true;

@@ -5,6 +5,7 @@ import { catchError, map, Observable } from 'rxjs';
 import { DialogComponent } from '../components/shared/dialog/dialog.component';
 import { environment } from '../environment';
 import { Ingreso } from '../models/ingreso';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { Ingreso } from '../models/ingreso';
 export class IngresoService {
   apiUrl = environment.urlBase() + "gestorGastos/Ingreso";
   
-  constructor(private http: HttpClient, public dialogoConfirmacion: MatDialog) { }
+  constructor(private http: HttpClient, public dialogoConfirmacion: MatDialog, private tokenService: TokenService) { }
 
   public GetById(id: Number): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/" + id);
@@ -20,7 +21,8 @@ export class IngresoService {
   
   //'https://localhost:7011/gestorGastos/Ingreso?idUsuario=1&periodo=2022-12'
   public GetAll(idUsuario: number, periodo: string): Observable<any> {
-    return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${idUsuario.toString()}&periodo=${periodo}`);    
+    let userId = this.tokenService.getUserId();
+    return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${userId.toString()}&periodo=${periodo}`);    
   }
   
   public Insert(element: Ingreso): Observable<any> {

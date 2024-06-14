@@ -13,7 +13,7 @@ export class ChartBarVerticalBalanceComponent {
 
 
   single: any[] = [];
-  view: any = [340, 300];
+  view: any = [340, 280];
 
   // options
   showXAxis: boolean = true;
