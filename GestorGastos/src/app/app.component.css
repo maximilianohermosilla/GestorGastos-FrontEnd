@@ -140,6 +140,13 @@ mat-sidenav-content {
   -webkit-text-fill-color: transparent;
 }
 
+.nav-icon-danger {
+  background: -webkit-linear-gradient(#4f0000, #9f5555);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .center {
   display: flex;
   justify-content: center;

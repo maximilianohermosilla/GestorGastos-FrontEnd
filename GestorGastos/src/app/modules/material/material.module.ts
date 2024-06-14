@@ -25,6 +25,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [],
@@ -54,7 +55,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatDatepickerModule,
     MatTabsModule,
     MatSnackBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatMenuModule
   ],
   exports: [
     MatFormFieldModule,
@@ -79,7 +81,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatDatepickerModule,
     MatTabsModule,
     MatSnackBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule { }

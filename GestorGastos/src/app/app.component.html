@@ -8,18 +8,43 @@
       src="/assets/favicon.png" alt="">
     <span class="spacer"></span>
     <div class="name"> {{userName}} </div>
-    <button mat-icon-button class="example-icon favorite-icon" [matTooltip]="'Nuevo Expediente'"
+    <!-- <button mat-icon-button class="example-icon favorite-icon" [matTooltip]="'Nuevo Expediente'"
       aria-label="Example icon-button with heart icon" routerLink="expediente">
       <mat-icon>assignment_add</mat-icon>
     </button>
     <button mat-icon-button class="example-icon favorite-icon" [matTooltip]="'Expedientes'"
       aria-label="Example icon-button with heart icon" routerLink="expedientes">
       <mat-icon>folder_copy</mat-icon>
-    </button>
-    <button mat-icon-button class="button-login" [color]="isAdmin? 'warn': 'disabled'"
+    </button> -->
+    <!-- <button mat-icon-button class="button-login" [color]="isAdmin? 'warn': 'disabled'"
       [matTooltip]="isAdmin? 'Cerrar sesión': 'Ingresar'" (click)="toggleLogin()">
       <mat-icon>person</mat-icon>
+    </button> -->
+    <button mat-icon-button color="primary" class="nav-icon shadow" [matMenuTriggerFor]="login" *ngIf="!isAdmin">
+      <mat-icon>person</mat-icon>
     </button>
+    <mat-menu #login="matMenu">
+      <button mat-menu-item (click)="toggleLogin()">
+        <mat-icon>login</mat-icon>Iniciar Sesión
+      </button>
+      <button mat-menu-item>
+        <mat-icon>person_add</mat-icon>Registrarse
+      </button>
+    </mat-menu>
+
+    <button mat-icon-button color="primary" class="nav-icon-danger shadow" [matMenuTriggerFor]="account" *ngIf="isAdmin">
+      <mat-icon>person</mat-icon>
+    </button>
+
+    <mat-menu #account="matMenu">
+      <button mat-menu-item>
+        <mat-icon>account_circle</mat-icon>Mi Perfil
+      </button>
+      <button mat-menu-item (click)="toggleLogin()">
+        <mat-icon>logout</mat-icon>Cerrar Sesión
+      </button>
+    </mat-menu>
+
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 48 : 0">

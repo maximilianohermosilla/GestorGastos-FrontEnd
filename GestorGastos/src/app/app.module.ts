@@ -18,7 +18,6 @@ import { DialogComponent } from './components/shared/dialog/dialog.component';
 import { LoginComponent } from './components/login/login.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
-import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { BalancePageComponent } from './components/balance-page/balance-page.component';
 import { SpinnerInterceptorService } from './services/spinner-interceptor.service';
@@ -60,7 +59,6 @@ import { AbmIngresoComponent } from './components/shared/abm-ingreso/abm-ingreso
     LoginComponent,
     FooterComponent,
     SpinnerComponent,
-    ToolbarComponent,
     LandingPageComponent,
     AbmNombreComponent,
     TarjetaComponent,

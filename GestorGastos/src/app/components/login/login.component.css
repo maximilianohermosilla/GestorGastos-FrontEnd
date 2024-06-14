@@ -29,9 +29,9 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: white !important;
 }
 
-::ng-deep .mat-mdc-dialog-surface {
+/* ::ng-deep .mat-mdc-dialog-surface {
   background-color: #004f4f !important;
-}
+} */
 
 @media screen and (max-width: 480px) {
   .login__container {

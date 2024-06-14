@@ -44,9 +44,9 @@ export class AppComponent {
       this.fillerNav.push({nombre: "Registrar Gastos",routerlink: "registrar-gastos",icon: "paid"});
       this.fillerNav.push({nombre: "Registrar Ingresos",routerlink: "registrar-ingresos",icon: "account_balance"});
       this.fillerNav.push({nombre: "Alta Tarjeta",routerlink: "tarjeta",icon: "add_card"});
-      this.fillerNav.push({nombre: "Búsquedas",routerlink: "expedientes",icon: "search"}); 
       this.fillerNav.push({nombre: "Configuración",routerlink: "configuracion",icon: "settings"});       
-      this.fillerNav.push({nombre: "Reportes",routerlink: "reportes",icon: "leaderboard"}); 
+      // this.fillerNav.push({nombre: "Búsquedas",routerlink: "expedientes",icon: "search"}); 
+      // this.fillerNav.push({nombre: "Reportes",routerlink: "reportes",icon: "leaderboard"}); 
     }
     this.spinnerService.hide();
     console.log(this.mobileQuery)
@@ -66,8 +66,7 @@ export class AppComponent {
     });
     dialogRef.afterClosed().subscribe( res => {
       setTimeout(() => {
-        //window.location.reload();            
-        this.spinnerService.hide();
+        window.location.reload();
       }, 1000);
     })   
   }
@@ -92,7 +91,7 @@ export class AppComponent {
           });
           this.tokenService.logOut();          
           setTimeout(() => {
-            //window.location.reload();            
+            window.location.reload();            
           }, 1000);
         }
       });      
