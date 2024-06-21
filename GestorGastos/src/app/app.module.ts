@@ -13,41 +13,41 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe } from '@angular/common'
 import { FilterPipe } from './pipes/filter.pipe';
 
-import { ConfirmDialogComponent } from './components/shared/confirm-dialog/confirm-dialog.component';
-import { DialogComponent } from './components/shared/dialog/dialog.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 import { LoginComponent } from './components/login/login.component';
-import { FooterComponent } from './components/shared/footer/footer.component';
-import { SpinnerComponent } from './components/shared/spinner/spinner.component';
-import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { BalancePageComponent } from './components/balance-page/balance-page.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { BalancePageComponent } from './pages/balance-page/balance-page.component';
 import { SpinnerInterceptorService } from './services/spinner-interceptor.service';
 import { InterceptorService } from './services/interceptor.service';
-import { AbmNombreComponent } from './components/shared/abm-nombre/abm-nombre.component';
-import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
+import { AbmNombreComponent } from './components/abm-nombre/abm-nombre.component';
+import { TarjetaComponent } from './components/abm-tarjeta/tarjeta.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { GrillaCardRegistroComponent } from './components/shared/grilla-card-registro/grilla-card-registro.component';
-import { GrillaCardIngresoComponent } from './components/shared/grilla-card-ingreso/grilla-card-ingreso.component';
+import { GrillaCardRegistroComponent } from './components/grilla-card-registro/grilla-card-registro.component';
+import { GrillaCardIngresoComponent } from './components/grilla-card-ingreso/grilla-card-ingreso.component';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { ChartPieBalanceComponent } from './components/shared/chart-pie-balance/chart-pie-balance.component';
-import { ChartBarVerticalBalanceComponent } from './components/shared/chart-bar-vertical-balance/chart-bar-vertical-balance.component';
-import { RegistroGastosPageComponent } from './components/registro-gastos-page/registro-gastos-page.component';
-import { HeaderBannerComponent } from './components/shared/header-banner/header-banner.component';
-import { RegistroIngresosPageComponent } from './components/registro-ingresos-page/registro-ingresos-page.component';
-import { FormPeriodoComponent } from './components/shared/form-periodo/form-periodo.component';
-import { CardRegistroComponent } from './components/shared/card-registro/card-registro.component';
-import { CardIngresoComponent } from './components/shared/card-ingreso/card-ingreso.component';
-import { CardSuscripcionComponent } from './components/shared/card-suscripcion/card-suscripcion.component';
-import { CardFinanciacionComponent } from './components/shared/card-financiacion/card-financiacion.component';
-import { GrillaSuscripcionesComponent } from './components/shared/grilla-suscripciones/grilla-suscripciones.component';
-import { GrillaRegistrosVinculadosComponent } from './components/shared/grilla-registros-vinculados/grilla-registros-vinculados.component';
-import { AbmRegistroComponent } from './components/shared/abm-registro/abm-registro.component';
-import { AbmRegistroVinculadoComponent } from './components/shared/abm-registro-vinculado/abm-registro-vinculado.component';
-import { AbmSuscripcionComponent } from './components/shared/abm-suscripcion/abm-suscripcion.component';
+import { ChartPieBalanceComponent } from './components/chart-pie-balance/chart-pie-balance.component';
+import { ChartBarVerticalBalanceComponent } from './components/chart-bar-vertical-balance/chart-bar-vertical-balance.component';
+import { RegistroGastosPageComponent } from './pages/registro-gastos-page/registro-gastos-page.component';
+import { HeaderBannerComponent } from './components/header-banner/header-banner.component';
+import { RegistroIngresosPageComponent } from './pages/registro-ingresos-page/registro-ingresos-page.component';
+import { FormPeriodoComponent } from './components/form-periodo/form-periodo.component';
+import { CardRegistroComponent } from './components/card-registro/card-registro.component';
+import { CardIngresoComponent } from './components/card-ingreso/card-ingreso.component';
+import { CardSuscripcionComponent } from './components/card-suscripcion/card-suscripcion.component';
+import { CardFinanciacionComponent } from './components/card-financiacion/card-financiacion.component';
+import { GrillaSuscripcionesComponent } from './components/grilla-suscripciones/grilla-suscripciones.component';
+import { GrillaRegistrosVinculadosComponent } from './components/grilla-registros-vinculados/grilla-registros-vinculados.component';
+import { AbmRegistroComponent } from './components/abm-registro/abm-registro.component';
+import { AbmRegistroVinculadoComponent } from './components/abm-registro-vinculado/abm-registro-vinculado.component';
+import { AbmSuscripcionComponent } from './components/abm-suscripcion/abm-suscripcion.component';
 import { errorHandlerInterceptor } from './inteceptors/error-handler.interceptor';
 import { spinnerInterceptor } from './inteceptors/spinner.interceptor';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
-import { AbmIngresoComponent } from './components/shared/abm-ingreso/abm-ingreso.component';
+import { AbmIngresoComponent } from './components/abm-ingreso/abm-ingreso.component';
 
 @NgModule({
   declarations: [

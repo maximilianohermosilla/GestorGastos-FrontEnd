@@ -4,12 +4,12 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatCalendarCellClassFunction, MatDatepicker } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../shared/dialog/dialog.component';
+import { DialogComponent } from '../dialog/dialog.component';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { Banco } from 'src/app/models/banco';
-import { TipoTarjeta } from 'src/app/models/tipoTarjeta';
+import { TipoTarjeta } from 'src/app/models/tipo-tarjeta';
 import { Tarjeta } from 'src/app/models/tarjeta';
 import { TarjetaService } from 'src/app/services/tarjeta.service';
 import { NombreService } from 'src/app/services/nombre.service';

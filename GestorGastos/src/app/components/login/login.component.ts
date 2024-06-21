@@ -6,7 +6,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { LoginService } from 'src/app/services/login.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { TokenService } from 'src/app/services/token.service';
-import { DialogComponent } from '../shared/dialog/dialog.component';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-login',

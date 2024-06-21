@@ -6,7 +6,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
-import { TarjetaComponent } from '../../tarjeta/tarjeta.component';
+import { TarjetaComponent } from '../abm-tarjeta/tarjeta.component';
 import { Registro } from 'src/app/models/registro';
 import { Empresa } from 'src/app/models/empresa';
 import { Suscripcion } from 'src/app/models/suscripcion';

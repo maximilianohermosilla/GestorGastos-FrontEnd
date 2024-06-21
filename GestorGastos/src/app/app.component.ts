@@ -3,10 +3,10 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Navitem } from './models/navitem';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from './components/shared/dialog/dialog.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 import { SpinnerService } from './services/spinner.service';
 import { LoginComponent } from './components/login/login.component';
-import { ConfirmDialogComponent } from './components/shared/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { TokenService } from './services/token.service';
 
 @Component({

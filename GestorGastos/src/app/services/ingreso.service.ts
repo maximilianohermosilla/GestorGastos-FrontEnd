@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, map, Observable } from 'rxjs';
-import { DialogComponent } from '../components/shared/dialog/dialog.component';
+import { DialogComponent } from '../components/dialog/dialog.component';
 import { environment } from '../environment';
 import { Ingreso } from '../models/ingreso';
 import { TokenService } from './token.service';

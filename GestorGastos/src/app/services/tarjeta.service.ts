@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable } from 'rxjs';
-import { DialogComponent } from '../components/shared/dialog/dialog.component';
+import { DialogComponent } from '../components/dialog/dialog.component';
 import { environment } from '../environment';
 import { ObjetoNombre } from '../models/objeto-nombre';
 import { Tarjeta } from '../models/tarjeta';

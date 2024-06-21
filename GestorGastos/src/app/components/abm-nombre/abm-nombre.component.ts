@@ -5,14 +5,14 @@ import { MatTable } from '@angular/material/table';
 import { Banco } from 'src/app/models/banco';
 import { Empresa } from 'src/app/models/empresa';
 import { ObjetoNombre } from 'src/app/models/objeto-nombre';
-import { TipoCuenta } from 'src/app/models/tipoCuenta';
-import { TipoTarjeta } from 'src/app/models/tipoTarjeta';
+import { TipoCuenta } from 'src/app/models/tipo-cuenta';
+import { TipoTarjeta } from 'src/app/models/tipo-tarjeta';
 import { BancoService } from 'src/app/services/banco.service';
 import { EmpresaService } from 'src/app/services/empresa.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { TipoCuentaService } from 'src/app/services/tipocuenta.service';
 import { TipoTarjetaService } from 'src/app/services/tipotarjeta.service';
-import { DialogComponent } from '../dialog/dialog.component';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-abm-nombre',
