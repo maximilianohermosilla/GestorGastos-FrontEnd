@@ -1,0 +1,10 @@
+<span class="d-flex justify-content-between shadow bg-dark rounded-3 px-3 py-2 card__grilla">
+    <ul class="d-flex flex-column px-0 mb-0 cuenta__list">
+        <li class="m-0">{{cuenta.nombre}}</li>
+        <li class="text-success">{{cuenta.tipoCuentaNombre}}</li>
+        <li class="m-0"><span class="text-secondary" *ngIf="cuenta.idTarjeta">XXXX-XXXX-XXXX-</span>{{cuenta.tarjetaNumero || " - " }}</li>
+    </ul>
+    <button mat-fab  color="primary" class="shadow">
+        <mat-icon>edit</mat-icon>
+    </button>
+</span>

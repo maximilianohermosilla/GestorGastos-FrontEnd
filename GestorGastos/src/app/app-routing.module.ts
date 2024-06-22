@@ -7,6 +7,7 @@ import { TarjetaComponent } from './components/abm-tarjeta/tarjeta.component';
 import { BalancePageComponent } from './pages/balance-page/balance-page.component';
 import { RegistroGastosPageComponent } from './pages/registro-gastos-page/registro-gastos-page.component';
 import { RegistroIngresosPageComponent } from './pages/registro-ingresos-page/registro-ingresos-page.component';
+import { PerfilPageComponent } from './pages/perfil-page/perfil-page.component';
 
 const routes: Routes = [
   {
@@ -38,11 +39,11 @@ const routes: Routes = [
     component: RegistroIngresosPageComponent
    // canActivate: [GuardGuard] 
   },
-  // {
-  //   path: 'expediente',
-  //   component: ExpedienteAbmComponent,
-  //   canActivate: [GuardGuard]
-  // },
+  {
+    path: 'perfil',
+    component: PerfilPageComponent,
+    //canActivate: [GuardGuard]
+  },
   // {
   //   path: 'reportes',
   //   component: ReportesComponent,

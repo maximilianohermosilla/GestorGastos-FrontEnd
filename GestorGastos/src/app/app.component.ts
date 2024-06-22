@@ -17,7 +17,6 @@ import { TokenService } from './services/token.service';
 
 export class AppComponent {
   title = 'GestorGastos';
-  showFiller = false;
   isAdmin: boolean = false;
   mobileQuery: MediaQueryList;
   fillerNav: Navitem[] = [];
@@ -40,16 +39,15 @@ export class AppComponent {
     if (this.isAdmin) {
       this.userName = this.tokenService.getUserName();
       this.userId = this.tokenService.getUserId();
+      this.fillerNav.push({nombre: "Perfil",routerlink: "perfil",icon: "person"});
       this.fillerNav.push({nombre: "Balance",routerlink: "balance",icon: "balance"});
-      this.fillerNav.push({nombre: "Registrar Gastos",routerlink: "registrar-gastos",icon: "paid"});
       this.fillerNav.push({nombre: "Registrar Ingresos",routerlink: "registrar-ingresos",icon: "account_balance"});
-      this.fillerNav.push({nombre: "Alta Tarjeta",routerlink: "tarjeta",icon: "add_card"});
-      this.fillerNav.push({nombre: "Configuración",routerlink: "configuracion",icon: "settings"});       
-      // this.fillerNav.push({nombre: "Búsquedas",routerlink: "expedientes",icon: "search"}); 
-      // this.fillerNav.push({nombre: "Reportes",routerlink: "reportes",icon: "leaderboard"}); 
+      this.fillerNav.push({nombre: "Registrar Gastos",routerlink: "registrar-gastos",icon: "paid"});
+      //this.fillerNav.push({nombre: "Alta Tarjeta",routerlink: "tarjeta",icon: "add_card"});
+      //this.fillerNav.push({nombre: "Configuración",routerlink: "configuracion",icon: "settings"});
     }
     this.spinnerService.hide();
-    console.log(this.mobileQuery)
+    //console.log(this.mobileQuery)
   }
 
   ngOnDestroy(): void {

@@ -37,6 +37,10 @@ export class ChartBarVerticalBalanceComponent {
   ngOnInit(): void {
     setTimeout(() => {      
       const resultado = this.agruparGastosPorCategoria(this.dataRegistros);
+      
+      resultado.sort(function (a, b) {
+        return a.totalValor < b.totalValor ? 1 : a.totalValor > b.totalValor ? -1 : 0;
+      });
 
       const mappedList: any[] = resultado.map(obj => ({
         name: obj.nombre,
@@ -52,14 +56,19 @@ export class ChartBarVerticalBalanceComponent {
 
   ngOnChanges() {       
     const resultado = this.agruparGastosPorCategoria(this.dataRegistros);
+    
+    resultado.sort(function (a, b) {
+      return a.totalValor < b.totalValor ? 1 : a.totalValor > b.totalValor ? -1 : 0;
+    });
 
     const mappedList: any[] = resultado.map(obj => ({
       name: obj.nombre,
       value: obj.totalValor
     }));
 
-    const colorArray: string[] = resultado.map(obj => obj.color);
-
+    
+    const colorArray: string[] = resultado.map(obj => obj.color);  
+    
     this.single = mappedList;
     this.colorScheme = {domain: colorArray};
   }

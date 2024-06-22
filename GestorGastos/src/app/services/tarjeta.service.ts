@@ -6,6 +6,7 @@ import { DialogComponent } from '../components/dialog/dialog.component';
 import { environment } from '../environment';
 import { ObjetoNombre } from '../models/objeto-nombre';
 import { Tarjeta } from '../models/tarjeta';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,15 @@ import { Tarjeta } from '../models/tarjeta';
 export class TarjetaService {
   apiUrl = environment.urlBase() + "gestorGastos/Tarjeta/";
   
-  constructor(private http: HttpClient, public dialogoConfirmacion: MatDialog) { }
+  constructor(private http: HttpClient, private tokenService: TokenService, public dialogoConfirmacion: MatDialog) { }
 
   public GetById(id: Number): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/" + id);
   }
 
   public GetAll(): Observable<any> {
-    return this.http.get<any[]>(this.apiUrl);    
+    let userId = this.tokenService.getUserId();
+    return this.http.get<any[]>(this.apiUrl + "?idUsuario=" + userId.toString());    
   }
   
   public nuevo(element: Tarjeta): Observable<any> {

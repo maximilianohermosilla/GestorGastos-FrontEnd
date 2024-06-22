@@ -1,0 +1,15 @@
+<app-header-banner *ngIf="user" title={{user.nombre}}></app-header-banner>
+<section class="container mb-3" *ngIf="user">
+    <h5>Mis datos personales</h5>
+    <p>Nombre: {{user.nombre}}</p>
+    <p>Perfil: {{user.perfilDescripcion}}</p>
+    <p>Habilitado: {{user.habilitado? 'Si': 'No'}}</p>
+</section>
+
+<section class="container cuentas__container" *ngIf="listaCuentas.length > 0">
+    <h5>Mis cuentas</h5>
+    <div class="border-0 py-1" mat-cell *ngFor="let cuenta of listaCuentas">
+        <app-card-cuenta [cuenta]="cuenta" id={{cuenta.id}}></app-card-cuenta>
+    </div>
+    <button type="button" mat-stroked-button class="rounded-3 w-100 my-3 py-4"><mat-icon>add</mat-icon> Agregar</button>
+</section>
