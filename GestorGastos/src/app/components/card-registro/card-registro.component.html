@@ -1,6 +1,7 @@
-<div class="d-flex center shadow rounded-4 p-1"
+<div class="d-flex justify-content-between align-items-center shadow rounded-4 p-1"
     [ngStyle]="{backgroundColor: (registro.pagado? '#00533308':'#212529')}"
 >
+<div class="d-flex">
     <button mat-fab color="primary"
         matTooltip={{registro?.categoriaGasto?.nombre}}
         [ngStyle]="{backgroundColor: (registro.categoriaGasto?.color), color: '#000', opacity: 0.7}"
@@ -13,4 +14,13 @@
         <p class="m-0 text-warning">$ {{registro.valor.toLocaleString("es-AR")}}</p>
         <span class="text-success" *ngIf="registro.pagado && registro.fechaPago != undefined">Pago: ({{registro.fechaPago.slice(0, 10)}})</span>
     </div>
+</div>
+<div>
+    <button mat-mini-fab color="primary" 
+        matTooltip="Registrar pago"
+        *ngIf="!registro.pagado"
+        (click)="updateRegistro()"> 
+        <mat-icon>price_check</mat-icon>
+    </button>
+</div>
 </div>

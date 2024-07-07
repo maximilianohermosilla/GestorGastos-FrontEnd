@@ -26,17 +26,16 @@ export class RegistroService {
   }
   
   Insert(element: Registro): Observable<any> {
-    console.log(element)
-    console.log(this.apiUrl)
     return this.http.post<any>(this.apiUrl + "/", element).pipe(tap(data=>{  
-      console.log(data) 
-      console.log(data.status) 
       return data
       }));
     }
 
-  actualizar(element: Registro): Observable<Registro>{
-    return this.http.put<Registro>(this.apiUrl, element);
+  Update(element: Registro): Observable<Registro>{
+    return this.http.put<Registro>(this.apiUrl, element).pipe(tap(data=>{  
+      console.log(data)
+      return data
+      }));;
   }
 
   eliminarById(id: number): Observable<any>{
