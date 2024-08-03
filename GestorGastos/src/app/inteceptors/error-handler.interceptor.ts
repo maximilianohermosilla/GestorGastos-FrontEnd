@@ -5,6 +5,7 @@ import { inject } from '@angular/core';
 
 export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
   const errorService = inject(ErrorService);
+  
   return next(req).pipe(catchError((error: HttpErrorResponse) => {
     let errorMessage = "";
     if (error.error instanceof ErrorEvent){
@@ -12,8 +13,9 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
     }
     else{
       console.log(`Error code: ${error.status}, message: ${error.error.message}`);
-      errorMessage = error.error.message;
+      errorMessage = error.message;
     }
+    console.log(error)
     
     errorService.showError(errorMessage);
     //return throwError(() => errorMessage);

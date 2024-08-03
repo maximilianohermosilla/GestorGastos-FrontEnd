@@ -9,10 +9,10 @@
         <mat-icon>{{registro.categoriaGasto?.icono}}</mat-icon>
     </button>
     <div class="d-flex flex-column">
-        <p class="m-0">{{registro.fecha.slice(0, 10)}} - <span class="text-secondary">{{registro.descripcion}}</span>            
-        </p>
-        <p class="m-0 text-warning">$ {{registro.valor.toLocaleString("es-AR")}}</p>
-        <span class="text-success" *ngIf="registro.pagado && registro.fechaPago != undefined">Pago: ({{registro.fechaPago.slice(0, 10)}})</span>
+        <p class="m-0">{{registro.fecha.slice(0, 10)}} - <span class="text-secondary">{{registro.descripcion}}</span></p>
+        <p class="m-0 text-info">{{registro.cuenta.nombre}}</p>
+        <p class="m-0 text-warning" *ngIf="!registro.pagado && registro.fechaPago == undefined">$ {{registro.valor.toLocaleString("es-AR")}}</p>
+        <p class="m-0 text-success" *ngIf="registro.pagado && registro.fechaPago != undefined">$ {{registro.valor.toLocaleString("es-AR")}} &#10004;</p>
     </div>
 </div>
 <div>

@@ -7,12 +7,12 @@
     <span class="example-app-name" routerLink="menu" style="cursor: pointer;">Gestor Gastos</span><img class="icono"
       src="/assets/favicon.png" alt="">
     <span class="spacer"></span>
-    <div class="name"> {{userName}} </div>
+    <div class="name me-3"> {{userName}} </div>
     <!-- <button mat-icon-button class="example-icon favorite-icon" [matTooltip]="'Nuevo Expediente'"
       aria-label="Example icon-button with heart icon" routerLink="expediente">
       <mat-icon>assignment_add</mat-icon>
     </button> -->
-    <button mat-icon-button color="primary" class="nav-icon shadow" [matMenuTriggerFor]="login" *ngIf="!isAdmin">
+    <button mat-icon-button color="primary" class="nav__login" [matMenuTriggerFor]="login" *ngIf="!isAdmin">
       <mat-icon>person</mat-icon>
     </button>
     <mat-menu #login="matMenu">
@@ -24,14 +24,14 @@
       </button>
     </mat-menu>
 
-    <button mat-icon-button color="primary" class="nav-icon-danger shadow" [matMenuTriggerFor]="account" *ngIf="isAdmin">
+    <button mat-icon-button color="primary" class="nav__login-danger" [matMenuTriggerFor]="account" *ngIf="isAdmin">
       <mat-icon>person</mat-icon>
     </button>
 
     <mat-menu #account="matMenu">
-      <button mat-menu-item>
+      <a mat-menu-item href="perfil">
         <mat-icon>account_circle</mat-icon>Mi Perfil
-      </button>
+      </a>
       <button mat-menu-item (click)="toggleLogin()">
         <mat-icon>logout</mat-icon>Cerrar Sesión
       </button>

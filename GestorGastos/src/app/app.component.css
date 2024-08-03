@@ -147,6 +147,14 @@ mat-sidenav-content {
   -webkit-text-fill-color: transparent;
 }
 
+.nav__login{
+  background: -webkit-linear-gradient(#004f4f, #559f9f);
+}
+
+.nav__login-danger {
+  background: -webkit-linear-gradient(#7e0000, #ca6262);
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -213,10 +221,10 @@ mat-sidenav-content {
     font-size: 14px;
   }
 
-  .mat-toolbar-row,
+  /* .mat-toolbar-row,
   .mat-toolbar-single-row {
     padding: 0;
-  }
+  } */
 }
 
 @keyframes shake {

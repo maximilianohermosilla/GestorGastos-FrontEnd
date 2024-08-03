@@ -1,13 +1,13 @@
-<ngx-charts-bar-horizontal
+<ngx-charts-bar-vertical
   [view]="view"
   [scheme]="colorScheme"
   [results]="single"
   [gradient]="gradient"
-  [xAxis]="showXAxis"
+  [xAxis]="false"
   [yAxis]="showYAxis"
   [legend]="showLegend"
   [legendPosition]="legendPosition"
-  [showXAxisLabel]="showXAxisLabel"
+  [showXAxisLabel]="false"
   [showYAxisLabel]="showYAxisLabel"
   [xAxisLabel]="xAxisLabel"
   [legendTitle]="legendTitle"
@@ -15,4 +15,4 @@
   (activate)="onActivate($event)"
   (deactivate)="onDeactivate($event)"  
   >
-</ngx-charts-bar-horizontal>
+</ngx-charts-bar-vertical>

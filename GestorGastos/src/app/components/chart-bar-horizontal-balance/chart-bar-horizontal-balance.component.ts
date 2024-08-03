@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 import { Registro } from 'src/app/models/registro';
 
 @Component({
-  selector: 'app-chart-bar-vertical-balance',
-  templateUrl: './chart-bar-vertical-balance.component.html',
-  styleUrl: './chart-bar-vertical-balance.component.css'
+  selector: 'app-chart-bar-horizontal-balance',
+  templateUrl: './chart-bar-horizontal-balance.component.html',
+  styleUrl: './chart-bar-horizontal-balance.component.css'
 })
 
-export class ChartBarVerticalBalanceComponent {
+export class ChartBarHorizontalBalanceComponent {
   @Input() dataRegistros: any;
   @Input() dataIngresos: any;
 
@@ -22,12 +22,12 @@ export class ChartBarVerticalBalanceComponent {
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
   showYAxisLabel: boolean = true;
-  xAxisLabel: string = 'Cuentas';
+  xAxisLabel: string = 'Categorias';
   legendPosition: any = 'below';
   legendTitle: string = "Gastos";
 
   colorScheme: any = {
-    domain: ['#5AA454', '#ff5733', '#A10A28', '#C7B42C', '#5733ff']
+    domain: ['#5AA454', '#A10A28', '#C7B42C']
   };
 
   constructor() {
@@ -36,7 +36,7 @@ export class ChartBarVerticalBalanceComponent {
 
   ngOnInit(): void {
     setTimeout(() => {
-      const resultado = this.agruparGastosPorCuenta(this.dataRegistros);
+      const resultado = this.agruparGastosPorCategoria(this.dataRegistros);
 
       resultado.sort(function (a, b) {
         return a.totalValor < b.totalValor ? 1 : a.totalValor > b.totalValor ? -1 : 0;
@@ -47,10 +47,10 @@ export class ChartBarVerticalBalanceComponent {
         value: obj.totalValor
       }));
 
-      //const colorArray: string[] = resultado.map(obj => obj.color);
+      const colorArray: string[] = resultado.map(obj => obj.color);
 
       this.single = mappedList;
-      //this.colorScheme = { domain: colorArray };
+      this.colorScheme = { domain: colorArray };
 
       const resultadoGastros = this.dataRegistros.reduce((acumulador: any, gasto: any) => {
         acumulador.Gasto += gasto.valor;
@@ -62,7 +62,7 @@ export class ChartBarVerticalBalanceComponent {
   }
 
   ngOnChanges() {
-    const resultado = this.agruparGastosPorCuenta(this.dataRegistros);
+    const resultado = this.agruparGastosPorCategoria(this.dataRegistros);
 
     resultado.sort(function (a, b) {
       return a.totalValor < b.totalValor ? 1 : a.totalValor > b.totalValor ? -1 : 0;
@@ -74,10 +74,10 @@ export class ChartBarVerticalBalanceComponent {
     }));
 
 
-    //const colorArray: string[] = resultado.map(obj => obj.color);
+    const colorArray: string[] = resultado.map(obj => obj.color);
 
     this.single = mappedList;
-    //this.colorScheme = { domain: colorArray };
+    this.colorScheme = { domain: colorArray };
 
     const resultadoGastros = this.dataRegistros.reduce((acumulador: any, gasto: any) => {
       acumulador.Gasto += gasto.valor;
@@ -87,17 +87,17 @@ export class ChartBarVerticalBalanceComponent {
     this.legendTitle = "Gastos: $" + resultadoGastros.Gasto.toString();
   }
 
-  agruparGastosPorCuenta = (gastos: Registro[]): any[] => {
+  agruparGastosPorCategoria = (gastos: Registro[]): any[] => {
     const mapaGastos = new Map<string, any>();
 
     gastos.forEach(gasto => {
-      const { nombre } = gasto.cuenta!;
-      const key = `${nombre}`;
+      const { nombre, color } = gasto.categoriaGasto!;
+      const key = `${nombre}-${color}`;
 
       if (mapaGastos.has(key)) {
         mapaGastos.get(key)!.totalValor += gasto.valor;
       } else {
-        mapaGastos.set(key, { nombre, totalValor: gasto.valor });
+        mapaGastos.set(key, { nombre, color, totalValor: gasto.valor });
       }
     });
 

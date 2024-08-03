@@ -48,6 +48,8 @@ import { AbmSuscripcionComponent } from './components/abm-suscripcion/abm-suscri
 import { AbmIngresoComponent } from './components/abm-ingreso/abm-ingreso.component';
 import { CardCuentaComponent } from './components/card-cuenta/card-cuenta.component';
 import { CardTarjetaComponent } from './components/card-tarjeta/card-tarjeta.component';
+import { AbmCuentaComponent } from './components/abm-cuenta/abm-cuenta.component';
+import { ChartBarHorizontalBalanceComponent } from './components/chart-bar-horizontal-balance/chart-bar-horizontal-balance.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,7 @@ import { CardTarjetaComponent } from './components/card-tarjeta/card-tarjeta.com
     GrillaCardIngresoComponent,
     ChartPieBalanceComponent,
     ChartBarVerticalBalanceComponent,
+    ChartBarHorizontalBalanceComponent,
     FormPeriodoComponent,
     GrillaSuscripcionesComponent,
     GrillaRegistrosVinculadosComponent,
@@ -78,6 +81,7 @@ import { CardTarjetaComponent } from './components/card-tarjeta/card-tarjeta.com
     AbmRegistroVinculadoComponent,
     AbmSuscripcionComponent,
     AbmIngresoComponent,
+    AbmCuentaComponent,
     LandingPageComponent,
     PerfilPageComponent,
     BalancePageComponent,
