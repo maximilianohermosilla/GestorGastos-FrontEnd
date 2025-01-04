@@ -29,7 +29,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { AbmNombreComponent } from './components/abm-nombre/abm-nombre.component';
-import { TarjetaComponent } from './components/abm-tarjeta/tarjeta.component';
+import { TarjetaComponent } from './components/abm-tarjeta/abm-tarjeta.component';
 import { GrillaCardRegistroComponent } from './components/grilla-card-registro/grilla-card-registro.component';
 import { GrillaCardIngresoComponent } from './components/grilla-card-ingreso/grilla-card-ingreso.component';
 import { ChartPieBalanceComponent } from './components/chart-pie-balance/chart-pie-balance.component';

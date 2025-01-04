@@ -1,0 +1,15 @@
+.form-add{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;  
+}
+
+.add-button{
+    font-size: 28px;
+    height: 58px;
+    margin-left: 2px;
+}
+
+mat-form-field{
+    width: 100%
+}

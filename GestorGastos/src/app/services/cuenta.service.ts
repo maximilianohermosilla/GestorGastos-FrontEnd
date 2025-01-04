@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable } from 'rxjs';
 import { DialogComponent } from '../components/dialog/dialog.component';
 import { environment } from '../environment';
-import { ObjetoNombre } from '../models/objeto-nombre';
+import { Cuenta } from '../models/cuenta';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -24,12 +24,12 @@ export class CuentaService {
     return this.http.get<any[]>(this.apiUrl + "?idUsuario=" + userId.toString());    
   }
   
-  public nuevo(element: ObjetoNombre): Observable<any> {
-    return this.http.post<ObjetoNombre>(this.apiUrl, element);
+  public Insert(element: Cuenta): Observable<any> {
+    return this.http.post<Cuenta>(this.apiUrl, element);
   }
 
-  public actualizar(element: ObjetoNombre): Observable<ObjetoNombre>{
-    return this.http.put<ObjetoNombre>(this.apiUrl, element);
+  public actualizar(element: Cuenta): Observable<Cuenta>{
+    return this.http.put<Cuenta>(this.apiUrl, element);
   }
 
   public eliminarById(id: number): Observable<any>{

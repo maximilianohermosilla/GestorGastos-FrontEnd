@@ -33,16 +33,16 @@ export class AppComponent {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  ngOnInit(): void{    
-    this.isAdmin  = (this.tokenService.getToken() != null)? true: false;
-    this.fillerNav.push({nombre: "Inicio",routerlink: "menu",icon: "home"}); 
+  ngOnInit(): void {
+    this.isAdmin = (this.tokenService.getToken() != null) ? true : false;
+    this.fillerNav.push({ nombre: "Inicio", routerlink: "menu", icon: "home" });
     if (this.isAdmin) {
       this.userName = this.tokenService.getUserName();
       this.userId = this.tokenService.getUserId();
-      this.fillerNav.push({nombre: "Perfil",routerlink: "perfil",icon: "person"});
-      this.fillerNav.push({nombre: "Balance",routerlink: "balance",icon: "balance"});
-      this.fillerNav.push({nombre: "Ingresos",routerlink: "registrar-ingresos",icon: "account_balance"});
-      this.fillerNav.push({nombre: "Gastos",routerlink: "registrar-gastos",icon: "paid"});
+      this.fillerNav.push({ nombre: "Perfil", routerlink: "perfil", icon: "person" });
+      this.fillerNav.push({ nombre: "Balance", routerlink: "balance", icon: "balance" });
+      this.fillerNav.push({ nombre: "Ingresos", routerlink: "registrar-ingresos", icon: "account_balance" });
+      this.fillerNav.push({ nombre: "Gastos", routerlink: "registrar-gastos", icon: "paid" });
       //this.fillerNav.push({nombre: "Alta Tarjeta",routerlink: "tarjeta",icon: "add_card"});
       //this.fillerNav.push({nombre: "Configuración",routerlink: "configuracion",icon: "settings"});
     }
@@ -54,48 +54,48 @@ export class AppComponent {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  login(){
-    const dialogRef = this.dialog.open(LoginComponent,{
+  login() {
+    const dialogRef = this.dialog.open(LoginComponent, {
       width: '640px',
-      maxWidth: '90vw', 
+      maxWidth: '90vw',
       disableClose: false, data: {
-        title: "Ingresar",        
-      } 
+        title: "Ingresar",
+      }
     });
-    dialogRef.afterClosed().subscribe( res => {
+    dialogRef.afterClosed().subscribe(res => {
       setTimeout(() => {
         window.location.reload();
       }, 1000);
-    })   
+    })
   }
 
-  toggleLogin(){ 
-    if(this.tokenService.getToken()){
+  toggleLogin() {
+    if (this.tokenService.getToken()) {
       this.dialogoConfirmacion.open(ConfirmDialogComponent, {
         data: `¿Está seguro de que desea cerrar la sesión?`
       })
-      .afterClosed()
-      .subscribe((confirmado: Boolean) => {
-        if (confirmado) {
-          this.userName = "";
-          this.router.navigate(['menu']);
-          this.dialogoConfirmacion.open(DialogComponent, {
-            data: {
-              titulo: "Confirmación",
-              mensaje: "Cierre de sesión exitoso",
-              icono: "check_circle",
-              clase: "class-success"
-            }
-          });
-          this.tokenService.logOut();          
-          setTimeout(() => {
-            window.location.reload();            
-          }, 1000);
-        }
-      });      
+        .afterClosed()
+        .subscribe((confirmado: Boolean) => {
+          if (confirmado) {
+            this.userName = "";
+            this.router.navigate(['menu']);
+            this.dialogoConfirmacion.open(DialogComponent, {
+              data: {
+                titulo: "Confirmación",
+                mensaje: "Cierre de sesión exitoso",
+                icono: "check_circle",
+                clase: "class-success"
+              }
+            });
+            this.tokenService.logOut();
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
+          }
+        });
     }
-    else{
+    else {
       this.login();
-    }    
+    }
   }
 }

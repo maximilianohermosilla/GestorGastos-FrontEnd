@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AbmCuentaComponent } from 'src/app/components/abm-cuenta/abm-cuenta.component';
 import { BancoService } from 'src/app/services/banco.service';
 import { CuentaService } from 'src/app/services/cuenta.service';
 import { TarjetaService } from 'src/app/services/tarjeta.service';
@@ -18,10 +20,12 @@ export class PerfilPageComponent {
   listaTipoCuentas: any[] = [];
   listaTipoTarjetas: any[] = [];
   listaCuentas: any[] = [];
+  listaCuentasDeshabilitadas: any[] = [];
   listaTarjetas: any[] = [];
 
   constructor(private usuarioService: UsuarioService, private bancoService: BancoService, private tipoCuentaService: TipoCuentaService,
-    private tipoTarjetaService: TipoTarjetaService, private cuentaService: CuentaService, private tarjetaService: TarjetaService
+    private tipoTarjetaService: TipoTarjetaService, private cuentaService: CuentaService, private tarjetaService: TarjetaService, 
+    public dialog: MatDialog, private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -73,8 +77,50 @@ export class PerfilPageComponent {
   getUsuario() {
     this.usuarioService.GetById().subscribe((response: any) => {
       this.user = response;
+      this.user.imagen = (!this.user.imagen || this.user.imagen.length === 0) ? `..\\..\\assets\\img\\user-placeholder.png`: this.user.imagen;
       console.log(response)
     });
   }
+  
+  openCuenta(idCuenta?: any){
+    const dialogRef = this.dialog.open(AbmCuentaComponent,{
+      width: '640px',
+      maxWidth: '90vw',
+      disableClose: false, 
+      data: idCuenta 
+    });
+    dialogRef.afterClosed().subscribe( res => {
+      console.log(res)
+      //if (res) { // Solo si el modal devuelve algo relevante
+        this.getCuentas(); // Actualizas la lista de cuentas inmediatamente
+        console.log("Cierro modal cuenta");
+        //this.listaCuentas = [...this.listaCuentas, nuevaCuenta];
+        this.cdr.detectChanges();
+      //}
+    })   
+  }
 
+  getIdCuenta(idCuenta: any){
+    console.log(idCuenta);
+    this.openCuenta(idCuenta);
+  }
+
+  toggleCuenta(cuenta: any){
+    console.log(cuenta.habilitado);    
+    if (cuenta.id > 0) {
+      cuenta.habilitado = !cuenta.habilitado
+      this.cuentaService.actualizar(cuenta).subscribe( data => console.log(data));      
+    }
+    //this.openCuenta(cuenta);
+  }
+
+  onCheckDeshabilitados(check: any){
+    console.log(check)
+    if(!check){
+      this.listaCuentas = this.listaCuentas.filter(c => c.habilitado)
+    }
+    else{
+      this.getCuentas();
+    }
+  }
 }

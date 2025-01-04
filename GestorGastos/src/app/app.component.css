@@ -134,7 +134,7 @@ mat-sidenav-content {
 }
 
 .nav-icon {
-  background: -webkit-linear-gradient(#004f4f, #559f9f);
+  background: -webkit-linear-gradient(#559f9f, #559f9f);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-card-cuenta',
@@ -7,5 +7,14 @@ import { Component, Input } from '@angular/core';
 })
 export class CardCuentaComponent {
   @Input() cuenta: any; 
+  @Output() emitCuenta = new EventEmitter<any>();
+  @Output() emitCuentaToggle = new EventEmitter<any>();
 
+  openCuenta(){
+    this.emitCuenta.emit(this.cuenta)
+  }
+
+  toggleCuenta(){
+    this.emitCuentaToggle.emit(this.cuenta)
+  }
 }

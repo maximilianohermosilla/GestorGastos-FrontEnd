@@ -97,7 +97,7 @@ export class RegistroGastosPageComponent {
     
   getCuentas(){
     this.cuentaService.GetAll().subscribe((rta: Cuenta[]) => {
-      this.listaCuentas = rta;
+      this.listaCuentas = rta.filter(c => c.habilitado);
       // console.log(this.listaCuentas);
     });
   }

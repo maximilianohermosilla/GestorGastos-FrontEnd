@@ -5,5 +5,7 @@ export interface Tarjeta{
     idBanco?: number,
     idTipoTarjeta?: number,
     idUsuario?: number,
+    tipoTarjetaNombre?: string,
+    bancoNombre?: string,
     habilitado: boolean
 }

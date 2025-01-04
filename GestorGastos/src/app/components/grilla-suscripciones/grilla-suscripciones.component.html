@@ -37,9 +37,9 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by registros"> Detalle </th>
             <td class="border-0 py-1 px-0" mat-cell *matCellDef="let registro">
                 <button mat-stroked-button (click)="getDetalle(registro)"
-                        [matTooltip]="'- Categoría: ' + registro.registros[0].categoriaGastoNombre + '
-                        - Cuenta: ' + registro.registros[0].cuenta!.nombre + '
-                        - Empresa: ' + registro.registros[0].empresaNombre"
+                        [matTooltip]="'Categoría: ' + registro.registros[0].categoriaGastoNombre + 
+                        '\nCuenta: ' + registro.registros[0].cuenta!.nombre + 
+                        '\nEmpresa: ' + registro.registros[0].empresaNombre"
                         aria-label="Button that displays a tooltip when focused or hovered over">
                     Detalle
                 </button>
