@@ -1,8 +1,10 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Component, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { GrillaCardRegistroComponent } from '../grilla-card-registro/grilla-card-registro.component';
 
 @Component({
   selector: 'app-grilla-suscripciones',
@@ -21,8 +23,9 @@ export class GrillaSuscripcionesComponent {
   sortedData: any;
   nombreColumnas: string[] = ["nombre", "fechaDesde", "valorActual", "registros"];
 
-  constructor(private liveAnnouncer: LiveAnnouncer){
-  }
+  
+  constructor(private liveAnnouncer: LiveAnnouncer, public dialog: MatDialog, private cdr: ChangeDetectorRef) { }
+  
   ngOnInit(): void {
     setTimeout(() => {
       this.setDatasource();
@@ -34,6 +37,7 @@ export class GrillaSuscripcionesComponent {
   }
 
   setDatasource(){
+    console.log(this.dataSource)
     this.dataSource = new MatTableDataSource<any[]>(this.data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -54,5 +58,21 @@ export class GrillaSuscripcionesComponent {
 
   getDetalle(data: any){
     console.log(data)
+    console.log(data.registros)
+    const dialogRef = this.dialog.open(GrillaCardRegistroComponent, {
+      width: '640px',
+      maxWidth: '90vw',
+      disableClose: false, 
+      data: data.registros 
+    });
+    dialogRef.afterClosed().subscribe( res => {
+      console.log(res)
+      //if (res) { // Solo si el modal devuelve algo relevante
+        //this.getCuentas(); // Actualizas la lista de cuentas inmediatamente
+        console.log("Cierro modal cuenta");
+        //this.listaCuentas = [...this.listaCuentas, nuevaCuenta];
+        this.cdr.detectChanges();
+      //}
+    })   
   }
 }

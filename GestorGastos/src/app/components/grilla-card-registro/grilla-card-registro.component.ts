@@ -1,5 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Inject, Input, Optional, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -12,10 +13,16 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 export class GrillaCardRegistroComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @Input() data: any;
+  @ViewChild(MatSort) sort!: MatSort;  
   @Input() pageSize?: number;
+  @Input() set data(value: any[]) {
+    if (value) {
+      this._data = value;
+    }
+  }
   
+  private _data: any[] = [];
+  _length: number = 0;
   title = 'Grilla';
   showFiller = false;
   isAdmin: boolean = false;
@@ -24,12 +31,15 @@ export class GrillaCardRegistroComponent {
   sortedData: any;
   nombreColumnas: string[] = ["fecha"];
 
-  constructor(private liveAnnouncer: LiveAnnouncer){
+  constructor(private liveAnnouncer: LiveAnnouncer, @Optional() @Inject(MAT_DIALOG_DATA) public dialogData: any){
   }
   ngOnInit(): void {
     setTimeout(() => {
+      if (this.dialogData) {
+        this._data = this.dialogData;
+      }
       this.setDatasource();
-    }, 1000);
+    }, 100);
   } 
   
   ngOnChanges() {
@@ -37,7 +47,8 @@ export class GrillaCardRegistroComponent {
   }
 
   setDatasource(){
-    this.dataSource = new MatTableDataSource<any[]>(this.data);
+    this._length = this._data.length;
+    this.dataSource = new MatTableDataSource<any[]>(this._data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

@@ -21,7 +21,7 @@ export class ChartPieBalanceComponent {
   legendTitle: string = "Ingresos";
 
   colorScheme: any = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C']
+    domain: ['#5AA454', '#A10A28', '#3448c5']
   };
 
   constructor() {

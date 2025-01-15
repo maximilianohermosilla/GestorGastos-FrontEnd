@@ -34,6 +34,7 @@ export class GrillaRegistrosVinculadosComponent {
   }
 
   setDatasource(){
+    console.log(this.data)
     this.dataSource = new MatTableDataSource<any[]>(this.data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

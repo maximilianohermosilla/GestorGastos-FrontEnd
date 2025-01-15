@@ -65,6 +65,7 @@ export class FormPeriodoComponent {
   }
 
   setYear(normalizedYear: Moment, datepicker: MatDatepicker<Moment>) {
+    console.log(normalizedYear)
     const year = normalizedYear.year();
     this.fechaPeriodo = year.toString();
     this.fechaAnio = year.toString();
@@ -73,4 +74,15 @@ export class FormPeriodoComponent {
     datepicker.close();
   }
 
+  onInputBlur(event: FocusEvent) {
+    const inputElement = event.target as HTMLInputElement;
+    this.onChange.emit(inputElement.value.replace('/', '-'));
+    console.log('Valor del input al perder el foco:', inputElement.value);
+    // Aquí puedes realizar lógica adicional con inputElement.value si es necesario
+  }
+
+  onEnterKey(event: any) {
+    const inputElement = event.target as HTMLInputElement;
+    inputElement.blur();
+  }
 }

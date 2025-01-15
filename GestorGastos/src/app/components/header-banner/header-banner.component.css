@@ -6,7 +6,7 @@
     overflow: hidden;
     position: relative;
     height: 8rem;
-    background: linear-gradient(180deg, rgba(5, 34, 34, 0.3) 0%, rgba(0, 79, 79, 1) 35%, rgba(21, 149, 149, 0.9) 100%);
+    background: linear-gradient(180deg, rgba(0, 79, 79, 1) 100%, rgba(21, 149, 149, 0.9) 100%);
     padding: 1rem 0;
     margin-bottom: 1rem;
 }

@@ -11,7 +11,7 @@
 
             <div class="row shadow" *ngIf="!(listaRegistros.length == 0 && listaIngresos.length == 0)">
                 <!-- Chart Bar Horizontal -->
-                <div class="col-12 col-sm-4 chart__container bg-dark">
+                <div class="col-12 col-lg-4 chart__container bg-dark">
                     <mat-card-header class="d-flex text-center justify-content-center">
                         <h6 class="border-bottom border-success pb-2 px-3">Gastos por categoría <span class="text-info">({{fechaPeriodo}})</span></h6>
                     </mat-card-header>
@@ -21,7 +21,7 @@
                 </div>
 
                 <!-- Chart Bar Vertical -->
-                <div class="col-12 col-sm-4 chart__container bg-dark">
+                <div class="col-12 col-lg-4 chart__container bg-dark">
                     <mat-card-header class="d-flex text-center justify-content-center">
                         <h6 class="border-bottom border-success pb-2 px-3">Gastos por cuenta <span class="text-info">({{fechaPeriodo}})</span></h6>
                     </mat-card-header>
@@ -31,7 +31,7 @@
                 </div>
 
                 <!-- Chart Pie -->
-                <div class="col-12 col-sm-4 chart__container bg-dark">
+                <div class="col-12 col-lg-4 chart__container bg-dark">
                     <mat-card-header class="d-flex text-center justify-content-center">
                         <h6 class="border-bottom border-success pb-2 px-3">Balance Ingresos/Egresos <span class="text-info">({{fechaPeriodo}})</span></h6>
                     </mat-card-header>
@@ -41,13 +41,13 @@
                 </div>
 
                 <!-- Grilla Gastos -->
-                <div class="col-12 col-sm-6 grilla">
+                <div class="col-12 col-md-6 grilla">
                     <app-grilla-card-registro [data]="listaRegistros"></app-grilla-card-registro>
                     <p class="text-center py-3" *ngIf="listaRegistros.length == 0">No se encontraron gastos</p>
                 </div>
 
                 <!-- Grilla Ingresos -->
-                <div class="col-12 col-sm-6 grilla">
+                <div class="col-12 col-md-6 grilla">
                     <app-grilla-card-ingreso [data]="listaIngresos"></app-grilla-card-ingreso>
                     <p class="text-center py-3" *ngIf="listaIngresos.length == 0">No se encontraron ingresos</p>
                 </div>

@@ -6,12 +6,10 @@
     </button>
     <span class="example-app-name" routerLink="menu" style="cursor: pointer;">Gestor Gastos</span><img class="icono"
       src="/assets/favicon.png" alt="">
+
     <span class="spacer"></span>
+
     <div class="name me-3"> {{userName}} </div>
-    <!-- <button mat-icon-button class="example-icon favorite-icon" [matTooltip]="'Nuevo Expediente'"
-      aria-label="Example icon-button with heart icon" routerLink="expediente">
-      <mat-icon>assignment_add</mat-icon>
-    </button> -->
     <button mat-icon-button color="primary" class="nav__login" [matMenuTriggerFor]="login" *ngIf="!isAdmin">
       <mat-icon>person</mat-icon>
     </button>
@@ -40,7 +38,7 @@
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 48 : 0">
-    <mat-sidenav class="sidenav container__sidenav" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+    <mat-sidenav class="sidenav container__sidenav bg-dark" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches" fixedTopGap="48">
       <mat-nav-list class="nav-list">
         <div class="center rounded-1" *ngFor="let nav of fillerNav">

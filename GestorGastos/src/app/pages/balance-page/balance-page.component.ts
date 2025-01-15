@@ -80,6 +80,7 @@ export class BalancePageComponent {
 
   
   getPeriodo(periodo: string){
+    console.log(periodo)
     this.fechaPeriodo = periodo;
     this.getRegistros(periodo);
     this.getIngresos(periodo);
