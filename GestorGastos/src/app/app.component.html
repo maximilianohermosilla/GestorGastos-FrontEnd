@@ -9,7 +9,18 @@
 
     <span class="spacer"></span>
 
-    <div class="name me-3"> {{userName}} </div>
+    <div class="d-flex flex-row me-3 gap-2" *ngIf="isAdmin">
+      <button mat-menu-item routerLink="balance" class="justify-content-center">
+        <mat-icon class="nav-icon p-0 m-0 justify-center">balance</mat-icon>
+      </button>
+      <button mat-menu-item routerLink="registrar-ingresos" class="justify-content-center">
+        <mat-icon class="nav-icon p-0 m-0 justify-center">account_balance</mat-icon>
+      </button>
+      <button mat-menu-item routerLink="registrar-gastos" class="justify-content-center">
+        <mat-icon class="nav-icon p-0 m-0 justify-center">paid</mat-icon>
+      </button>
+    </div>
+
     <button mat-icon-button color="primary" class="nav__login" [matMenuTriggerFor]="login" *ngIf="!isAdmin">
       <mat-icon>person</mat-icon>
     </button>

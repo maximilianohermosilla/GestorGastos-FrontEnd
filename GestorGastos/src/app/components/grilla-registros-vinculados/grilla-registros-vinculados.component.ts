@@ -19,7 +19,7 @@ export class GrillaRegistrosVinculadosComponent {
 
   dataSource: any;  
   sortedData: any;
-  nombreColumnas: string[] = ["descripcion", "valorFinal", "cuotas", "registros"];
+  nombreColumnas: string[] = ["descripcion", "cuotas", "valorFinal", "registros"];
 
   constructor(private liveAnnouncer: LiveAnnouncer){
   }
