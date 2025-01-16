@@ -63,6 +63,7 @@ export class AbmCuentaComponent {
 
   save() {
     this.datos = { ... this.datos, ...this.formGroup.value };
+    if(this.datos.idTipoCuenta == 3){ this.datos.idTarjeta = undefined; }
 
     console.log(this.formGroup.value)
     console.log(this.datos)
@@ -72,6 +73,9 @@ export class AbmCuentaComponent {
       this.cuentaService.Insert(this.datos).subscribe( data => {
         if(data.id && data.id > 0){
           this._snackBar.open("Cuenta registrada correctamente", "Cerrar");
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         }
       });
     }    

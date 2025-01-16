@@ -17,7 +17,7 @@ export class CardRegistroComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.registro)
+    //console.log(this.registro)
   }
 
   updateRegistro() {

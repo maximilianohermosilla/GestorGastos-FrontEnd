@@ -15,7 +15,7 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="form-add">
+        <div class="form-add" *ngIf="datos.idTipoCuenta != 3">
             <mat-form-field color="primary" appearance="fill">
                 <mat-label>Tarjeta</mat-label>
                 <mat-select formControlName="idTarjeta" [(ngModel)]="datos.idTarjeta">

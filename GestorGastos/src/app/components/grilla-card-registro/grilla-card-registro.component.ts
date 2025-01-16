@@ -22,7 +22,8 @@ export class GrillaCardRegistroComponent {
   }
   
   private _data: any[] = [];
-  _length: number = 0;
+  length: number = 0;
+  isModal: boolean = false;
   title = 'Grilla';
   showFiller = false;
   isAdmin: boolean = false;
@@ -34,9 +35,12 @@ export class GrillaCardRegistroComponent {
   constructor(private liveAnnouncer: LiveAnnouncer, @Optional() @Inject(MAT_DIALOG_DATA) public dialogData: any){
   }
   ngOnInit(): void {
+    //console.log(this._data)
+    //console.log(this.dialogData)
     setTimeout(() => {
       if (this.dialogData) {
         this._data = this.dialogData;
+        this.isModal = true;
       }
       this.setDatasource();
     }, 100);
@@ -47,10 +51,11 @@ export class GrillaCardRegistroComponent {
   }
 
   setDatasource(){
-    this._length = this._data.length;
+    this.length = this._data.length;
     this.dataSource = new MatTableDataSource<any[]>(this._data);
-    this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator = this.paginator!;
     this.dataSource.sort = this.sort;
+    console.log(this.dataSource.paginator);
   }
 
   applyFilter(filterValue: string){

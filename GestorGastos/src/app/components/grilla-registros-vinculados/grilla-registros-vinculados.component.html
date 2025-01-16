@@ -8,7 +8,8 @@
                 <div class="d-flex">
                     <button mat-fab color="primary"
                         [ngStyle]="{backgroundColor: (registro.registros[0]?.categoriaGasto?.color), color: '#000', opacity: 0.7}"
-                        aria-label="Categoria gasto" class="me-2">
+                        aria-label="Categoria gasto" class="me-2"
+                        >
                         <mat-icon>{{registro.registros[0]?.categoriaGasto?.icono}}</mat-icon>
                     </button>
                     <div class="d-flex flex-column">
@@ -39,11 +40,11 @@
         <ng-container matColumnDef="registros">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by registros" class="px-0"> Detalle </th>
             <td class="border-0 py-1 px-0" mat-cell *matCellDef="let registro">
-                <button mat-stroked-button
+                <button mat-stroked-button (click)="getDetalle(registro)" class="m-0 justify-center"
                         [matTooltip]="'Categoría: ' + registro.registros[0].categoriaGastoNombre + 
                         '\nCuenta: ' + registro.registros[0].cuenta!.nombre"
                         aria-label="Button that displays a tooltip when focused or hovered over">
-                    Detalle
+                    <mat-icon class="justify-center m-0">search</mat-icon>
                 </button>
             </td>
         </ng-container>

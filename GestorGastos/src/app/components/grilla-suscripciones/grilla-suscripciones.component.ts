@@ -56,22 +56,14 @@ export class GrillaSuscripcionesComponent {
   }
 
   getDetalle(data: any){
-    console.log(data)
-    console.log(data.registros)
     const dialogRef = this.dialog.open(GrillaCardRegistroComponent, {
-      width: '640px',
-      maxWidth: '90vw',
+      width: "90vw",
+      maxHeight: '80vh',
       disableClose: false, 
       data: data.registros 
     });
     dialogRef.afterClosed().subscribe( res => {
-      console.log(res)
-      //if (res) { // Solo si el modal devuelve algo relevante
-        //this.getCuentas(); // Actualizas la lista de cuentas inmediatamente
-        console.log("Cierro modal cuenta");
-        //this.listaCuentas = [...this.listaCuentas, nuevaCuenta];
         this.cdr.detectChanges();
-      //}
     })   
   }
 }

@@ -34,14 +34,14 @@
         </ng-container>
 
         <ng-container matColumnDef="registros">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by registros"> Detalle </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by registros" class="px-1"> Detalle </th>
             <td class="border-0 py-1 px-0" mat-cell *matCellDef="let registro">
-                <button mat-stroked-button (click)="getDetalle(registro)"
+                <button mat-stroked-button (click)="getDetalle(registro)" class="m-0 justify-center"
                         [matTooltip]="'Categoría: ' + registro.registros[0].categoriaGastoNombre + 
                         '\nCuenta: ' + registro.registros[0].cuenta!.nombre + 
                         '\nEmpresa: ' + registro.registros[0].empresaNombre"
                         aria-label="Button that displays a tooltip when focused or hovered over">
-                    Detalle
+                    <mat-icon class="justify-center m-0">search</mat-icon>
                 </button>
             </td>
         </ng-container>

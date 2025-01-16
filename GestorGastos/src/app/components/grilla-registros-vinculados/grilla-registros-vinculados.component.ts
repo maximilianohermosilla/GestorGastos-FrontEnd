@@ -1,8 +1,10 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Component, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { GrillaCardRegistroComponent } from '../grilla-card-registro/grilla-card-registro.component';
 
 @Component({
   selector: 'app-grilla-registros-vinculados',
@@ -21,7 +23,7 @@ export class GrillaRegistrosVinculadosComponent {
   sortedData: any;
   nombreColumnas: string[] = ["descripcion", "cuotas", "valorFinal", "registros"];
 
-  constructor(private liveAnnouncer: LiveAnnouncer){
+  constructor(private liveAnnouncer: LiveAnnouncer, public dialog: MatDialog, private cdr: ChangeDetectorRef){
   }
   ngOnInit(): void {
     setTimeout(() => {
@@ -64,4 +66,15 @@ export class GrillaRegistrosVinculadosComponent {
     return "Tooltip"
   }
 
+  getDetalle(data: any){
+    const dialogRef = this.dialog.open(GrillaCardRegistroComponent, {
+      width: "90vw",
+      maxHeight: '80vh',
+      disableClose: false, 
+      data: data.registros 
+    });
+    dialogRef.afterClosed().subscribe( res => {
+        this.cdr.detectChanges();
+    })   
+  }
 }
