@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { formatDate } from '@angular/common';
 import { RegistroService } from 'src/app/services/registro.service';
+import { AbmRegistroComponent } from '../abm-registro/abm-registro.component';
 
 @Component({
   selector: 'app-card-registro',
@@ -12,7 +13,7 @@ import { RegistroService } from 'src/app/services/registro.service';
 export class CardRegistroComponent {
   @Input() registro: any;
 
-  constructor(private dialogoConfirmacion: MatDialog, private registroService: RegistroService) {
+  constructor(private registroService: RegistroService, private dialogoConfirmacion: MatDialog, public dialog: MatDialog, private cdr: ChangeDetectorRef) {
 
   }
 
@@ -21,6 +22,18 @@ export class CardRegistroComponent {
   }
 
   updateRegistro() {
+    const dialogRef = this.dialog.open(AbmRegistroComponent, {
+          width: "90vw",
+          maxHeight: '80vh',
+          disableClose: false, 
+          data: this.registro 
+        });
+        dialogRef.afterClosed().subscribe( res => {
+            this.cdr.detectChanges();
+        })   
+  }
+
+  pagarRegistro() {
     this.dialogoConfirmacion.open(ConfirmDialogComponent, {
       data: `¿Desea confirmar el pago de: ${this.registro.descripcion} $${this.registro.valor} (${this.registro.fecha.substring(0, 7)})?`
     })
@@ -36,5 +49,4 @@ export class CardRegistroComponent {
         }
       });
   }
-
 }

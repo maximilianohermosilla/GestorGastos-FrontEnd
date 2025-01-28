@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { GrillaCardRegistroComponent } from '../grilla-card-registro/grilla-card-registro.component';
+import { AbmRegistroVinculadoComponent } from '../abm-registro-vinculado/abm-registro-vinculado.component';
 
 @Component({
   selector: 'app-grilla-registros-vinculados',
@@ -19,43 +20,43 @@ export class GrillaRegistrosVinculadosComponent {
   @Input() data: any;
   @Input() pageSize?: number;
 
-  dataSource: any;  
+  dataSource: any;
   sortedData: any;
   nombreColumnas: string[] = ["descripcion", "cuotas", "valorFinal", "registros"];
 
-  constructor(private liveAnnouncer: LiveAnnouncer, public dialog: MatDialog, private cdr: ChangeDetectorRef){
+  constructor(private liveAnnouncer: LiveAnnouncer, public dialog: MatDialog, private cdr: ChangeDetectorRef) {
   }
   ngOnInit(): void {
     setTimeout(() => {
       this.setDatasource();
     }, 1000);
-  } 
-  
+  }
+
   ngOnChanges() {
     this.setDatasource();
   }
 
-  setDatasource(){
-    console.log(this.data)
+  setDatasource() {
+    // console.log(this.data)
     this.dataSource = new MatTableDataSource<any[]>(this.data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  
-  applyFilter(filterValue: string){
+
+  applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  announceSortChange(sort: Sort){
-    if (sort.direction){
+  announceSortChange(sort: Sort) {
+    if (sort.direction) {
       this.liveAnnouncer.announce('Sorted${sort.direction}ending');
     }
-    else{
+    else {
       this.liveAnnouncer.announce('sorting cleared');
     }
   }
 
-  getTooltipText(event: any) {   
+  getTooltipText(event: any) {
     console.log(event)
     // return `Categoria: ${event.firstEvent.name}
     // Start: ${event.firstEvent.startDate.toLocaleString()}
@@ -66,15 +67,29 @@ export class GrillaRegistrosVinculadosComponent {
     return "Tooltip"
   }
 
-  getDetalle(data: any){
+  getDetalle(data: any) {
+    console.log(this.data)
     const dialogRef = this.dialog.open(GrillaCardRegistroComponent, {
+      width: "99vw",
+      maxHeight: '80vh',
+      disableClose: false,
+      data: data.registros
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      this.cdr.detectChanges();
+    })
+  }
+
+
+  updateRegistro(data: any) {
+    const dialogRef = this.dialog.open(AbmRegistroVinculadoComponent, {
       width: "90vw",
       maxHeight: '80vh',
-      disableClose: false, 
-      data: data.registros 
+      disableClose: false,
+      data: data
     });
-    dialogRef.afterClosed().subscribe( res => {
-        this.cdr.detectChanges();
-    })   
+    dialogRef.afterClosed().subscribe(res => {
+      this.cdr.detectChanges();
+    })
   }
 }

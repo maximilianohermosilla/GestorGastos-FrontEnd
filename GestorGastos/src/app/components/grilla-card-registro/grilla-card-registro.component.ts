@@ -15,6 +15,7 @@ export class GrillaCardRegistroComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;  
   @Input() pageSize?: number;
+  @Input() tipoRegistro?: string;
   @Input() set data(value: any[]) {
     if (value) {
       this._data = value;
@@ -35,8 +36,6 @@ export class GrillaCardRegistroComponent {
   constructor(private liveAnnouncer: LiveAnnouncer, @Optional() @Inject(MAT_DIALOG_DATA) public dialogData: any){
   }
   ngOnInit(): void {
-    //console.log(this._data)
-    //console.log(this.dialogData)
     setTimeout(() => {
       if (this.dialogData) {
         this._data = this.dialogData;
@@ -55,7 +54,6 @@ export class GrillaCardRegistroComponent {
     this.dataSource = new MatTableDataSource<any[]>(this._data);
     this.dataSource.paginator = this.paginator!;
     this.dataSource.sort = this.sort;
-    console.log(this.dataSource.paginator);
   }
 
   applyFilter(filterValue: string){

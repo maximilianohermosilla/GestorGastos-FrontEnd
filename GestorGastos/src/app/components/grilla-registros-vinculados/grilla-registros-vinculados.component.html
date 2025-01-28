@@ -1,5 +1,5 @@
-<div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" #table matSort
+<div class="overflow-x-scroll">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table overflow-x-scroll" #table matSort
         (matSortChange)="announceSortChange($event)">
 
         <ng-container matColumnDef="descripcion">
@@ -39,12 +39,15 @@
 
         <ng-container matColumnDef="registros">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by registros" class="px-0"> Detalle </th>
-            <td class="border-0 py-1 px-0" mat-cell *matCellDef="let registro">
-                <button mat-stroked-button (click)="getDetalle(registro)" class="m-0 justify-center"
+            <td class="d-flex border-0 py-1 px-0" mat-cell *matCellDef="let registro">
+                <button mat-mini-fab color="white" class="bg-secondary" (click)="getDetalle(registro)"
                         [matTooltip]="'Categoría: ' + registro.registros[0].categoriaGastoNombre + 
                         '\nCuenta: ' + registro.registros[0].cuenta!.nombre"
                         aria-label="Button that displays a tooltip when focused or hovered over">
                     <mat-icon class="justify-center m-0">search</mat-icon>
+                </button>
+                <button mat-mini-fab color="primary" class="ms-2" matTooltip="Editar registro" (click)="updateRegistro(registro)">
+                    <mat-icon>edit</mat-icon>
                 </button>
             </td>
         </ng-container>

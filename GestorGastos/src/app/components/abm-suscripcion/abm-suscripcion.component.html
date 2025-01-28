@@ -56,7 +56,7 @@
                 <span matTextSuffix>.00</span>
             </mat-form-field>
         </div>
-        <div>
+        <div *ngIf="datos.id == 0 || datos.id == undefined">
             <mat-form-field color="primary" appearance="fill" class="w-100">
                 <mat-checkbox matInput class="example-margin" color="primary" formControlName="proximoMes" [(ngModel)]="datos.proximoMes">
                     Mes siguiente
@@ -68,7 +68,7 @@
     </div>
     <mat-divider></mat-divider><br>
     <div mat-dialog-actions class="d-flex justify-content-between">
-        <button type="button" mat-stroked-button color="warn" class="rounded-1">Cancelar</button>
+        <button type="button" mat-stroked-button color="warn" class="rounded-1" mat-button mat-dialog-close>Cancelar</button>
         <button type="button" mat-stroked-button color="primary" class="rounded-1" [disabled]="!formGroup.valid"
             (click)="save()">Guardar</button>
     </div>

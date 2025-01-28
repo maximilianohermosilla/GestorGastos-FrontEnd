@@ -32,7 +32,7 @@ export class SuscripcionService {
       }));
   }
 
-  public actualizar(element: Suscripcion): Observable<Suscripcion>{
+  public Update(element: Suscripcion): Observable<Suscripcion>{
     return this.http.put<Suscripcion>(this.apiUrl, element);
   }
 

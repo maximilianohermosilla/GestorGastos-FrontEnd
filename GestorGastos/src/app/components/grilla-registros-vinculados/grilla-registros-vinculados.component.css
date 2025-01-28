@@ -17,3 +17,8 @@
 ::ng-deep .cdk-overlay-container {
     white-space: pre-line !important;
 }
+
+.overflow-x-scroll{
+    overflow-x: scroll;
+    overflow-y: hidden;
+}

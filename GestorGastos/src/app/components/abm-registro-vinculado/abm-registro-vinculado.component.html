@@ -52,11 +52,11 @@
         <div>
             <mat-form-field color="primary" appearance="fill" class="w-100">
                 <mat-label class="">Cuotas</mat-label>
-                <input formControlName="cuotas" matInput type="number" placeholder="" [min]="1" [(ngModel)]="datos.cuotas">
+                <input formControlName="cuotas" matInput type="number" placeholder="" [min]="1" [(ngModel)]="datos.cuotas" [readonly]="datos.id > 0">
             </mat-form-field>
         </div>
 
-        <div>
+        <div *ngIf="datos.id == 0 || datos.id == undefined">
             <mat-form-field color="primary" appearance="fill" class="w-100">
                 <mat-checkbox matInput class="example-margin" color="primary" formControlName="proximoMes" [(ngModel)]="datos.proximoMes">
                     Mes siguiente

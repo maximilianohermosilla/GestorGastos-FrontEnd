@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { GrillaCardRegistroComponent } from '../grilla-card-registro/grilla-card-registro.component';
+import { AbmSuscripcionComponent } from '../abm-suscripcion/abm-suscripcion.component';
 
 @Component({
   selector: 'app-grilla-suscripciones',
@@ -19,51 +20,63 @@ export class GrillaSuscripcionesComponent {
   @Input() data: any;
   @Input() pageSize?: number;
 
-  dataSource: any;  
+  dataSource: any;
   sortedData: any;
   nombreColumnas: string[] = ["nombre", "fechaDesde", "valorActual", "registros"];
 
-  
+
   constructor(private liveAnnouncer: LiveAnnouncer, public dialog: MatDialog, private cdr: ChangeDetectorRef) { }
-  
+
   ngOnInit(): void {
     setTimeout(() => {
       this.setDatasource();
     }, 1000);
-  } 
-  
+  }
+
   ngOnChanges() {
     this.setDatasource();
   }
 
-  setDatasource(){
+  setDatasource() {
     this.dataSource = new MatTableDataSource<any[]>(this.data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  
-  applyFilter(filterValue: string){
+
+  applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  announceSortChange(sort: Sort){
-    if (sort.direction){
+  announceSortChange(sort: Sort) {
+    if (sort.direction) {
       this.liveAnnouncer.announce('Sorted${sort.direction}ending');
     }
-    else{
+    else {
       this.liveAnnouncer.announce('sorting cleared');
     }
   }
 
-  getDetalle(data: any){
+  getDetalle(data: any) {
     const dialogRef = this.dialog.open(GrillaCardRegistroComponent, {
       width: "90vw",
       maxHeight: '80vh',
-      disableClose: false, 
-      data: data.registros 
+      disableClose: false,
+      data: data.registros
     });
-    dialogRef.afterClosed().subscribe( res => {
-        this.cdr.detectChanges();
-    })   
+    dialogRef.afterClosed().subscribe(res => {
+      this.cdr.detectChanges();
+    })
+  }
+
+  updateRegistro(data: any) {
+    const dialogRef = this.dialog.open(AbmSuscripcionComponent, {
+      width: "90vw",
+      maxHeight: '80vh',
+      disableClose: false,
+      data: data
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      this.cdr.detectChanges();
+    })
   }
 }

@@ -18,8 +18,16 @@
     white-space: pre-line !important;
 }
 
-@media screen and (max-width: 360px) {
+::ng-deep .mat-mdc-dialog-surface{
+    padding: 1rem!important;
+}
+
+@media screen and (max-width: 480px) {
     .mat-mdc-tab-group{
         padding: 0!important;
+    }
+
+    ::ng-deep .mat-mdc-dialog-surface{
+        padding: 0.5rem!important;
     }
 }

@@ -44,7 +44,7 @@ export class RegistroGastosPageComponent {
   }
 
   getPeriodo(periodo: string){
-    console.log(periodo);
+    // console.log(periodo);
     this.periodo = periodo;
     this.getRegistros(periodo);
     this.getRegistrosVinculados(periodo);

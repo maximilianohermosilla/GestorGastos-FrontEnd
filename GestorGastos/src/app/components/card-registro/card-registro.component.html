@@ -1,26 +1,27 @@
-<div class="d-flex justify-content-between align-items-center shadow rounded-4 p-1"
-    [ngStyle]="{backgroundColor: (registro.pagado? '#00533308':'#212529')}"
->
-<div class="d-flex">
-    <button mat-fab color="primary"
-        matTooltip={{registro?.categoriaGasto?.nombre}}
-        [ngStyle]="{backgroundColor: (registro.categoriaGasto?.color), color: '#000', opacity: 0.7}"
-        aria-label="Categoria gasto" class="me-2">
-        <mat-icon>{{registro.categoriaGasto?.icono}}</mat-icon>
-    </button>
-    <div class="d-flex flex-column">
-        <p class="m-0">{{registro.fecha.slice(0, 10)}} - <span class="text-secondary">{{registro.descripcion}}</span></p>
-        <p class="m-0 text-info">{{registro.cuenta.nombre}}</p>
-        <p class="m-0 text-warning" *ngIf="!registro.pagado && registro.fechaPago == undefined">$ {{registro.valor.toLocaleString("es-AR")}}</p>
-        <p class="m-0 text-success" *ngIf="registro.pagado && registro.fechaPago != undefined">$ {{registro.valor.toLocaleString("es-AR")}} &#10004;</p>
+<div class="d-flex justify-content-between align-items-center shadow rounded-4 p-1 w-100"
+    [ngStyle]="{backgroundColor: (registro.pagado? '#00533308':'#212529')}">
+    <div class="d-flex me-auto">
+        <button mat-fab color="primary" matTooltip={{registro?.categoriaGasto?.nombre}}
+            [ngStyle]="{backgroundColor: (registro.categoriaGasto?.color), color: '#000', opacity: 0.7}" class="me-2">
+            <mat-icon>{{registro.categoriaGasto?.icono}}</mat-icon>
+        </button>
+        <div class="d-flex flex-column">
+            <p class="m-0">{{registro.fecha.slice(0, 10)}} - <span
+                    class="text-secondary">{{registro.descripcion}}</span></p>
+            <p class="m-0 text-info">{{registro.cuenta.nombre}}</p>
+            <p class="m-0 text-warning" *ngIf="!registro.pagado && registro.fechaPago == undefined">$
+                {{registro.valor.toLocaleString("es-AR")}}</p>
+            <p class="m-0 text-success" *ngIf="registro.pagado && registro.fechaPago != undefined">$
+                {{registro.valor.toLocaleString("es-AR")}} &#10004;</p>
+        </div>
     </div>
-</div>
-<div>
-    <button mat-mini-fab color="primary" 
-        matTooltip="Registrar pago"
-        *ngIf="!registro.pagado"
-        (click)="updateRegistro()"> 
-        <mat-icon>price_check</mat-icon>
-    </button>
-</div>
+    <div class="d-flex">
+        <button mat-mini-fab color="primary" class="bg-success" matTooltip="Registrar pago" *ngIf="!registro.pagado"
+            (click)="pagarRegistro()">
+            <mat-icon>price_check</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" class="ms-2" matTooltip="Editar registro" (click)="updateRegistro()">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
 </div>

@@ -32,7 +32,7 @@ export class RegistroVinculadoService {
       }));
   }
 
-  public actualizar(element: RegistroVinculado): Observable<RegistroVinculado>{
+  public Update(element: RegistroVinculado): Observable<RegistroVinculado>{
     return this.http.put<RegistroVinculado>(this.apiUrl, element);
   }
 
