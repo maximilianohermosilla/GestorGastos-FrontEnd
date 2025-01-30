@@ -1,12 +1,12 @@
 <app-header-banner *ngIf="user" title={{user.nombre}}></app-header-banner>
 <section class="container mb-5" *ngIf="user">
-    <div class="row">
-        <div class="col-12 col-md-8 fs-5">
+    <div class="row p-1">
+        <div class="col-12 col-md-8 fs-5 overflow-auto">
             <h5 class="text-info">Mis datos personales</h5>    
-            <p>Nombre: <span class="text-secondary">{{user.nombre}}</span></p>
-            <p>Usuario: <span class="text-secondary">{{user.login}}</span></p>
-            <p>Correo: <span class="text-secondary">{{user.correo}}</span></p>
-            <p>Perfil: <span class="text-secondary">{{user.perfilDescripcion}}</span></p>
+            <p class="d-flex gap-1 fs-6">Nombre: <span class="fs-6 text-secondary">{{user.nombre}}</span></p>
+            <p class="d-flex gap-1 fs-6">Usuario: <span class="fs-6 text-secondary">{{user.login}}</span></p>
+            <p class="d-flex gap-1 fs-6">Correo: <span class="fs-6 text-secondary">{{user.correo}}</span></p>
+            <p class="d-flex gap-1 fs-6">Perfil: <span class="fs-6 text-secondary">{{user.perfilDescripcion}}</span></p>
         </div>
         <div class="col-12 col-md-4 d-flex justify-content-center align-content-center">
             <img class="rounded-3 bg-light" src={{user.imagen}} alt={{user.nombre}} width="200">
@@ -18,9 +18,9 @@
 <section class="container cuentas__container" *ngIf="listaCuentas.length > 0">
     <div class="d-flex justify-content-between">
         <h5 class="text-info">Mis cuentas</h5>
-        <section color="primary" appearance="fill">
+        <div class="" color="primary" appearance="fill">
             <mat-checkbox matInput class="example-margin" color="primary"(change)="onCheckDeshabilitados($event.checked)" checked="true">Mostrar cuentas deshabilitadas</mat-checkbox>
-        </section>
+        </div>
     </div>
     <div class="border-0 py-1" mat-cell *ngFor="let cuenta of listaCuentas">
         <app-card-cuenta [cuenta]="cuenta" id={{cuenta.id}} (emitCuenta)="getIdCuenta($event)" (emitCuentaToggle)="toggleCuenta($event)"></app-card-cuenta>

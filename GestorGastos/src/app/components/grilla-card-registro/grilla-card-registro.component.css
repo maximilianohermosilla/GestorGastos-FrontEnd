@@ -2,7 +2,8 @@
 
 
 
-@media screen and (max-width: 360px){
+
+@media screen and (max-width: 480px){
     .card__grilla p{
         font-size: 12px;
         line-height: 14px;
@@ -15,5 +16,9 @@
 
     .mdc-data-table__cell, .mdc-data-table__header-cell {
         padding: 5px;        
+    }
+
+    ::ng-deep .mat-expansion-panel-body{
+        padding: 0.5rem!important;
     }
 }

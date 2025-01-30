@@ -17,7 +17,7 @@ export class ChartBarVerticalBalanceComponent {
 
   // options
   showXAxis: boolean = true;
-  showYAxis: boolean = false;
+  showYAxis: boolean = true;
   gradient: boolean = false;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;

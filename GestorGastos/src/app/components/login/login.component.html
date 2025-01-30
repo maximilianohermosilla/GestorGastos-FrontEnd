@@ -1,11 +1,11 @@
 <app-spinner *ngIf="spinnerService.blockUI | async"></app-spinner>
-<div class="container-fluid py-3">
+<div class="container-fluid py-5">
     <div class="py-2">
-        <mat-card-title class="d-flex justify-content-center text-info py-3 m-3 bg-dark"><h6 class="m-0">Ingresar</h6></mat-card-title>
+        <mat-card-title class="d-flex justify-content-center text-info py-3 m-3"><h6 class="m-0">Ingresar</h6></mat-card-title>
     </div>
     <div class="login__container">
-        <form [formGroup]="formGroup" class="" (ngSubmit)="loginUser()">
-            <mat-form-field color="primary" appearance="fill" class="w-100">
+        <form [formGroup]="formGroup" class="gap-5" (ngSubmit)="loginUser()">
+            <mat-form-field color="primary" appearance="fill" class="w-100 mb-2">
                 <mat-label>Usuario</mat-label>
                 <input formControlName="Login" matInput type="text" placeholder="" [(ngModel)]="loginUsuario.Login">
             </mat-form-field>

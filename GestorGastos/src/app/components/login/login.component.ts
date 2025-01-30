@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Optional, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -32,7 +32,8 @@ export class LoginComponent {
   errMsj: string = "";
 
   constructor(private formBuilder: FormBuilder, private authService: LoginService, private route: Router, private tokenService: TokenService, 
-    public spinnerService: SpinnerService, public refDialog: MatDialogRef<LoginComponent>, public dialogoConfirmacion: MatDialog){
+    public spinnerService: SpinnerService, public dialogoConfirmacion: MatDialog,
+    @Optional() public refDialog: MatDialogRef<LoginComponent>){
 
     this.formGroup = this.formBuilder.group({
       Login: ['',[Validators.required]],

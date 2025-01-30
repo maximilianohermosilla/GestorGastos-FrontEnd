@@ -71,6 +71,7 @@ export class GrillaRegistrosVinculadosComponent {
     console.log(this.data)
     const dialogRef = this.dialog.open(GrillaCardRegistroComponent, {
       width: "99vw",
+      minWidth: "60vw",
       maxHeight: '80vh',
       disableClose: false,
       data: data.registros
@@ -84,6 +85,7 @@ export class GrillaRegistrosVinculadosComponent {
   updateRegistro(data: any) {
     const dialogRef = this.dialog.open(AbmRegistroVinculadoComponent, {
       width: "90vw",
+      minWidth: "50vw",
       maxHeight: '80vh',
       disableClose: false,
       data: data

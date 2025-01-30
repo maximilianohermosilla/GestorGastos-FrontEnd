@@ -1,10 +1,10 @@
-<ngx-charts-bar-horizontal
+<ngx-charts-bar-vertical
     [view]="view"
     [scheme]="colorScheme"
     [results]="single"
     [gradient]="gradient"
-    [xAxis]="showXAxis"
-    [yAxis]="showYAxis"
+    [xAxis]="false"
+    [yAxis]="true"
     [legend]="showLegend"
     [legendPosition]="legendPosition"
     [showXAxisLabel]="showXAxisLabel"
@@ -15,4 +15,4 @@
     (activate)="onActivate($event)"
     (deactivate)="onDeactivate($event)"  
     >
-</ngx-charts-bar-horizontal>
+</ngx-charts-bar-vertical>

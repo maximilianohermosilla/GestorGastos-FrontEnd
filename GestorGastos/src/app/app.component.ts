@@ -35,7 +35,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.isAdmin = (this.tokenService.getToken() != null) ? true : false;
-    this.fillerNav.push({ nombre: "Inicio", routerlink: "menu", icon: "home" });
+    this.fillerNav.push({ nombre: "Inicio", routerlink: "inicio", icon: "home" });
     if (this.isAdmin) {
       this.userName = this.tokenService.getUserName();
       this.userId = this.tokenService.getUserId();
@@ -78,7 +78,7 @@ export class AppComponent {
         .subscribe((confirmado: Boolean) => {
           if (confirmado) {
             this.userName = "";
-            this.router.navigate(['menu']);
+            this.router.navigate(['inicio']);
             this.dialogoConfirmacion.open(DialogComponent, {
               data: {
                 titulo: "Confirmación",

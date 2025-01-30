@@ -8,41 +8,42 @@ import { BalancePageComponent } from './pages/balance-page/balance-page.componen
 import { RegistroGastosPageComponent } from './pages/registro-gastos-page/registro-gastos-page.component';
 import { RegistroIngresosPageComponent } from './pages/registro-ingresos-page/registro-ingresos-page.component';
 import { PerfilPageComponent } from './pages/perfil-page/perfil-page.component';
+import { GuardGuard } from './guards/guard.guard';
 
 const routes: Routes = [
   {
     path: '',    
-    redirectTo: 'menu',
+    redirectTo: 'inicio',
     pathMatch: 'full' 
   },
   {
-    path: 'menu',
+    path: 'inicio',
     component: LandingPageComponent
   },
   {
     path: 'tarjeta',
-    component: TarjetaComponent
-   // canActivate: [GuardGuard] 
+    component: TarjetaComponent,
+    canActivate: [GuardGuard] 
   },
   {
     path: 'balance',
-    component: BalancePageComponent
-   // canActivate: [GuardGuard] 
+    component: BalancePageComponent,
+    canActivate: [GuardGuard] 
   },
   {
     path: 'registrar-gastos',
-    component: RegistroGastosPageComponent
-   // canActivate: [GuardGuard] 
+    component: RegistroGastosPageComponent,
+    canActivate: [GuardGuard] 
   },  
   {
     path: 'registrar-ingresos',
-    component: RegistroIngresosPageComponent
-   // canActivate: [GuardGuard] 
+    component: RegistroIngresosPageComponent,
+    canActivate: [GuardGuard] 
   },
   {
     path: 'perfil',
     component: PerfilPageComponent,
-    //canActivate: [GuardGuard]
+    canActivate: [GuardGuard] 
   },
   // {
   //   path: 'reportes',

@@ -54,11 +54,6 @@ export class LandingPageComponent {
   }
 
   ngOnInit(): void {
-   /* if (this.tokenService.getToken()){
-      this.isLogged = true;
-      this.isLoginFail = false;
-      this.perfil = this.tokenService.getAuthorities();
-    }*/
   }
 
   login(){
@@ -85,7 +80,7 @@ export class LandingPageComponent {
         if (confirmado) {
           this.spinnerService.show();
           this.userName = "";
-          this.route.navigate(['menu']);
+          this.route.navigate(['inicio']);
           this.dialogoConfirmacion.open(DialogComponent, {
             data: {
               titulo: "Confirmación",
@@ -107,4 +102,8 @@ export class LandingPageComponent {
       this.login();
     }    
   }
+
+  btnClick(url: string){
+    this.route.navigate([url]);
+  };
 }

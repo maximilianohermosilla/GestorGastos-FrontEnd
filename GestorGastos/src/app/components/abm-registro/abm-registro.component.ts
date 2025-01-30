@@ -80,13 +80,10 @@ export class AbmRegistroComponent {
     this.datos = { ... this.datos, ...this.formGroup.value };
   }
 
-  ngOnInit(): void {
-    setTimeout(() => {
+  ngOnInit(): void {    
       if (this.listEmptyOrUndefined(this.listaCategoriasGasto)) this.getCategoriaGastos();
       if (this.listEmptyOrUndefined(this.listaEmpresas)) this.getEmpresas();
       if (this.listEmptyOrUndefined(this.listaCuentas)) this.getCuentas();
-      console.log(this.data)
-    }, 100);
   }
 
   save() {

@@ -18,7 +18,7 @@ export class GuardGuard implements CanActivate {
       return true;
     }
     else{
-      this.route.navigate(['/menu']);
+      this.route.navigate(['/inicio']);
       return false;
     }
     

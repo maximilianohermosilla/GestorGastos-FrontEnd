@@ -58,7 +58,8 @@ export class GrillaSuscripcionesComponent {
 
   getDetalle(data: any) {
     const dialogRef = this.dialog.open(GrillaCardRegistroComponent, {
-      width: "90vw",
+      width: "99vw",
+      minWidth: "60vw",
       maxHeight: '80vh',
       disableClose: false,
       data: data.registros
@@ -70,7 +71,8 @@ export class GrillaSuscripcionesComponent {
 
   updateRegistro(data: any) {
     const dialogRef = this.dialog.open(AbmSuscripcionComponent, {
-      width: "90vw",
+      width: "99vw",
+      minWidth: "50vw",
       maxHeight: '80vh',
       disableClose: false,
       data: data

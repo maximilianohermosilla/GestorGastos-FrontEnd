@@ -1,33 +1,55 @@
 <main class="w-100">
-  <div class="bg-dark pb-2">
+  <div class="bg-dark">
     <app-header-banner title="Gestor de Gastos"></app-header-banner>
-    <div class="bg-dark">
-      <mat-progress-bar mode="query" color="primary"></mat-progress-bar>
-      <p class="text-center">Desde esta aplicación es posible gestionar el estado de los gastos mensuales,
-        suscripciones y compras
-      </p>
-      <div class="container" [hidden]="isAdmin">
-        <button mat-raised-button id="download-button"
-          class="btn-large waves-effect waves-light teal lighten-1 w-100 my-3 rounded-0" (click)="toggleLogin()">Iniciar
-          Sesión</button>
-      </div>
-      <div class="container" [hidden]="!isAdmin">
-        <p class="text-center border p-2 m-2">Bienvenido/a <span class="text-info">{{userName}}</span></p>
-      </div>
-
-      <button mat-raised-button hidden matTooltipClass="material-tooltip matTooltip" matTooltip="Nombre: Maximiliano
-                  Apellido: Hermosilla" aria-label="Button that displays a tooltip when focused or hovered over">
-        Suscripción
-      </button>
+    <div class="container">
+      <p class="text-secondary text-center pb-3">Gestor de gastos, ingresos y balances. Este gestor le permitirá
+        ingresar todos los gastos diarios y mensuales, añadiendo la posibilidad de agregar suscripciones a distintos
+        servicios y compras en cuotas para un mejor control de sus finanzas.</p>
     </div>
   </div>
 
 
+  <div class="bg-dark py-5 mb-3">
+    <div class="container my-3 justify-content-center" [hidden]="isAdmin">
+      <button mat-stroked-button id="download-button"
+        class="d-flex waves-effect waves-light teal lighten-1 m-auto rounded-0 fs-5 p-5" (click)="toggleLogin()">Iniciar
+        Sesión
+      </button>
+    </div>
+    <div class="container" [hidden]="!isAdmin">
+      <h6 class="text-center mb-0">Bienvenido/a, </h6>
+      <p class="fs-6 text-center text-info m-0">{{userName}}</p>
+      <div class="d-flex flex-row justify-content-center me-3 gap-5 mt-3" *ngIf="isAdmin">
+        <button mat-fab (click)="btnClick('balance')" class="justify-content-center p-1" color="primary">
+          <mat-icon class="nav-icon p-0 m-0 justify-center">balance</mat-icon>
+        </button>
+        <button mat-fab (click)="btnClick('registrar-ingresos')" class="justify-content-center p-1" color="primary">
+          <mat-icon class="nav-icon p-0 m-0 justify-center">account_balance</mat-icon>
+        </button>
+        <button mat-fab (click)="btnClick('registrar-gastos')" class="justify-content-center p-1" color="primary">
+          <mat-icon class="nav-icon p-0 m-0 justify-center">paid</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
 
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 dark"></h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax background2"><img src="..\..\assets\img\background2.jpg" alt="Unsplashed background img 2">
+    </div>
+  </div>
+
+
+  <!-- 
   <div class="container py-5">
     <div class="section">
 
-      <!--   Icon Section   -->
       <div class="row">
         <div class="col s12 m4">
           <div class="icon-block">
@@ -65,44 +87,9 @@
       </div>
 
     </div>
-  </div>
+  </div>  -->
 
-
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 dark"></h5>
-        </div>
-      </div>
-    </div>
-    <div class="parallax background2"><img src="..\..\assets\img\background2.jpg" alt="Unsplashed background img 2">
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="section">
-
-      <div class="row">
-        <div class="col s-12 center">
-          <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>Contacto</h4>
-          <p class="left-align light">Si está interesado en este producto y desea tener acceso a un sistema de
-            características similares, puede comunicarse por correo electrónico a:
-            maximiliano_hermosilla&#64;hotmail.com
-          </p>
-          <mat-form-field class="example-full-width w-100">
-            <mat-label></mat-label>
-            <textarea matInput placeholder=""></textarea>
-          </mat-form-field>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-  <div class="parallax-container valign-wrapper">
+  <!-- <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
@@ -112,45 +99,6 @@
     </div>
     <div class="parallax background3"><img src="..\..\assets\img\background3.jpg" alt="Unsplashed background img 3">
     </div>
-  </div>
-
-  <footer class="page-footer teal py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Tecnologías</h5>
-          <p class="grey-text text-lighten-4">BackEnd: API .Net Core 6</p>
-          <p class="grey-text text-lighten-4">FrontEnd: Angular 14</p>
-          <p class="grey-text text-lighten-4">Framework: Angular Material</p>
-          <p class="grey-text text-lighten-4">Framework: Bootstrap</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Configuración</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Contactos</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-        <!-- Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a> -->
-      </div>
-    </div>
-  </footer>
+  </div> -->
 
 </main>

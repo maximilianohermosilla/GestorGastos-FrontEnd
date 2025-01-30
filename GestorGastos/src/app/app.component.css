@@ -133,6 +133,10 @@ mat-sidenav-content {
   gap: 10px;
 }
 
+::ng-deep .cdk-overlay-dark-backdrop{
+  background: rgba(255,255,255,0.2)!important;
+}
+
 .nav-icon {
   background: -webkit-linear-gradient(#559f9f, #559f9f);
   background-clip: text;

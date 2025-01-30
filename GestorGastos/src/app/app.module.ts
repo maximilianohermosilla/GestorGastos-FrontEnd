@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
@@ -50,6 +50,8 @@ import { CardCuentaComponent } from './components/card-cuenta/card-cuenta.compon
 import { CardTarjetaComponent } from './components/card-tarjeta/card-tarjeta.component';
 import { AbmCuentaComponent } from './components/abm-cuenta/abm-cuenta.component';
 import { ChartBarHorizontalBalanceComponent } from './components/chart-bar-horizontal-balance/chart-bar-horizontal-balance.component';
+import { InterceptorService } from './services/interceptor.service';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -94,14 +96,15 @@ import { ChartBarHorizontalBalanceComponent } from './components/chart-bar-horiz
     MaterialModule,
     BrowserAnimationsModule,
     SharedModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatDialogModule 
   ],
   providers: [DatePipe, FilterPipe,
     provideHttpClient(withInterceptors([spinnerInterceptor, errorHandlerInterceptor])),
-    { provide: MAT_DATE_LOCALE, useValue: 'fr' },
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500} }
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
+    { provide: MAT_DATE_LOCALE, useValue: 'fr', multi: true },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}, multi: true },
     //{ provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true}, 
-    //{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}, provideAnimationsAsync()
     //{ provide: HTTP_INTERCEPTORS, useClass: provideHttpClient(withInterceptors([errorHandlerInterceptor])), multi: true},
   ],
   bootstrap: [AppComponent]

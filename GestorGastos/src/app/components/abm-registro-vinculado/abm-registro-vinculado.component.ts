@@ -53,7 +53,6 @@ export class AbmRegistroVinculadoComponent {
 
     let userId = this.tokenService.getUserId() || 0;
 
-    console.log(data)
     this.formGroup = this.formBuilder.group({
       id: data?.id ?? 0,
       idUsuario: userId,
