@@ -20,6 +20,7 @@ import { TokenService } from 'src/app/services/token.service';
 import { CategoriaGastoService } from 'src/app/services/categoria-gasto.service';
 import { CuentaService } from 'src/app/services/cuenta.service';
 import { EmpresaService } from 'src/app/services/empresa.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-abm-suscripcion',
@@ -45,6 +46,7 @@ export class AbmSuscripcionComponent {
 
   datos!: Suscripcion;
   date = new FormControl(moment());
+  permiteEliminar: boolean = false;
 
   constructor(private formBuilder: FormBuilder, public dialogoConfirmacion: MatDialog, private tokenService: TokenService,
     private dateAdapter: DateAdapter<Date>, private suscripcionService: SuscripcionService, private _snackBar: MatSnackBar,
@@ -75,6 +77,7 @@ export class AbmSuscripcionComponent {
     if (this.listEmptyOrUndefined(this.listaCategoriasGasto)) this.getCategoriaGastos();
     if (this.listEmptyOrUndefined(this.listaEmpresas)) this.getEmpresas();
     if (this.listEmptyOrUndefined(this.listaCuentas)) this.getCuentas();
+    this.permiteEliminar = this.data != null && this.data!.id > 0;
   }
 
   save() {
@@ -87,13 +90,13 @@ export class AbmSuscripcionComponent {
     if (this.datos.id > 0) {
       this.datos.fechaUpdate = this.formGroup.value.fechaDesde;
       this.suscripcionService.Update(this.datos).subscribe(data => {
-          this._snackBar.open("Suscripción actualizada correctamente", "Cerrar");
-          setTimeout(() => { window.location.reload(); }, 2000);
-      });    
+        this._snackBar.open("Suscripción actualizada correctamente", "Cerrar");
+        setTimeout(() => { window.location.reload(); }, 2000);
+      });
     } else {
       this.suscripcionService.Insert(this.datos).subscribe(data => {
-          this._snackBar.open("Suscripción registrada correctamente", "Cerrar");
-          setTimeout(() => { window.location.reload(); }, 2000);
+        this._snackBar.open("Suscripción registrada correctamente", "Cerrar");
+        setTimeout(() => { window.location.reload(); }, 2000);
       });
     }
 
@@ -124,5 +127,25 @@ export class AbmSuscripcionComponent {
 
   listEmptyOrUndefined(lista: any[]) {
     return (lista == undefined || lista.length == 0);
+  }
+
+
+  delete() {
+    this.dialogoConfirmacion.open(ConfirmDialogComponent, {
+      data: `¿Está seguro de eliminar esta sucripción y todos sus registros?`
+    })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          console.log(confirmado);
+          console.log(this.data.id)
+          this.suscripcionService.eliminarById(this.data.id).subscribe(data => {
+            console.log(data);
+            setTimeout(() => {
+              //window.location.reload();
+            }, 2000);
+          });
+        }
+      });
   }
 }

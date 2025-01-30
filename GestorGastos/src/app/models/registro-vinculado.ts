@@ -5,6 +5,7 @@ export interface RegistroVinculado{
     descripcion: string,
     cuotas: number,
     valorFinal: number,
+    valorCuota: number,
     idUsuario: number,
     idCuenta?: number,
     idEmpresa?: number,

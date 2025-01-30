@@ -13,4 +13,5 @@ input.example-right-align::-webkit-inner-spin-button {
 
 input.example-right-align {
     -moz-appearance: textfield;
+    appearance: textfield;
 }

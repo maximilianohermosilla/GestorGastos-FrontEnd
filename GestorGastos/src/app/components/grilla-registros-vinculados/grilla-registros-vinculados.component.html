@@ -39,7 +39,7 @@
 
         <ng-container matColumnDef="registros">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by registros" class="px-0"> Detalle </th>
-            <td class="d-flex border-0 py-1 px-0" mat-cell *matCellDef="let registro">
+            <td class="d-flex border-0 py-1 px-0 h-100 align-items-center" mat-cell *matCellDef="let registro">
                 <button mat-mini-fab color="white" class="bg-secondary" (click)="getDetalle(registro)"
                         [matTooltip]="'Categoría: ' + registro.registros[0].categoriaGastoNombre + 
                         '\nCuenta: ' + registro.registros[0].cuenta!.nombre"

@@ -20,6 +20,7 @@ import { TokenService } from 'src/app/services/token.service';
 import { CuentaService } from 'src/app/services/cuenta.service';
 import { CategoriaGastoService } from 'src/app/services/categoria-gasto.service';
 import { EmpresaService } from 'src/app/services/empresa.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-abm-registro-vinculado',
@@ -45,6 +46,8 @@ export class AbmRegistroVinculadoComponent {
 
   datos!: RegistroVinculado;
   date = new FormControl(moment());
+  permiteEliminar: boolean = false;
+  valorCuota: number = 0;
 
   constructor(private formBuilder: FormBuilder, public dialogoConfirmacion: MatDialog, private tokenService: TokenService,
     private dateAdapter: DateAdapter<Date>, private registroVinculadoService: RegistroVinculadoService, private _snackBar: MatSnackBar,
@@ -52,6 +55,7 @@ export class AbmRegistroVinculadoComponent {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     let userId = this.tokenService.getUserId() || 0;
+    this.valorCuota = (this.data?.valorFinal > 0 && this.data?.cuotas > 0) ? Math.round(this.data?.valorFinal / this.data?.cuotas) : 0;
 
     this.formGroup = this.formBuilder.group({
       id: data?.id ?? 0,
@@ -59,10 +63,11 @@ export class AbmRegistroVinculadoComponent {
       descripcion: [data?.descripcion ?? '', [Validators.required]],
       fecha: [data?.registros[0]?.fechaDesde ?? moment().format("YYYY-MM-DD[T]HH:mm:ss"), [Validators.required]],
       idCategoriaGasto: [data?.registros[0]?.idCategoriaGasto ?? '', [Validators.required]],
-      idCuenta: [data?.registros[0]?.idCuenta ?? undefined,],
+      idCuenta: [data?.registros[0]?.idCuenta ?? undefined, [Validators.required]],
       idEmpresa: [data?.registros[0]?.idEmpresa ?? undefined,],
       cuotas: [data?.cuotas ?? 1, [Validators.required, Validators.min(1)]],
       valorFinal: [data?.valorFinal ?? '', [Validators.required]],
+      valorCuota: [this.valorCuota ?? ''],
       proximoMes: [false,]
     })
 
@@ -74,6 +79,37 @@ export class AbmRegistroVinculadoComponent {
     if (this.listEmptyOrUndefined(this.listaCategoriasGasto)) this.getCategoriaGastos();
     if (this.listEmptyOrUndefined(this.listaEmpresas)) this.getEmpresas();
     if (this.listEmptyOrUndefined(this.listaCuentas)) this.getCuentas();
+    this.permiteEliminar = this.data != null && this.data!.id > 0;
+    //this.setupListeners();
+  }
+
+
+  setupListeners() {
+    this.formGroup.get('valorFinal')?.valueChanges.subscribe(() => this.calcularValorCuota());
+    this.formGroup.get('cuotas')?.valueChanges.subscribe(() => this.calcularValorCuota());
+
+    this.formGroup.get('valorCuota')?.valueChanges.subscribe(() => this.calcularValorFinal());
+    this.formGroup.get('cuotas')?.valueChanges.subscribe(() => this.calcularValorFinal());
+  }
+
+  calcularValorCuota() {
+    let valorFinal = this.formGroup.get('valorFinal')?.value;
+    let cuotas = this.formGroup.get('cuotas')?.value;
+
+    if (valorFinal && cuotas) {
+      this.formGroup.get('valorCuota')?.setValue(valorFinal / cuotas, { emitEvent: false });
+      this.formGroup.get('valorFinal')?.setValue(valorFinal, { emitEvent: false });
+    }
+  }
+
+  calcularValorFinal() {
+    let valorCuota = this.formGroup.get('valorCuota')?.value;
+    let cuotas = this.formGroup.get('cuotas')?.value;
+
+    if (valorCuota && cuotas) {
+      this.formGroup.get('valorFinal')?.setValue(valorCuota * cuotas, { emitEvent: false });
+      this.formGroup.get('valorCuota')?.setValue(valorCuota, { emitEvent: false });
+    }
   }
 
   save() {
@@ -84,13 +120,13 @@ export class AbmRegistroVinculadoComponent {
     console.log(this.datos)
     if (this.datos.id > 0) {
       this.registroVinculadoService.Update(this.datos).subscribe(data => {
-          this._snackBar.open("Gasto actualizado correctamente", "Cerrar");
-          setTimeout(() => { window.location.reload(); }, 2000);
+        this._snackBar.open("Gasto actualizado correctamente", "Cerrar");
+        setTimeout(() => { window.location.reload(); }, 2000);
       });
     } else {
       this.registroVinculadoService.Insert(this.datos).subscribe(data => {
-          this._snackBar.open("Gasto registrado correctamente", "Cerrar");
-          setTimeout(() => { window.location.reload(); }, 2000);
+        this._snackBar.open("Gasto registrado correctamente", "Cerrar");
+        setTimeout(() => { window.location.reload(); }, 2000);
       });
     }
 
@@ -120,5 +156,25 @@ export class AbmRegistroVinculadoComponent {
 
   listEmptyOrUndefined(lista: any[]) {
     return (lista == undefined || lista.length == 0);
+  }
+
+
+  delete() {
+    this.dialogoConfirmacion.open(ConfirmDialogComponent, {
+      data: `¿Está seguro de eliminar este registro?`
+    })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          console.log(confirmado);
+          console.log(this.data.id)
+          this.registroVinculadoService.eliminarById(this.data.id).subscribe(data => {
+            console.log(data);
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
+          });
+        }
+      });
   }
 }

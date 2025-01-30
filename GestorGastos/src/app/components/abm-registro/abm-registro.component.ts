@@ -21,6 +21,8 @@ import { TokenService } from 'src/app/services/token.service';
 import { CategoriaGastoService } from 'src/app/services/categoria-gasto.service';
 import { EmpresaService } from 'src/app/services/empresa.service';
 import { CuentaService } from 'src/app/services/cuenta.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { DialogComponent } from '../dialog/dialog.component';
 
 const moment = _rollupMoment || _moment;
 
@@ -51,6 +53,7 @@ export class AbmRegistroComponent {
 
   datos!: Registro;
   date = new FormControl(moment());
+  permiteEliminar: boolean = false;
 
   constructor(private formBuilder: FormBuilder, public dialogoConfirmacion: MatDialog, private tokenService: TokenService,
     private dateAdapter: DateAdapter<Date>, private registroService: RegistroService, private _snackBar: MatSnackBar,
@@ -73,17 +76,18 @@ export class AbmRegistroComponent {
       observaciones: [data?.observaciones ?? '',],
       pagado: [data?.pagado ?? false,],
       periodo: [data?.periodo ?? '',],
-      fechaPago: [data?.fechaPago ??  formatDate(new Date(), 'yyyy-MM-dd', 'en'),]
+      fechaPago: [data?.fechaPago ?? formatDate(new Date(), 'yyyy-MM-dd', 'en'),]
     })
 
     this.dateAdapter.setLocale('es-AR'); //dd/MM/yyyy
     this.datos = { ... this.datos, ...this.formGroup.value };
   }
 
-  ngOnInit(): void {    
-      if (this.listEmptyOrUndefined(this.listaCategoriasGasto)) this.getCategoriaGastos();
-      if (this.listEmptyOrUndefined(this.listaEmpresas)) this.getEmpresas();
-      if (this.listEmptyOrUndefined(this.listaCuentas)) this.getCuentas();
+  ngOnInit(): void {
+    if (this.listEmptyOrUndefined(this.listaCategoriasGasto)) this.getCategoriaGastos();
+    if (this.listEmptyOrUndefined(this.listaEmpresas)) this.getEmpresas();
+    if (this.listEmptyOrUndefined(this.listaCuentas)) this.getCuentas();
+    this.permiteEliminar = this.data != null && this.data!.id > 0;
   }
 
   save() {
@@ -113,6 +117,25 @@ export class AbmRegistroComponent {
     }
 
     this.datos.fecha = moment(this.datos.fecha).format("YYYY-MM-DD[T]HH:mm:ss");
+  }
+
+  delete() {
+    this.dialogoConfirmacion.open(ConfirmDialogComponent, {
+      data: `¿Está seguro de eliminar este registro?`
+    })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          console.log(confirmado);
+          console.log(this.data.id)
+          this.registroService.eliminarById(this.data.id).subscribe(data => {
+            console.log(data);
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
+          });
+        }
+      });
   }
 
 
