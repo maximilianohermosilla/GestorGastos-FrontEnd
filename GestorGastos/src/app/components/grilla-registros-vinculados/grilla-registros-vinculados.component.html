@@ -77,4 +77,7 @@
     <mat-divider></mat-divider>
     <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="pageSize || 10" showFirstLastButtons aria-label="Select page" *ngIf="length > 0">
     </mat-paginator>
+    <footer class="d-flex justify-content-end my-2">
+        <app-export-excel [data]="_data"></app-export-excel>
+    </footer>
 </div>

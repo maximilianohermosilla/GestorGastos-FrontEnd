@@ -8,7 +8,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-grilla-card-registro',
   templateUrl: './grilla-card-registro.component.html',
-  styleUrl: './grilla-card-registro.component.css'
+  styleUrl: './grilla-card-registro.component.css',
 })
 export class GrillaCardRegistroComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
@@ -22,7 +22,7 @@ export class GrillaCardRegistroComponent {
     }
   }
 
-  private _data: any[] = [];
+  _data: any[] = [];
   length: number = 0;
   isModal: boolean = false;
   title = 'Grilla';
@@ -57,7 +57,6 @@ export class GrillaCardRegistroComponent {
   }
 
   setDatasource(data: any[]) {
-    console.log(data)
     this.length = data.length;
     this.dataSource = new MatTableDataSource<any[]>(data);
     this.dataSource.paginator = this.paginator!;

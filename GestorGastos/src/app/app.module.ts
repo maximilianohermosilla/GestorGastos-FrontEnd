@@ -52,6 +52,7 @@ import { AbmCuentaComponent } from './components/abm-cuenta/abm-cuenta.component
 import { ChartBarHorizontalBalanceComponent } from './components/chart-bar-horizontal-balance/chart-bar-horizontal-balance.component';
 import { InterceptorService } from './services/interceptor.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ExportExcelComponent } from './components/export-excel/export-excel.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserAnimationsModule,
     SharedModule,
     NgxChartsModule,
-    MatDialogModule 
+    MatDialogModule,
+    ExportExcelComponent 
   ],
   providers: [DatePipe, FilterPipe,
     provideHttpClient(withInterceptors([spinnerInterceptor, errorHandlerInterceptor])),
