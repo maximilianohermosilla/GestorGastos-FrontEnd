@@ -53,6 +53,7 @@ export class GrillaCardRegistroComponent {
 
   ngOnChanges() {
     this.setDatasource(this._data);
+    this.getFilters();
   }
 
   setDatasource(data: any[]) {

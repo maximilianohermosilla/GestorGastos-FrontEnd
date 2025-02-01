@@ -17,30 +17,47 @@ export class GrillaRegistrosVinculadosComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @Input() data: any;
+  @Input() _data: any[] = [];
   @Input() pageSize?: number;
 
   dataSource: any;
   sortedData: any;
   nombreColumnas: string[] = ["descripcion", "cuotas", "valorFinal", "registros"];
 
+  categorias: any[] = [];
+  cuentas: any[] = [];
+  selectedCategoria = 0;
+  selectedCuenta = 0;
+
   constructor(private liveAnnouncer: LiveAnnouncer, public dialog: MatDialog, private cdr: ChangeDetectorRef) {
   }
   ngOnInit(): void {
     setTimeout(() => {
-      this.setDatasource();
+      this.setDatasource(this._data);
     }, 1000);
   }
 
   ngOnChanges() {
-    this.setDatasource();
+    this.setDatasource(this._data);    
+    this.getFilters();
   }
 
-  setDatasource() {
-    // console.log(this.data)
-    this.dataSource = new MatTableDataSource<any[]>(this.data);
+  setDatasource(data: any[]) {
+    this.dataSource = new MatTableDataSource<any[]>(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }  
+
+  getFilters() {
+    const registros = this._data.map(r => r.registros[0]);
+    const categoriasFull = registros.map(c => c.categoriaGasto);
+    const categoriasSet = Array.from(new Map(categoriasFull.map((cat: any) => [cat.id, cat])).values());
+
+    const cuentasFull = registros.map(r => r.cuenta);
+    const cuentasSet = Array.from(new Map(cuentasFull.map((cta: any) => [cta.id, cta])).values());
+
+    this.categorias = categoriasSet;
+    this.cuentas = cuentasSet;
   }
 
   applyFilter(filterValue: string) {
@@ -58,12 +75,6 @@ export class GrillaRegistrosVinculadosComponent {
 
   getTooltipText(event: any) {
     console.log(event)
-    // return `Categoria: ${event.firstEvent.name}
-    // Start: ${event.firstEvent.startDate.toLocaleString()}
-    // End: ${event.firstEvent.endDate.toLocaleString()}
-    // Name: ${event.secondEvent.name}
-    // Start: ${event.secondEvent.startDate.toLocaleString()}
-    // End: ${event.secondEvent.endDate.toLocaleString()}`;
     return "Tooltip"
   }
 
@@ -92,5 +103,20 @@ export class GrillaRegistrosVinculadosComponent {
     dialogRef.afterClosed().subscribe(res => {
       this.cdr.detectChanges();
     })
+  }
+
+  selectCategoria(event: any) {
+    this.selectedCategoria = event;
+    this.aplicarFiltros();
+  }
+
+  selectCuenta(event: any) {
+    this.selectedCuenta = event;
+    this.aplicarFiltros();
+  }
+
+  aplicarFiltros() {
+    this.setDatasource(this._data.filter(d => (this.selectedCuenta == 0 || this.selectedCuenta == d.registros[0].cuenta.id) &&
+        (this.selectedCategoria == 0 || this.selectedCategoria == d.registros[0].categoriaGasto.id)));
   }
 }

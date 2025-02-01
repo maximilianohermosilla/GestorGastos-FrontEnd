@@ -99,7 +99,7 @@
                         <div class="container-fluid">
                             <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
                         </div>
-                        <app-grilla-registros-vinculados [data]="listaRegistrosVinculados"
+                        <app-grilla-registros-vinculados [_data]="listaRegistrosVinculados"
                             *ngIf="!(listaRegistrosVinculados.length == 0)" [pageSize]=5>
                         </app-grilla-registros-vinculados>
                     </mat-expansion-panel>
