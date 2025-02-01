@@ -51,7 +51,6 @@ export class GrillaSuscripcionesComponent {
   }
 
   getFilters() {
-    console.log(this._data)
     const registros = this._data.map((r: any) => r.registros[0]);
     const categoriasFull = registros.map((c: any) => c.categoriaGasto);
     const categoriasSet = Array.from(new Map(categoriasFull.map((cat: any) => [cat.id, cat])).values());

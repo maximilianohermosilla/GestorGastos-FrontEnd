@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { Registro } from 'src/app/models/registro';
+import { GrillaCardRegistroComponent } from '../grilla-card-registro/grilla-card-registro.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-chart-bar-vertical-balance',
@@ -30,7 +32,7 @@ export class ChartBarVerticalBalanceComponent {
     domain: ['#5AA454', '#ff5733', '#A10A28', '#C7B42C', '#5733ff']
   };
 
-  constructor() {
+  constructor(public dialog: MatDialog, private cdr: ChangeDetectorRef) {
   }
 
 
@@ -105,7 +107,9 @@ export class ChartBarVerticalBalanceComponent {
   };
 
   onSelect(data: any): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+    const cuentaSelected = JSON.parse(JSON.stringify(data));
+    const registrosCuenta = this.dataRegistros.filter((r: any) => r.cuenta.nombre == (cuentaSelected.name ?? cuentaSelected));
+    this.getDetalle(registrosCuenta)
   }
 
   onActivate(data: any): void {
@@ -114,5 +118,18 @@ export class ChartBarVerticalBalanceComponent {
 
   onDeactivate(data: any): void {
     //console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+  }
+
+  getDetalle(data: any) {
+    const dialogRef = this.dialog.open(GrillaCardRegistroComponent, {
+      width: "99vw",
+      minWidth: "60vw",
+      maxHeight: '80vh',
+      disableClose: false,
+      data: data
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      this.cdr.detectChanges();
+    })
   }
 }

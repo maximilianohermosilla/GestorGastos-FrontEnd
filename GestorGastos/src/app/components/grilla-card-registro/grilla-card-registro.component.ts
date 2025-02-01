@@ -57,6 +57,7 @@ export class GrillaCardRegistroComponent {
   }
 
   setDatasource(data: any[]) {
+    console.log(data)
     this.length = data.length;
     this.dataSource = new MatTableDataSource<any[]>(data);
     this.dataSource.paginator = this.paginator!;

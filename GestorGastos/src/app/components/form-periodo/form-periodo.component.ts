@@ -73,9 +73,21 @@ export class FormPeriodoComponent {
     datepicker.close();
   }
 
+  formatearFecha(fecha: string) {
+    fecha = fecha.replace('-', '/');
+    const partes = fecha.split('/');
+
+    if (partes[0].length === 4) {
+        return fecha.replace('/', '-');
+    }
+    
+    return partes.reverse().join('-');
+}
+
   onInputBlur(event: FocusEvent) {
     const inputElement = event.target as HTMLInputElement;
-    this.onChange.emit(inputElement.value.replace('/', '-'));
+    const fechaFormateada = this.formatearFecha(inputElement.value);
+    this.onChange.emit(fechaFormateada);
   }
 
   onEnterKey(event: any) {

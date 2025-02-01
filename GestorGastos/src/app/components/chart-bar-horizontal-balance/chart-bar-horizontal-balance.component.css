@@ -2,3 +2,11 @@
     overflow: auto!important;
     overflow-x: visible!important;
 }
+
+::ng-deep .mat-mdc-dialog-surface{
+    padding: 1rem!important;
+}
+
+::ng-deep label{
+    color: white!important;
+}
