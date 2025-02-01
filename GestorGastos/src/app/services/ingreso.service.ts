@@ -19,7 +19,6 @@ export class IngresoService {
     return this.http.get<any>(this.apiUrl + "/" + id);
   }
   
-  //'https://localhost:7011/gestorGastos/Ingreso?idUsuario=1&periodo=2022-12'
   public GetAll(idUsuario: number, periodo: string): Observable<any> {
     let userId = this.tokenService.getUserId();
     return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${userId.toString()}&periodo=${periodo}`);    
@@ -31,7 +30,7 @@ export class IngresoService {
       }));
   }
 
-  public actualizar(element: Ingreso): Observable<Ingreso>{
+  public Update(element: Ingreso): Observable<Ingreso>{
     return this.http.put<Ingreso>(this.apiUrl, element);
   }
 

@@ -68,7 +68,7 @@ export class AbmIngresoComponent {
     this.datos.periodo = this.datos.fecha.substring(0,7);
 
     if (this.datos.id > 0) {
-      //this.registroService.Insert(this.datos).subscribe( data => console.log(data));      
+      this.ingresoService.Update(this.datos).subscribe( data => console.log(data));      
     }else{
       this.ingresoService.Insert(this.datos).subscribe( data => {
         if(data.id && data.id > 0){

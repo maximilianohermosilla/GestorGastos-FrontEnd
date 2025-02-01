@@ -19,15 +19,13 @@ export class RegistroVinculadoService {
     return this.http.get<any>(this.apiUrl + "/" + id);
   }
   
-  //'https://localhost:7011/gestorGastos/RegistroVinculado?idUsuario=1&periodo=2022-12'
   public GetAll(idUsuario: number, periodo: string): Observable<any> {
     let userId = this.tokenService.getUserId();
     return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${userId.toString()}&periodo=${periodo}`);    
   }
   
   public Insert(element: RegistroVinculado): Observable<any> {
-    return this.http.post<RegistroVinculado>(this.apiUrl, element).pipe(map(data=>{  
-      console.log(data) 
+    return this.http.post<RegistroVinculado>(this.apiUrl, element).pipe(map(data=>{
       return data
       }));
   }

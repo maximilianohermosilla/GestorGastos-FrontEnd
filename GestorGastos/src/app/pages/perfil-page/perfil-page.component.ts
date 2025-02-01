@@ -42,21 +42,18 @@ export class PerfilPageComponent {
   getTarjetas() {
     this.tarjetaService.GetAll().subscribe((response: any) => {
       this.listaTarjetas = response;
-      console.log(this.listaTarjetas)
     });
   }
 
   getCuentas() {
     this.cuentaService.GetAll().subscribe((response: any) => {
       this.listaCuentas = response;
-      console.log(this.listaCuentas)
     });
   }
 
   getTipoTarjetas() {
     this.tipoTarjetaService.GetAll().subscribe((response: any) => {
       this.listaTipoTarjetas = response;
-      //console.log(this.listaTipoTarjetas)
     });
   }
 
@@ -78,7 +75,6 @@ export class PerfilPageComponent {
     this.usuarioService.GetById().subscribe((response: any) => {
       this.user = response;
       this.user.imagen = (!this.user.imagen || this.user.imagen.length === 0) ? `..\\..\\assets\\img\\user-placeholder.png`: this.user.imagen;
-      console.log(response)
     });
   }
   
@@ -90,23 +86,17 @@ export class PerfilPageComponent {
       data: idCuenta 
     });
     dialogRef.afterClosed().subscribe( res => {
-      console.log(res)
-      //if (res) { // Solo si el modal devuelve algo relevante
-        this.getCuentas(); // Actualizas la lista de cuentas inmediatamente
-        console.log("Cierro modal cuenta");
-        //this.listaCuentas = [...this.listaCuentas, nuevaCuenta];
+        this.getCuentas();
         this.cdr.detectChanges();
       //}
     })   
   }
 
   getIdCuenta(idCuenta: any){
-    console.log(idCuenta);
     this.openCuenta(idCuenta);
   }
 
   toggleCuenta(cuenta: any){
-    console.log(cuenta.habilitado);    
     if (cuenta.id > 0) {
       cuenta.habilitado = !cuenta.habilitado
       this.cuentaService.actualizar(cuenta).subscribe( data => console.log(data));      
@@ -115,7 +105,6 @@ export class PerfilPageComponent {
   }
 
   onCheckDeshabilitados(check: any){
-    console.log(check)
     if(!check){
       this.listaCuentas = this.listaCuentas.filter(c => c.habilitado)
     }

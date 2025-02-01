@@ -81,7 +81,6 @@ export class AbmNombreComponent {
             }
           })
           this.refDialog.close();
-          console.log(error);
           this.spinnerService.hide();
         }          
       );
@@ -114,7 +113,6 @@ export class AbmNombreComponent {
             }
           })
           this.refDialog.close();
-          console.log(error);
           this.spinnerService.hide();
         }
       );

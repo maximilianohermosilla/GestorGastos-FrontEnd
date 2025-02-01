@@ -137,12 +137,9 @@ export class AbmSuscripcionComponent {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          console.log(confirmado);
-          console.log(this.data.id)
           this.suscripcionService.eliminarById(this.data.id).subscribe(data => {
-            console.log(data);
             setTimeout(() => {
-              //window.location.reload();
+              window.location.reload();
             }, 2000);
           });
         }

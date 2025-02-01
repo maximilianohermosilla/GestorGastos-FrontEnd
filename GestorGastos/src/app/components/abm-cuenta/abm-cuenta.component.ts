@@ -39,8 +39,7 @@ export class AbmCuentaComponent {
     private tipoCuentaService: TipoCuentaService, private tarjetaService: TarjetaService, private cuentaService: CuentaService,
     private _snackBar: MatSnackBar, public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,) {
-
-    console.log(data)
+    
     let userId = this.tokenService.getUserId() || 0;
     data = data ?? {id: 0, idUsuario: userId, nombre: '', idTipoCuenta: '', idTarjeta: '', habilitado: true};
 
@@ -65,8 +64,6 @@ export class AbmCuentaComponent {
     this.datos = { ... this.datos, ...this.formGroup.value };
     if(this.datos.idTipoCuenta == 3){ this.datos.idTarjeta = undefined; }
 
-    console.log(this.formGroup.value)
-    console.log(this.datos)
     if (this.datos.id > 0) {
       this.cuentaService.actualizar(this.datos).subscribe( data => console.log(data));      
     }else{
@@ -85,14 +82,12 @@ export class AbmCuentaComponent {
   getTipoCuenta(){
     this.tipoCuentaService.GetAll().subscribe((rta: TipoCuenta[]) => {
       this.listaTipoCuenta = rta;
-      // console.log(this.listaCategoriaGasto);
     });
   }  
   
   getTarjetas(){
     this.tarjetaService.GetAll().subscribe((rta: Tarjeta[]) => {
       this.listaTarjetas = rta;
-      console.log(this.listaTarjetas);
     });
   }  
 

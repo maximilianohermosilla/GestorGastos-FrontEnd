@@ -97,10 +97,8 @@ export class AbmRegistroComponent {
     this.datos.periodo = this.datos.fecha.substring(0, 7);
     if (this.data) this.datos!.id = this.data.id ?? 0;
 
-    console.log(this.datos)
     if (this.datos.id > 0) {
       this.registroService.Update(this.datos).subscribe(data => {
-        console.log(data)
         if (data.id && data.id > 0) {
           this._snackBar.open("Gasto actualizado correctamente", "Cerrar");
         }
@@ -112,6 +110,9 @@ export class AbmRegistroComponent {
       this.registroService.Insert(this.datos).subscribe(data => {
         if (data.id && data.id > 0) {
           this._snackBar.open("Gasto registrado correctamente", "Cerrar");
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
         }
       });
     }
@@ -126,10 +127,7 @@ export class AbmRegistroComponent {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          console.log(confirmado);
-          console.log(this.data.id)
-          this.registroService.eliminarById(this.data.id).subscribe(data => {
-            console.log(data);
+          this.registroService.eliminarById(this.data.id).subscribe(data => {   
             setTimeout(() => {
               window.location.reload();
             }, 2000);

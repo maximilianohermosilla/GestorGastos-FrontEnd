@@ -19,23 +19,19 @@ export class RegistroService {
     return this.http.get<any>(this.apiUrl + "/" + id);
   }
   
-  //'https://localhost:7011/gestorGastos/Registro?idUsuario=1&periodo=2022-12'
   GetAll(idUsuario: number, periodo: string): Observable<any> {
     let userId = this.tokenService.getUserId();
     return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${userId.toString()}&periodo=${periodo}`);    
   }
   
   Insert(element: Registro): Observable<any> {
-    console.log("Post service")
     return this.http.post<any>(this.apiUrl + "/", element).pipe(tap(data=>{  
       return data
       }));
     }
 
   Update(element: Registro): Observable<Registro>{
-    console.log("Update service")
     return this.http.put<Registro>(this.apiUrl, element).pipe(tap(data=>{  
-      console.log(data)
       return data
       }));;
   }

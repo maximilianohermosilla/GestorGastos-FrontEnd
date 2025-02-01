@@ -64,7 +64,6 @@ export class TarjetaComponent {
     private router: Router, public spinnerService: SpinnerService, @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(MAT_DATE_LOCALE) private _locale: string) {
 
-    console.log(data)
     this._locale = 'fr';
     this.dateAdapter.setLocale(this._locale);
     this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
@@ -139,7 +138,6 @@ export class TarjetaComponent {
       idUsuario: this.datos.idUsuario
     };
 
-    console.log(_edit);
     if (this.datos.id > 0) {
       this.tarjetaService.actualizar(_edit).subscribe(result => {
         this.dialogoConfirmacion.open(DialogComponent, {
@@ -163,7 +161,6 @@ export class TarjetaComponent {
               clase: "class-error"
             }
           })
-          console.log(error);
         }
       );
     }
@@ -191,14 +188,12 @@ export class TarjetaComponent {
               clase: "class-error"
             }
           })
-          console.log(error);
         }
       );
     }
   }
 
   cancel() {
-    console.log("Cerrar modal")
     //this.router.navigate(['tarjetas']);
   }
 
@@ -252,8 +247,6 @@ export class TarjetaComponent {
     ctrlValue.month(normalizedMonthAndYear.month());
     ctrlValue.year(normalizedMonthAndYear.year());
     this.date.setValue(ctrlValue);
-    console.log(ctrlValue);
-    console.log(this.datos.vencimiento);
 
     this.vencimientoSelected = true;
     if (datepicker) { datepicker.close() }

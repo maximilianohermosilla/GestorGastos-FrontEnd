@@ -85,7 +85,6 @@ export class LoginComponent {
         this.refDialog.close(this.loginUsuario);   
       },
       error => {
-        console.log(error);
         if (error.status >= 400){
           error.error = "Usuario o contraseña incorrectas";
         }

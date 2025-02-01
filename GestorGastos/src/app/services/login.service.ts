@@ -39,7 +39,6 @@ export class LoginService {
   iniciarSesion(credenciales: Usuario): Observable<JwtDTO>{
     return this.httpClient.post<any>(this.apiUrl + 'login', credenciales).pipe(map(data=>{   
         this.decodeToken = this.jwtHelper.decodeToken(data.token);
-        console.log(data);
         this.tokenService.setToken(data.token);
         this.tokenService.setUserName(this.decodeToken.unique_name);
         this.tokenService.setUserId(this.decodeToken.nameid);

@@ -44,7 +44,7 @@ export class CardRegistroComponent {
           this.registro.fechaPago = formatDate(new Date(), 'yyyy-MM-dd', 'en');
 
           this.registroService.Update(this.registro).subscribe(result => {
-            console.log(result)
+            
           });
         }
       });

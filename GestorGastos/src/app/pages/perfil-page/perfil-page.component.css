@@ -1,3 +1,13 @@
-.cuentas__container h5{
+.cuentas__container h5 {
     min-width: 178px;
+}
+
+.profile__image__container {
+    justify-content: end;
+}
+
+@media screen and (max-width: 640px) {
+    .profile__image__container {
+        justify-content: center;
+    }
 }

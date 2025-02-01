@@ -12,43 +12,41 @@ import { TokenService } from './token.service';
 })
 export class SuscripcionService {
   apiUrl = environment.urlBase() + "gestorGastos/Suscripcion";
-  
+
   constructor(private http: HttpClient, public dialogoConfirmacion: MatDialog, private tokenService: TokenService) { }
 
   public GetById(id: Number): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/" + id);
   }
-  
-  //'https://localhost:7011/gestorGastos/Suscripcion?idUsuario=1&periodo=2022-12'
+
   public GetAll(idUsuario: number, periodo: string): Observable<any> {
     let userId = this.tokenService.getUserId();
-    return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${userId.toString()}&periodo=${periodo}`);    
-  }
-  
-  public Insert(element: Suscripcion): Observable<any> {
-    return this.http.post<Suscripcion>(this.apiUrl, element).pipe(map(data=>{  
-      console.log(data) 
-      return data
-      }));
+    return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${userId.toString()}&periodo=${periodo}`);
   }
 
-  public Update(element: Suscripcion): Observable<Suscripcion>{
+  public Insert(element: Suscripcion): Observable<any> {
+    return this.http.post<Suscripcion>(this.apiUrl, element).pipe(map(data => {
+      return data
+    }));
+  }
+
+  public Update(element: Suscripcion): Observable<Suscripcion> {
     return this.http.put<Suscripcion>(this.apiUrl, element);
   }
 
-  public eliminarById(id: number): Observable<any>{
+  public eliminarById(id: number): Observable<any> {
     return this.http.delete<any>(this.apiUrl + "/" + id);
   }
 
-  public eliminar(id: number): Observable<any>{
+  public eliminar(id: number): Observable<any> {
     return this.http.delete<any>(this.apiUrl + "/" + id)
-    .pipe(
-      catchError(error => {
+      .pipe(
+        catchError(error => {
           let errorMsg: string;
           if (error.error instanceof ErrorEvent) {
-              errorMsg = `Error: ${error.error}`;
+            errorMsg = `Error: ${error.error}`;
           } else {
-              errorMsg = this.getServerErrorMessage(error);
+            errorMsg = this.getServerErrorMessage(error);
           }
           this.dialogoConfirmacion.open(DialogComponent, {
             data: {
@@ -59,25 +57,25 @@ export class SuscripcionService {
             }
           })
           return errorMsg;
-      })
-    );
+        })
+      );
   }
 
-  private getServerErrorMessage(error: HttpErrorResponse): string {    
+  private getServerErrorMessage(error: HttpErrorResponse): string {
     switch (error.status) {
-        case 404: {
-            return `Not Found: ${error.error}`;
-        }
-        case 403: {
-            return `Access Denied: ${error.message}`;
-        }
-        case 500: {
-            return `Internal Server Error: ${error.message}`;
-        }
-        default: {
-            //return `Unknown Server Error: ${error.error}`;
-            return `${error.error}`;
-        }
+      case 404: {
+        return `Not Found: ${error.error}`;
+      }
+      case 403: {
+        return `Access Denied: ${error.message}`;
+      }
+      case 500: {
+        return `Internal Server Error: ${error.message}`;
+      }
+      default: {
+        //return `Unknown Server Error: ${error.error}`;
+        return `${error.error}`;
+      }
 
     }
   }

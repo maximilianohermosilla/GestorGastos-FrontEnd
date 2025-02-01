@@ -11,12 +11,6 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
     if (error!.error instanceof ErrorEvent){
       errorMessage = `Error: ${error!.error!.message}`;
     }
-    else{
-      //console.log(`Error code: ${error.status}, message: ${error!.error!.message}`);
-      //errorMessage = error!.message;
-      console.log(error)
-    }
-    console.log(error)
     
     errorService.showError(errorMessage);
     //return throwError(() => errorMessage);

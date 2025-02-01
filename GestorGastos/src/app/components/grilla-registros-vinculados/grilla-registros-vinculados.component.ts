@@ -68,7 +68,6 @@ export class GrillaRegistrosVinculadosComponent {
   }
 
   getDetalle(data: any) {
-    console.log(this.data)
     const dialogRef = this.dialog.open(GrillaCardRegistroComponent, {
       width: "99vw",
       minWidth: "60vw",

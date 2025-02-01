@@ -166,11 +166,9 @@ export class AbmRegistroVinculadoComponent {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          console.log(confirmado);
-          console.log(this.data.id)
           this.registroVinculadoService.eliminarById(this.data.id).subscribe(data => {
-            console.log(data);
             setTimeout(() => {
+              console.log(data)
               window.location.reload();
             }, 2000);
           });
