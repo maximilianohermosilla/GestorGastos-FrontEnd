@@ -13,7 +13,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 export class GrillaCardRegistroComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;  
+  @ViewChild(MatSort) sort!: MatSort;
   @Input() pageSize?: number;
   @Input() tipoRegistro?: string;
   @Input() set data(value: any[]) {
@@ -21,7 +21,7 @@ export class GrillaCardRegistroComponent {
       this._data = value;
     }
   }
-  
+
   private _data: any[] = [];
   length: number = 0;
   isModal: boolean = false;
@@ -29,16 +29,16 @@ export class GrillaCardRegistroComponent {
   showFiller = false;
   isAdmin: boolean = false;
   userName = "";
-  dataSource: any;  
+  dataSource: any;
   sortedData: any;
   nombreColumnas: string[] = ["fecha"];
 
   categorias: any[] = [];
   cuentas: any[] = [];
-  selectedCategoria = '0';
-  selectedCuenta = '0';
+  selectedCategoria = 0;
+  selectedCuenta = 0;
 
-  constructor(private liveAnnouncer: LiveAnnouncer, @Optional() @Inject(MAT_DIALOG_DATA) public dialogData: any){
+  constructor(private liveAnnouncer: LiveAnnouncer, @Optional() @Inject(MAT_DIALOG_DATA) public dialogData: any) {
   }
   ngOnInit(): void {
     setTimeout(() => {
@@ -46,36 +46,59 @@ export class GrillaCardRegistroComponent {
         this._data = this.dialogData;
         this.isModal = true;
       }
-      this.setDatasource();
+      this.setDatasource(this._data);
+      this.getFilters();
     }, 100);
-  } 
-  
-  ngOnChanges() {
-    this.setDatasource();
   }
 
-  setDatasource(){    
-    this.categorias = this._data.map(r => r.categoria).filter((categoria, index, self) => self.indexOf(categoria) === index);
-    this.cuentas = this._data.map(r => r.cuenta).filter((cuenta, index, self) => self.indexOf(cuenta) === index);
+  ngOnChanges() {
+    this.setDatasource(this._data);
+  }
 
-    console.log(this.categorias)
-    console.log(this.cuentas)
-    this.length = this._data.length;
-    this.dataSource = new MatTableDataSource<any[]>(this._data);
+  setDatasource(data: any[]) {
+    this.length = data.length;
+    this.dataSource = new MatTableDataSource<any[]>(data);
     this.dataSource.paginator = this.paginator!;
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(filterValue: string){
+  getFilters() {
+    const categoriasFull = this._data.map(c => c.categoriaGasto);
+    const categoriasSet = Array.from(new Map(categoriasFull.map((cat: any) => [cat.id, cat])).values());
+
+    const cuentasFull = this._data.map(r => r.cuenta);
+    const cuentasSet = Array.from(new Map(cuentasFull.map((cta: any) => [cta.id, cta])).values());
+
+    this.categorias = categoriasSet;
+    this.cuentas = cuentasSet;
+  }
+
+  applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  announceSortChange(sort: Sort){
-    if (sort.direction){
+  announceSortChange(sort: Sort) {
+    if (sort.direction) {
       this.liveAnnouncer.announce('Sorted${sort.direction}ending');
     }
-    else{
+    else {
       this.liveAnnouncer.announce('sorting cleared');
     }
+  }
+
+  selectCategoria(event: any) {
+    this.selectedCategoria = event;
+    this.aplicarFiltros();
+  }
+
+  selectCuenta(event: any) {
+    this.selectedCuenta = event;
+    this.aplicarFiltros();
+  }
+
+  aplicarFiltros() {
+    this.setDatasource(this._data.
+      filter(d => (this.selectedCuenta == 0 || this.selectedCuenta == d.cuenta.id) &&
+        (this.selectedCategoria == 0 || this.selectedCategoria == d.categoriaGasto.id)));
   }
 }

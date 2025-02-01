@@ -1,15 +1,18 @@
 <div class="p-2">
     <section class="filters__container row">
+        <div class="col-12">
+            <label>Filtros:</label>
+        </div>
         <mat-form-field class="col-12 col-md-6 m-0">
             <mat-label>Categorías</mat-label>
-            <mat-select [(value)]="selectedCategoria">
+            <mat-select [(value)]="selectedCategoria" (selectionChange)="selectCategoria($event.value)">
                 <mat-option value="0">Todas las categorias</mat-option>
                 <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field class="col-12 col-md-6 m-0">
             <mat-label>Cuentas</mat-label>
-            <mat-select [(value)]="selectedCuenta">
+            <mat-select [(value)]="selectedCuenta" (selectionChange)="selectCuenta($event.value)">
                 <mat-option value="0">Todas las cuentas</mat-option>
                 <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta.id">{{cuenta.nombre}}</mat-option>
             </mat-select>
