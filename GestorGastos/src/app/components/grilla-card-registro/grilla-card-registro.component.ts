@@ -33,6 +33,11 @@ export class GrillaCardRegistroComponent {
   sortedData: any;
   nombreColumnas: string[] = ["fecha"];
 
+  categorias: any[] = [];
+  cuentas: any[] = [];
+  selectedCategoria = '0';
+  selectedCuenta = '0';
+
   constructor(private liveAnnouncer: LiveAnnouncer, @Optional() @Inject(MAT_DIALOG_DATA) public dialogData: any){
   }
   ngOnInit(): void {
@@ -49,7 +54,12 @@ export class GrillaCardRegistroComponent {
     this.setDatasource();
   }
 
-  setDatasource(){
+  setDatasource(){    
+    this.categorias = this._data.map(r => r.categoria).filter((categoria, index, self) => self.indexOf(categoria) === index);
+    this.cuentas = this._data.map(r => r.cuenta).filter((cuenta, index, self) => self.indexOf(cuenta) === index);
+
+    console.log(this.categorias)
+    console.log(this.cuentas)
     this.length = this._data.length;
     this.dataSource = new MatTableDataSource<any[]>(this._data);
     this.dataSource.paginator = this.paginator!;

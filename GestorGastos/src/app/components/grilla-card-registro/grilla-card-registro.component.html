@@ -1,8 +1,25 @@
 <div class="p-2">
+    <section class="filters__container row">
+        <mat-form-field class="col-12 col-md-6 m-0">
+            <mat-label>Categorías</mat-label>
+            <mat-select [(value)]="selectedCategoria">
+                <mat-option value="0">Todas las categorias</mat-option>
+                <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6 m-0">
+            <mat-label>Cuentas</mat-label>
+            <mat-select [(value)]="selectedCuenta">
+                <mat-option value="0">Todas las cuentas</mat-option>
+                <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta.id">{{cuenta.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" #table matSort
         (matSortChange)="announceSortChange($event)">
         <ng-container matColumnDef="fecha">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gasto" class=""> Detalle </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gasto" class="">
+                Detalle </th>
             <td class="border-0 py-1" mat-cell *matCellDef="let registro">
                 <app-card-registro [registro]="registro" id={{registro.id}}></app-card-registro>
             </td>
@@ -11,6 +28,7 @@
         <tr class="fila" mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
     </table>
     <mat-divider></mat-divider>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="pageSize || 10" showFirstLastButtons aria-label="Select page" *ngIf="length > 0 && !isModal">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="pageSize || 10" showFirstLastButtons
+        aria-label="Select page" *ngIf="length > 0 && !isModal">
     </mat-paginator>
 </div>
