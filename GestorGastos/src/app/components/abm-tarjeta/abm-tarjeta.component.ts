@@ -148,6 +148,7 @@ export class TarjetaComponent {
             clase: "class-success"
           }
         });
+        document.getElementById("btnCloseModalTarjeta")!.click();
       },
         error => {
           if (error.status == 401 || error.status == 403) {
@@ -175,6 +176,8 @@ export class TarjetaComponent {
             clase: "class-success"
           },
         }).close();
+        
+        document.getElementById("btnCloseModalTarjeta")!.click();
       },
         error => {
           if (error.status == 401 || error.status == 403) {

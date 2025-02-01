@@ -1,14 +1,21 @@
-<div class="d-flex center shadow bg-dark rounded-4 p-1 card__grilla">
-    <button mat-fab color="primary" 
-        matTooltip={{registro?.categoriaIngreso?.nombre}}
-        [ngStyle]="{backgroundColor: (registro.categoriaIngreso?.color), color: '#000', opacity: 0.7}"
-        aria-label="Categoria gasto" class="me-2">
-        <mat-icon>{{registro.categoriaIngreso?.icono}}</mat-icon>
-    </button>
-    <div class="d-flex flex-column">
-        <p class="m-0">{{registro.fecha.slice(0, 10)}} - <span
-                class="text-secondary">{{registro.descripcion}}</span></p>
-        <p class="m-0 text-warning">$ {{registro.valor.toLocaleString("es-AR")}}</p>
-        <p class="m-0"></p>
+<div class="d-flex justify-content-between shadow bg-dark rounded-4 p-1 card__grilla">
+    <div class="d-flex me-auto">
+        <button mat-fab color="primary" 
+            matTooltip={{registro?.categoriaIngreso?.nombre}}
+            [ngStyle]="{backgroundColor: (registro.categoriaIngreso?.color), color: '#000', opacity: 0.7}"
+            aria-label="Categoria gasto" class="me-2">
+            <mat-icon>{{registro.categoriaIngreso?.icono}}</mat-icon>
+        </button>
+        <div class="d-flex flex-column">
+            <p class="m-0">{{registro.fecha.slice(0, 10)}} - <span
+                    class="text-secondary">{{registro.descripcion}}</span></p>
+            <p class="m-0 text-warning">$ {{registro.valor.toLocaleString("es-AR")}}</p>
+            <p class="m-0"></p>
+        </div>
+    </div>
+    <div>
+        <button mat-mini-fab color="primary" class="ms-2" matTooltip="Editar registro" (click)="updateIngreso()">
+            <mat-icon>edit</mat-icon>
+        </button>
     </div>
 </div>

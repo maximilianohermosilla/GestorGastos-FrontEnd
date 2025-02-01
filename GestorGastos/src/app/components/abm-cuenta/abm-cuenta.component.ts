@@ -41,7 +41,7 @@ export class AbmCuentaComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,) {
     
     let userId = this.tokenService.getUserId() || 0;
-    data = data ?? {id: 0, idUsuario: userId, nombre: '', idTipoCuenta: '', idTarjeta: '', habilitado: true};
+    data = data ?? {id: 0, idUsuario: userId, nombre: '', idTipoCuenta: '', idTarjeta: undefined, habilitado: true};
 
     this.formGroup = this.formBuilder.group({
       id: data.id ?? 0,
