@@ -23,22 +23,36 @@ export class GrillaCardIngresoComponent {
   dataSource: any;  
   nombreColumnas: string[] = ["fecha"];
 
+  length: number = 0;
+  categorias: any[] = [];
+  selectedCategoria = 0;
+
   constructor(private liveAnnouncer: LiveAnnouncer){
   }
   ngOnInit(): void {
     setTimeout(() => {
-      this.setDatasource();
+      this.setDatasource(this.data);
+      this.getFilters();
     }, 1000);
   } 
   
   ngOnChanges() {
-    this.setDatasource();
+    this.setDatasource(this.data);
+    this.getFilters();
   }
 
-  setDatasource(){
-    this.dataSource = new MatTableDataSource<any[]>(this.data);
+  setDatasource(data: any[]){
+    this.length = data.length;
+    this.dataSource = new MatTableDataSource<any[]>(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  getFilters() {
+    const categoriasFull = this.data.map((c: any) => c.categoriaIngreso);
+    const categoriasSet = Array.from(new Map(categoriasFull.map((cat: any) => [cat.id, cat])).values());
+
+    this.categorias = categoriasSet;
   }
   
   applyFilter(filterValue: string){
@@ -52,6 +66,16 @@ export class GrillaCardIngresoComponent {
     else{
       this.liveAnnouncer.announce('sorting cleared');
     }
+  }
+  
+  selectCategoria(event: any) {
+    this.selectedCategoria = event;
+    this.aplicarFiltros();
+  } 
+
+  aplicarFiltros() {
+    this.setDatasource(this.data.
+      filter((d: any) => this.selectedCategoria == 0 || this.selectedCategoria == d.categoriaIngreso.id));
   }
 
 }

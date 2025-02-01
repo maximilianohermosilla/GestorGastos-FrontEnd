@@ -1,4 +1,16 @@
-<div>
+<div class="p-2">
+    <section class="filters__container row">
+        <div class="col-12">
+            <label>Filtro:</label>
+        </div>
+        <mat-form-field class="col-12 m-0">
+            <mat-label>Categorías</mat-label>
+            <mat-select [(value)]="selectedCategoria" (selectionChange)="selectCategoria($event.value)">
+                <mat-option value="0">Todas las categorias</mat-option>
+                <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" #table matSort
         (matSortChange)="announceSortChange($event)">
         <ng-container matColumnDef="fecha">
@@ -11,6 +23,6 @@
         <tr class="fila" mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
     </table>
     <mat-divider></mat-divider>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="pageSize || 10" showFirstLastButtons aria-label="Select page"  *ngIf="data.length > 0">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="pageSize || 10" showFirstLastButtons aria-label="Select page"  *ngIf="length > 0">
     </mat-paginator>
 </div>
