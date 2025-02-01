@@ -29,7 +29,7 @@
                                 Historial
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <div class="container-fluid">
+                        <div class="container-fluid p-2 p-sm-0">
                             <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
                         </div>
 
@@ -63,10 +63,10 @@
                                 Historial
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <div class="container-fluid">
+                        <div class="container-fluid p-2 p-sm-0">
                             <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
                         </div>
-                        <app-grilla-suscripciones [data]="listaSuscripciones" *ngIf="!(listaSuscripciones.length == 0)"
+                        <app-grilla-suscripciones [_data]="listaSuscripciones" *ngIf="!(listaSuscripciones.length == 0)"
                             [pageSize]=5>
                         </app-grilla-suscripciones>
                     </mat-expansion-panel>
@@ -96,7 +96,7 @@
                                 Historial
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <div class="container-fluid">
+                        <div class="container-fluid p-2 p-sm-0">
                             <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
                         </div>
                         <app-grilla-registros-vinculados [_data]="listaRegistrosVinculados"

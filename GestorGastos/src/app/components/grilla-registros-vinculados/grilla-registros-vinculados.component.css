@@ -18,7 +18,20 @@
     white-space: pre-line !important;
 }
 
-.overflow-x-scroll{
+.overflow-x-scroll {
     overflow-x: scroll;
     overflow-y: hidden;
+}
+
+@media screen and (max-width: 578px) {
+    .grilla__cuotas {
+        tbody {
+            tr {
+                margin-bottom: 0.5rem;
+                border: 1px solid #3f4948;
+                border-radius: 5px;
+                margin-bottom: 1rem;
+            }
+        }
+    }
 }

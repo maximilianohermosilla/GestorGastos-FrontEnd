@@ -24,6 +24,7 @@ export class GrillaRegistrosVinculadosComponent {
   sortedData: any;
   nombreColumnas: string[] = ["descripcion", "cuotas", "valorFinal", "registros"];
 
+  length: number = 0;
   categorias: any[] = [];
   cuentas: any[] = [];
   selectedCategoria = 0;
@@ -43,6 +44,7 @@ export class GrillaRegistrosVinculadosComponent {
   }
 
   setDatasource(data: any[]) {
+    this.length = data.length;
     this.dataSource = new MatTableDataSource<any[]>(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

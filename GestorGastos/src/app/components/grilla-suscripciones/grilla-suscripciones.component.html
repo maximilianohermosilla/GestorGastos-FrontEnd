@@ -1,41 +1,71 @@
-<div>
+<div class="grilla__suscripciones p-2 p-sm-0">
+    <section class="filters__container row">
+        <div class="col-12">
+            <label>Filtros:</label>
+        </div>
+        <mat-form-field class="col-12 col-md-6 m-0">
+            <mat-label>Categorías</mat-label>
+            <mat-select [(value)]="selectedCategoria" (selectionChange)="selectCategoria($event.value)">
+                <mat-option value="0">Todas las categorias</mat-option>
+                <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6 m-0">
+            <mat-label>Cuentas</mat-label>
+            <mat-select [(value)]="selectedCuenta" (selectionChange)="selectCuenta($event.value)">
+                <mat-option value="0">Todas las cuentas</mat-option>
+                <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta.id">{{cuenta.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" #table matSort
         (matSortChange)="announceSortChange($event)">
 
         <ng-container matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by descripcion" class="pe-1"> Descripcion </th>
-            <td class="border-0 py-1 pe-1" mat-cell *matCellDef="let registro">
+            <td class="border-0 py-1 pe-1 ps-0" mat-cell *matCellDef="let registro">
                 <div class="d-none d-md-flex align-items-center">
                     <button mat-fab color="primary" class=""
                         [ngStyle]="{backgroundColor: (registro.registros[0].categoriaGasto?.color), color: '#000', opacity: 0.7, width: '42px', height: '42px'}"
                         aria-label="Categoria gasto" class="me-2">
                         <mat-icon>{{registro.registros[0].categoriaGasto?.icono}}</mat-icon>
                     </button>
-                    <span>{{registro.nombre}}</span>
+                    <div class="d-flex flex-column">
+                        <span>{{registro.nombre}}</span>
+                        <p class="text-secondary">
+                            {{registro.fechaDesde.slice(0,10)}} - {{registro.fechaHasta.slice(0,10)}}
+                        </p>
+                    </div>
                 </div>
-                <div class="d-flex d-md-none">
+                <div class="d-flex d-md-none flex-column">
                     <span>{{registro.nombre}}</span>
+                    <p class="text-secondary">
+                        Desde: {{registro.fechaDesde.slice(0,10)}}
+                    </p>
+                    <p class="text-secondary">
+                        Hasta: {{registro.fechaHasta.slice(0,10)}}
+                    </p>
                 </div>
             </td>
         </ng-container>
 
-        <ng-container matColumnDef="fechaDesde">
+        <!-- <ng-container matColumnDef="fechaDesde">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by valor" class="px-0"> Fecha </th>
             <td class="border-0 py-1 px-0" mat-cell *matCellDef="let registro">
                 {{registro.fechaDesde.slice(0,10)}} - {{registro.fechaHasta.slice(0,10)}}
             </td>
-        </ng-container>
+        </ng-container> -->
 
         <ng-container matColumnDef="valorActual">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by cuotas" class="px-0"> Valor Actual </th>
-            <td class="border-0 py-1 px-0" mat-cell *matCellDef="let registro">
+            <td class="border-0 py-1 px-0 text-center" mat-cell *matCellDef="let registro">
                 <span class="text-warning">$ {{registro.valorActual.toLocaleString("es-AR")}}</span>
             </td>
         </ng-container>
 
         <ng-container matColumnDef="registros">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by registros" class="px-1"> Detalle </th>
-            <td class="d-flex border-0 py-1 px-0" mat-cell *matCellDef="let registro">
+            <td class="d-flex border-0 py-1 px-0 align-items-center justify-content-center flex-column flex-sm-row gap-2" mat-cell *matCellDef="let registro">
                 <button mat-mini-fab color="white" class="bg-secondary" (click)="getDetalle(registro)"
                         [matTooltip]="'Categoría: ' + registro.registros[0].categoriaGastoNombre + 
                         '\nCuenta: ' + registro.registros[0].cuenta!.nombre + 
@@ -43,7 +73,7 @@
                         aria-label="Button that displays a tooltip when focused or hovered over">
                     <mat-icon class="justify-center m-0">search</mat-icon>
                 </button>
-                <button mat-mini-fab color="primary" class="ms-2" matTooltip="Editar registro" (click)="updateRegistro(registro)">
+                <button mat-mini-fab color="primary" class="m-0" matTooltip="Editar registro" (click)="updateRegistro(registro)">
                     <mat-icon>edit</mat-icon>
                 </button>
             </td>
@@ -54,6 +84,6 @@
         <tr class="fila" mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
     </table>
     <mat-divider></mat-divider>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="pageSize || 10" showFirstLastButtons aria-label="Select page" *ngIf="data.length > 0">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="pageSize || 10" showFirstLastButtons aria-label="Select page" *ngIf="_data.length > 0">
     </mat-paginator>
 </div>

@@ -22,6 +22,19 @@
     padding: 1rem!important;
 }
 
+@media screen and (max-width: 578px) {
+    .grilla__suscripciones {
+        tbody {
+            tr {
+                margin-bottom: 0.5rem;
+                border: 1px solid #3f4948;
+                border-radius: 5px;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 480px) {
     .mat-mdc-tab-group{
         padding: 0!important;

@@ -1,4 +1,4 @@
-<div class="overflow-x-scroll">
+<div class="grilla__cuotas overflow-x-scroll p-2 p-sm-0">
     <section class="filters__container row">
         <div class="col-12">
             <label>Filtros:</label>
@@ -43,39 +43,38 @@
         </ng-container>
 
         <ng-container matColumnDef="cuotas">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by cuotas" class="px-0"> Cuotas </th>
-            <td class="border-0 py-1 px-1" mat-cell *matCellDef="let registro">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by cuotas" class="d-none d-lg-table-cell px-0"> Cuotas </th>
+            <td class="d-none d-lg-table-cell border-0 py-1 px-1" mat-cell *matCellDef="let registro">
                 {{registro.cuotas}}
             </td>
         </ng-container>
 
         <ng-container matColumnDef="valorFinal">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by valor" class="px-0"> Valor </th>
-            <td class="border-0 py-1 px-0" mat-cell *matCellDef="let registro">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by valor" class="d-none d-lg-table-cell px-0"> Valor </th>
+            <td class="d-none d-lg-table-cell border-0 py-1 px-0" mat-cell *matCellDef="let registro">
                 <span class="text-warning">$ {{registro.registros[0]?.valor.toLocaleString("es-AR")}}</span>
             </td>
         </ng-container>
 
         <ng-container matColumnDef="registros">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by registros" class="px-0"> Detalle </th>
-            <td class="d-flex border-0 py-1 px-0 h-100 align-items-center" mat-cell *matCellDef="let registro">
-                <button mat-mini-fab color="white" class="bg-secondary" (click)="getDetalle(registro)"
+            <td class="d-flex border-0 py-1 px-0 h-100 align-items-center justify-content-center flex-column flex-sm-row gap-2" mat-cell *matCellDef="let registro">
+                <button mat-mini-fab color="white" class="bg-secondary m-0" (click)="getDetalle(registro)"
                         [matTooltip]="'Categoría: ' + registro.registros[0].categoriaGastoNombre + 
                         '\nCuenta: ' + registro.registros[0].cuenta!.nombre"
                         aria-label="Button that displays a tooltip when focused or hovered over">
                     <mat-icon class="justify-center m-0">search</mat-icon>
                 </button>
-                <button mat-mini-fab color="primary" class="ms-2" matTooltip="Editar registro" (click)="updateRegistro(registro)">
+                <button mat-mini-fab color="primary" class="m-0" matTooltip="Editar registro" (click)="updateRegistro(registro)">
                     <mat-icon>edit</mat-icon>
                 </button>
             </td>
         </ng-container>
 
-
         <tr mat-header-row *matHeaderRowDef="nombreColumnas" class="header"></tr>
         <tr class="fila" mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
     </table>
     <mat-divider></mat-divider>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="pageSize || 10" showFirstLastButtons aria-label="Select page" *ngIf="_data.length > 0">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="pageSize || 10" showFirstLastButtons aria-label="Select page" *ngIf="length > 0">
     </mat-paginator>
 </div>
