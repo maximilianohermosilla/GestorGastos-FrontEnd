@@ -53,6 +53,7 @@ import { ChartBarHorizontalBalanceComponent } from './components/chart-bar-horiz
 import { InterceptorService } from './services/interceptor.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ExportExcelComponent } from './components/export-excel/export-excel.component';
+import { ChartsDemoComponent } from './components/charts-demo/charts-demo.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { ExportExcelComponent } from './components/export-excel/export-excel.com
     BalancePageComponent,
     RegistroGastosPageComponent,
     RegistroIngresosPageComponent,
+    ChartsDemoComponent
   ],
   imports: [
     BrowserModule,

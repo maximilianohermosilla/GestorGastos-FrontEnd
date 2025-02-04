@@ -1,0 +1,65 @@
+.chart__container{
+  padding: 2rem 0;
+  min-height: 480px;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+::ng-deep .mdc-tab{
+  border: 1px solid rgb(200,200,200,0.2)!important;
+  margin-bottom: 2px!important;
+}
+
+::ng-deep .mdc-tab:focus{
+  background-color: rgb(0, 0, 0,0.5);
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}
+
+.mat-mdc-row .mat-mdc-cell:hover {
+  border: 0;
+  opacity: 0.5;
+}
+
+.example-month-picker .mat-calendar-period-button {
+  pointer-events: none;
+}
+
+.example-month-picker .mat-calendar-arrow {
+  display: none;
+}
+
+::ng-deep.legend-labels::-webkit-scrollbar{
+  width: 8px;
+  background-color: rgba(0, 79, 79, 1);
+  border-radius: 20px;
+}
+
+::ng-deep .legend-labels::-webkit-scrollbar:window-inactive {
+  display: none;
+}
+
+::ng-deep.legend-labels::-webkit-scrollbar-thumb  {
+  background-color:rgba(21, 149, 149, 0.9);
+  border-radius: 6px;
+}
+
+@media screen and (max-width: 576px){
+  .chart__container{
+    border: 0;
+    margin-bottom: 1rem;
+  }
+  
+}

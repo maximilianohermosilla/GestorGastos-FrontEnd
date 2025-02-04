@@ -1,0 +1,46 @@
+<div id="container__balance" class="parallax-container container__balance">    
+    <div class="section__balance">
+        <div class="container">
+            <!-- <div class="d-flex justify-content-center gap-3">
+                <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
+            </div> -->
+            <div class="container d-flex justify-content-center text-info text-center"  *ngIf="(listaRegistros.length == 0 && listaIngresos.length == 0)">
+                <h6>No se encontraron resultados</h6>
+            </div>
+
+            <div class="row shadow" *ngIf="!(listaRegistros.length == 0 && listaIngresos.length == 0)">
+                <!-- Chart Bar Horizontal -->
+                <div class="col-12 col-xl-4 chart__container bg-dark">
+                    <mat-card-header class="d-flex text-center justify-content-center">
+                        <h6 class="pb-2 px-1">Gastos por categoría <span class="text-info">({{fechaPeriodo}})</span></h6>
+                    </mat-card-header>
+                    <app-chart-bar-horizontal-balance class="d-flex justify-content-center gap-2"
+                        [dataRegistros]="listaRegistros" [dataIngresos]="listaIngresos"
+                        [hidden]="listaRegistros.length==0 && listaIngresos.length==0">
+                    </app-chart-bar-horizontal-balance>
+                </div>
+
+                <!-- Chart Bar Vertical -->
+                <div class="col-12 col-xl-4 chart__container bg-dark">
+                    <mat-card-header class="d-flex text-center justify-content-center">
+                        <h6 class="pb-2 px-1">Gastos por cuenta <span class="text-info">({{fechaPeriodo}})</span></h6>
+                    </mat-card-header>
+                    <app-chart-bar-vertical-balance class="d-flex justify-content-center gap-2"
+                        [dataRegistros]="listaRegistros" [dataIngresos]="listaIngresos"
+                        [hidden]="listaRegistros.length==0 && listaIngresos.length==0">
+                    </app-chart-bar-vertical-balance>
+                </div>
+
+                <!-- Chart Pie -->
+                <div class="col-12 col-xl-4 chart__container bg-dark">
+                    <mat-card-header class="d-flex text-center justify-content-center">
+                        <h6 class="pb-2 px-1">Balance Ingresos/Egresos <span class="text-info">({{fechaPeriodo}})</span></h6>
+                    </mat-card-header>
+                    <app-chart-pie-balance class="d-flex justify-content-center align-items-start h-100 gap-2"
+                        [dataRegistros]="listaRegistros" [dataIngresos]="listaIngresos"
+                        [hidden]="listaRegistros.length==0 && listaIngresos.length==0">
+                    </app-chart-pie-balance>
+                </div>                
+            </div>
+        </div>
+    </div>

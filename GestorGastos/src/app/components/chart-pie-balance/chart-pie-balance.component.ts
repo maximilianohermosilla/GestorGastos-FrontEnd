@@ -86,7 +86,6 @@ export class ChartPieBalanceComponent {
     const categoriaSelected = JSON.parse(JSON.stringify(data));
     const leyenda = categoriaSelected.name ?? categoriaSelected;
     if(leyenda == "Disponible"){
-      console.log(this.dataIngresos)
       //const ingresos = this.dataIngresos.filter((r: any) => r.pagado == (categoriaSelected.name == "Pagado"));
       //this.getDetalleIngresos(this.dataIngresos)  
     }

@@ -4,35 +4,43 @@
     <div class="container">
       <p class="text-secondary text-center pb-3">Gestor de gastos, ingresos y balances. Este gestor le permitirá
         ingresar todos los gastos diarios y mensuales, añadiendo la posibilidad de agregar suscripciones a distintos
-        servicios y compras en cuotas para un mejor control de sus finanzas.</p>
-    </div>
-  </div>
-
-
-  <div class="bg-dark py-5 mb-3">
-    <div class="container my-3 justify-content-center" [hidden]="isAdmin">
-      <button mat-stroked-button id="download-button"
-        class="d-flex waves-effect waves-light teal lighten-1 m-auto rounded-0 fs-5 p-5" (click)="toggleLogin()">Iniciar
-        Sesión
-      </button>
-    </div>
-    <div class="container" [hidden]="!isAdmin">
-      <h6 class="text-center mb-0">Bienvenido/a, </h6>
-      <p class="fs-6 text-center text-info m-0">{{userName}}</p>
-      <div class="d-flex flex-row justify-content-center me-3 gap-5 mt-3" *ngIf="isAdmin">
-        <button mat-fab (click)="btnClick('balance')" class="justify-content-center p-1" color="primary">
-          <mat-icon class="nav-icon p-0 m-0 justify-center">balance</mat-icon>
+        servicios y compras en cuotas para un mejor control de sus finanzas.
+      </p>
+      <div class="container my-3 justify-content-center pb-3" [hidden]="isAdmin">
+        <button mat-stroked-button id="download-button"
+          class="d-flex waves-effect waves-light teal lighten-1 m-auto rounded-0 fs-5 p-4 mb-3" (click)="toggleLogin()">Iniciar
+          Sesión
         </button>
-        <button mat-fab (click)="btnClick('registrar-ingresos')" class="justify-content-center p-1" color="primary">
-          <mat-icon class="nav-icon p-0 m-0 justify-center">account_balance</mat-icon>
-        </button>
-        <button mat-fab (click)="btnClick('registrar-gastos')" class="justify-content-center p-1" color="primary">
-          <mat-icon class="nav-icon p-0 m-0 justify-center">paid</mat-icon>
-        </button>
+      </div>
+      <div class="container my-3 pb-3" [hidden]="!isAdmin">
+        <h6 class="text-center mb-0">Bienvenido/a, </h6>
+        <p class="fs-6 text-center text-info m-0">{{userName}}</p>
+        <div class="d-flex flex-row justify-content-center me-3 gap-5 mt-3" *ngIf="isAdmin">
+          <button mat-fab (click)="btnClick('balance')" class="justify-content-center p-1" color="primary" matTooltip="Balance">
+            <mat-icon class="nav-icon p-0 m-0 justify-center">balance</mat-icon>
+          </button>
+          <button mat-fab (click)="btnClick('registrar-ingresos')" class="justify-content-center p-1" color="primary" matTooltip="Ingresos">
+            <mat-icon class="nav-icon p-0 m-0 justify-center">account_balance</mat-icon>
+          </button>
+          <button mat-fab (click)="btnClick('registrar-gastos')" class="justify-content-center p-1" color="primary" matTooltip="Gastos">
+            <mat-icon class="nav-icon p-0 m-0 justify-center">paid</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
+  <div class="bg-dark py-5 mb-3">
+    <h3 class="text-center">Dashboard</h3>
+    <div class="container">
+      <p class="text-secondary text-center pb-3">
+        Esto es una demostración de alguno de los gráficos que pueden generarse en la aplicación. De esta manera, el usuario puede visualizar los datos de forma visual y gráfica. Además, puede observar el detalle de cada una de estas categorías y editar la información que considere necesaria.
+      </p>
+    </div>
+
+    <app-charts-demo></app-charts-demo>
+  </div>
+<!-- 
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
@@ -43,7 +51,7 @@
     </div>
     <div class="parallax background2"><img src="..\..\assets\img\background2.jpg" alt="Unsplashed background img 2">
     </div>
-  </div>
+  </div> -->
 
 
   <!-- 
