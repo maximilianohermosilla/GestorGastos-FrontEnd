@@ -27,6 +27,8 @@ export class GrillaCardIngresoComponent {
   categorias: any[] = [];
   selectedCategoria = 0;
 
+  subtotal: number = 0;
+  
   constructor(private liveAnnouncer: LiveAnnouncer){
   }
   ngOnInit(): void {
@@ -43,6 +45,7 @@ export class GrillaCardIngresoComponent {
 
   setDatasource(data: any[]){
     this.length = data.length;
+    this.subtotal = this.sumarValores(data);
     this.dataSource = new MatTableDataSource<any[]>(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -78,4 +81,7 @@ export class GrillaCardIngresoComponent {
       filter((d: any) => this.selectedCategoria == 0 || this.selectedCategoria == d.categoriaIngreso.id));
   }
 
+  sumarValores(lista: any[]) {
+    return lista.reduce((acumulador, objeto) => acumulador + objeto.valor, 0);
+  }
 }

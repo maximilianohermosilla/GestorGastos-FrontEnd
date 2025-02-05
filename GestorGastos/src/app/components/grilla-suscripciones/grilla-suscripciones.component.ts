@@ -30,6 +30,8 @@ export class GrillaSuscripcionesComponent {
   selectedCategoria = 0;
   selectedCuenta = 0;
 
+  subtotal: number = 0;
+  
   constructor(private liveAnnouncer: LiveAnnouncer, public dialog: MatDialog, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
@@ -45,6 +47,7 @@ export class GrillaSuscripcionesComponent {
 
   setDatasource(data: any[]) {
     this.length = data.length;
+    this.subtotal = this.sumarValores(data);
     this.dataSource = new MatTableDataSource<any[]>(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -114,5 +117,9 @@ export class GrillaSuscripcionesComponent {
   aplicarFiltros() {
     this.setDatasource(this._data.filter((d: any) => (this.selectedCuenta == 0 || this.selectedCuenta == d.registros[0].cuenta.id) &&
         (this.selectedCategoria == 0 || this.selectedCategoria == d.registros[0].categoriaGasto.id)));
+  }
+  
+  sumarValores(lista: any[]) {
+    return lista.reduce((acumulador, objeto) => acumulador + objeto.registros[0].valor, 0);
   }
 }

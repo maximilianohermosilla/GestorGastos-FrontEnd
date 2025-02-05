@@ -106,8 +106,7 @@ export class GrillaCardRegistroComponent {
         (this.selectedCategoria == 0 || this.selectedCategoria == d.categoriaGasto.id)));
   }
 
-  
-sumarValores(lista: any[]) {
-  return lista.reduce((acumulador, objeto) => acumulador + objeto.valor, 0);
-}
+  sumarValores(lista: any[]) {
+    return lista.reduce((acumulador, objeto) => acumulador + objeto.valor, 0);
+  }
 }

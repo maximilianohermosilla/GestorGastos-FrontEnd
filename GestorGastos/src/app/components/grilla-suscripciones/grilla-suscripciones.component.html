@@ -84,6 +84,7 @@
         <tr class="fila" mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
     </table>
     <mat-divider></mat-divider>
+    <p class="text-secondary fs-6 m-0 text-end pe-2">Total: ${{subtotal.toLocaleString("es-AR")}}</p>
     <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="pageSize || 10" showFirstLastButtons aria-label="Select page" *ngIf="_data.length > 0">
     </mat-paginator>
     <footer class="d-flex justify-content-end my-2">

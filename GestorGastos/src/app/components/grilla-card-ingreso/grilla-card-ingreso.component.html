@@ -14,7 +14,8 @@
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" #table matSort
         (matSortChange)="announceSortChange($event)">
         <ng-container matColumnDef="fecha">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="h4"> Ingresos </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by ingreso" class="">
+                Detalle </th>
             <td class="border-0 py-1" mat-cell *matCellDef="let registro">
                 <app-card-ingreso [registro]="registro"></app-card-ingreso>
             </td>
@@ -23,6 +24,7 @@
         <tr class="fila" mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
     </table>
     <mat-divider></mat-divider>
+    <p class="text-secondary fs-6 m-0 text-end pe-2">Total: ${{subtotal.toLocaleString("es-AR")}}</p>
     <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="pageSize || 10" showFirstLastButtons aria-label="Select page"  *ngIf="length > 0">
     </mat-paginator>
     <footer class="d-flex justify-content-end my-2">

@@ -1,7 +1,7 @@
 import 'moment/locale/ja';
 import 'moment/locale/fr';
 import moment from 'moment';
-import { Component, EventEmitter, Inject, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Inject, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { Ingreso } from 'src/app/models/ingreso';
@@ -14,6 +14,9 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/mat
 import { CategoriaGasto } from 'src/app/models/categoria-gasto';
 import { CategoriaIngreso } from 'src/app/models/categoria-ingreso';
 import { FORMAT_DATE } from 'src/app/models/format-date';
+import { MatDialog } from '@angular/material/dialog';
+import { AbmRegistroComponent } from 'src/app/components/abm-registro/abm-registro.component';
+import { AbmIngresoComponent } from 'src/app/components/abm-ingreso/abm-ingreso.component';
 
 @Component({
   selector: 'app-balance-page',
@@ -63,7 +66,7 @@ export class BalancePageComponent {
   listaCategoriaIngreso: CategoriaIngreso[] = [];
 
   constructor(private formBuilder: FormBuilder, private tokenService: TokenService, private registroService: RegistroService,
-    private ingresoService: IngresoService, private dateAdapter: DateAdapter<Date>,
+    public dialog: MatDialog, private cdr: ChangeDetectorRef, private ingresoService: IngresoService, private dateAdapter: DateAdapter<Date>,
     @Inject(MAT_DATE_LOCALE) private _locale: string) {
       this._locale = 'fr';
       this.dateAdapter.setLocale(this._locale);
@@ -101,4 +104,29 @@ export class BalancePageComponent {
     });
   }
 
+  addRegistro() {
+    const dialogRef = this.dialog.open(AbmRegistroComponent, {
+      width: "99vw",
+      minWidth: "50vw",
+      maxHeight: '80vh',
+      disableClose: false,
+      data: undefined
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      this.cdr.detectChanges();
+    })
+  }
+  
+  addIngreso() {
+    const dialogRef = this.dialog.open(AbmIngresoComponent, {
+      width: "99vw",
+      minWidth: "50vw",
+      maxHeight: '80vh',
+      disableClose: false,
+      data: undefined
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      this.cdr.detectChanges();
+    })
+  }
 }

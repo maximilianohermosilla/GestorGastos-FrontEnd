@@ -1,5 +1,5 @@
 <div id="container__balance" class="parallax-container container__balance">
-    <app-header-banner title="Balance de Gastos"></app-header-banner>
+    <app-header-banner title="Balance de Gastos" icon="balance"></app-header-banner>
     <div class="section__balance">
         <div class="container">
             <div class="d-flex justify-content-center gap-3">
@@ -45,12 +45,25 @@
 
                 <!-- Grilla Gastos -->
                 <div class="col-12 col-md-6 grilla">
+                    <h6 class="text-light mt-3 text-center text-md-start">Gastos</h6>
+                    <div class="d-flex justify-content-center mb-2">
+                        <button mat-stroked-button class="rounded-3 w-100" color="" (click)="addRegistro()">
+                            <mat-icon>add</mat-icon>Agregar gasto
+                        </button>
+                    </div>
                     <app-grilla-card-registro [data]="listaRegistros"></app-grilla-card-registro>
                     <p class="text-center py-3" *ngIf="listaRegistros.length == 0">No se encontraron gastos</p>
                 </div>
 
                 <!-- Grilla Ingresos -->
                 <div class="col-12 col-md-6 grilla">
+                    <mat-divider class="d-block d-md-none"></mat-divider>
+                    <h6 class="text-light mt-3 text-center text-md-start">Ingresos</h6>
+                    <div class="d-flex justify-content-center mb-2 ">
+                        <button mat-stroked-button class="rounded-3 w-100" color="" (click)="addIngreso()">
+                            <mat-icon>add</mat-icon>Agregar ingreso
+                        </button>
+                    </div>
                     <app-grilla-card-ingreso [data]="listaIngresos"></app-grilla-card-ingreso>
                     <p class="text-center py-3" *ngIf="listaIngresos.length == 0">No se encontraron ingresos</p>
                 </div>
