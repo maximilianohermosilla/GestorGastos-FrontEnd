@@ -1,0 +1,22 @@
+::ng-deep .chart-legend .legend-labels {
+    overflow: auto !important;
+    overflow-x: visible !important;
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+    padding: 1rem !important;
+}
+
+::ng-deep label,
+::ng-deep text,
+::ng-deep g {
+    color: white !important;
+    text-shadow: 1px 1px 1px lightgray;
+}
+
+.chart__container{
+    width: 100%;
+    height: calc(100% + 150px);
+    position: relative;
+    overflow: visible;
+}

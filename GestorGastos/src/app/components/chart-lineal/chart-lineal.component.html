@@ -1,0 +1,20 @@
+@defer{
+    <div class="chart__container py-3 mb-5 h-100">
+        <ngx-charts-line-chart
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="single"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [legendPosition]="legendPosition"
+            [legendTitle]="legendTitle"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            (select)="onSelect($event)">
+        </ngx-charts-line-chart>
+    </div>
+}

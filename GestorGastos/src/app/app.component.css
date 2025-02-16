@@ -37,6 +37,11 @@ mat-sidenav-content {
   align-items: space-between;
 }
 
+::ng-deep g {
+  color: white !important;
+  text-shadow: 1px 1px 1px lightgray;
+}
+
 .button-login {
   margin: 0 6px;
 }

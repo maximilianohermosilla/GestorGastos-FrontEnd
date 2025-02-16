@@ -1,0 +1,3 @@
+.chart__container{
+  width: clamp(350px, 100vw, 100%);
+}

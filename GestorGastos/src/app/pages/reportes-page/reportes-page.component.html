@@ -1,0 +1,20 @@
+<div id="container__reportes" class="container__reportes w-100">
+    <app-header-banner title="Reportes" icon="bar_chart"></app-header-banner>
+    <div class="section__reportes w-100">
+        <div class="container-fluid w-100">
+            <div class="d-flex justify-content-center gap-3">
+                <app-form-periodo (onChange)="getPeriodo($event)" [hiddenMonth]="true" [inputPeriodo]="'2025'"></app-form-periodo>
+            </div>
+            <div class="container d-flex justify-content-center text-info text-center"
+                *ngIf="(listaRegistros.length == 0 && listaIngresos.length == 0)">
+                <h6>No se encontraron resultados</h6>
+            </div>
+
+            <div class="d-flex justify-content-start" *ngIf="!(listaRegistros.length == 0 && listaIngresos.length == 0)">
+                <app-chart-lineal class="chart__container d-flex justify-content-center gap-2"
+                    [dataRegistros]="listaRegistros" [dataIngresos]="listaIngresos"
+                    [hidden]="listaRegistros.length==0 && listaIngresos.length==0">
+                </app-chart-lineal>
+            </div>
+        </div>
+    </div>

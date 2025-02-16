@@ -54,6 +54,8 @@ import { InterceptorService } from './services/interceptor.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ExportExcelComponent } from './components/export-excel/export-excel.component';
 import { ChartsDemoComponent } from './components/charts-demo/charts-demo.component';
+import { ReportesPageComponent } from './pages/reportes-page/reportes-page.component';
+import { ChartLinealComponent } from './components/chart-lineal/chart-lineal.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +93,9 @@ import { ChartsDemoComponent } from './components/charts-demo/charts-demo.compon
     BalancePageComponent,
     RegistroGastosPageComponent,
     RegistroIngresosPageComponent,
-    ChartsDemoComponent
+    ChartsDemoComponent,
+    ReportesPageComponent,
+    ChartLinealComponent
   ],
   imports: [
     BrowserModule,

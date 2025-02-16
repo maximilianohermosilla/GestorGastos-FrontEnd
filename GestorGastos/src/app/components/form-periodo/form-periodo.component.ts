@@ -1,7 +1,7 @@
 import 'moment/locale/ja';
 import 'moment/locale/fr';
 import moment from 'moment';
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
@@ -25,6 +25,8 @@ import { FORMAT_DATE } from 'src/app/models/format-date';
 
 export class FormPeriodoComponent {
   @Output() onChange = new EventEmitter<any>();
+  @Input() hiddenMonth: boolean = false;
+  @Input() inputPeriodo: string = "";
 
   formGroup: FormGroup;
   periodo = new FormControl(moment());
@@ -45,6 +47,9 @@ export class FormPeriodoComponent {
     this.fechaPeriodo = new Date().getFullYear() + "-" + ("0" + (new Date().getMonth() + 1)).slice(-2);
     
     setTimeout(() => {
+      if(this.inputPeriodo != ""){
+        this.fechaPeriodo = this.inputPeriodo;
+      }
       this.onChange.emit(this.fechaPeriodo);      
     }, 1000);
   }

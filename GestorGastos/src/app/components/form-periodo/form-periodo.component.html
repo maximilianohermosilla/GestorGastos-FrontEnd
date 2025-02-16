@@ -1,5 +1,5 @@
 <mat-tab-group class="periodo__container">
-    <mat-tab label="Mes">
+    <mat-tab label="Mes" *ngIf="!hiddenMonth">
         <mat-form-field color="primary" appearance="fill" class="w-100">
             <mat-label>Periodo</mat-label>
             <input matInput placeholder="AAAA/MM" [formControl]="periodo" [matDatepicker]="dp" (blur)="onInputBlur($event)" (keydown.enter)="onEnterKey($event)" >

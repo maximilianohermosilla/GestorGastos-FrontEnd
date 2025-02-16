@@ -104,7 +104,7 @@ export class AbmRegistroComponent {
           this._snackBar.open("Gasto actualizado correctamente", "Cerrar");
         }
         setTimeout(() => {
-          window.location.reload();
+          //window.location.reload();
         }, 2000);
       });
     } else {
@@ -112,7 +112,7 @@ export class AbmRegistroComponent {
         if (data.id && data.id > 0) {
           this._snackBar.open("Gasto registrado correctamente", "Cerrar");
           setTimeout(() => {
-            window.location.reload();
+            //window.location.reload();
           }, 2000);
         }
       });

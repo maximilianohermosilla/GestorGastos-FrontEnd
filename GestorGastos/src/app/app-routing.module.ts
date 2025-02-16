@@ -9,6 +9,7 @@ import { RegistroGastosPageComponent } from './pages/registro-gastos-page/regist
 import { RegistroIngresosPageComponent } from './pages/registro-ingresos-page/registro-ingresos-page.component';
 import { PerfilPageComponent } from './pages/perfil-page/perfil-page.component';
 import { GuardGuard } from './guards/guard.guard';
+import { ReportesPageComponent } from './pages/reportes-page/reportes-page.component';
 
 const routes: Routes = [
   {
@@ -45,11 +46,11 @@ const routes: Routes = [
     component: PerfilPageComponent,
     canActivate: [GuardGuard] 
   },
-  // {
-  //   path: 'reportes',
-  //   component: ReportesComponent,
-  //   canActivate: [GuardGuard]
-  // },
+  {
+    path: 'reportes',
+    component: ReportesPageComponent,
+    canActivate: [GuardGuard]
+  },
   // {
   //   path: 'configuracion',
   //   component: ConfiguracionComponent,
