@@ -82,6 +82,12 @@ nav .brand-logo {
   white-space: pre-line !important;
 }
 
+::ng-deep .mat-mdc-dialog-surface{
+  overflow: hidden;
+  overflow-y: hidden;
+}
+
+
 ::ng-deep .mat-tooltip {
   white-space: pre-line !important;
 }

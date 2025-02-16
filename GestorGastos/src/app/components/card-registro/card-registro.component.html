@@ -9,7 +9,7 @@
             <p class="m-0">{{registro.fecha.slice(0, 10)}} - <span
                     class="text-secondary">{{registro.descripcion}}</span></p>
             <p class="m-0 text-info">{{registro.cuenta.nombre}}</p>
-            <p class="m-0 text-warning" *ngIf="!registro.pagado && registro.fechaPago == undefined">$
+            <p class="m-0 text-warning" *ngIf="!registro.pagado">$
                 {{registro.valor.toLocaleString("es-AR")}}</p>
             <p class="m-0 text-success" *ngIf="registro.pagado && registro.fechaPago != undefined">$
                 {{registro.valor.toLocaleString("es-AR")}} &#10004;</p>

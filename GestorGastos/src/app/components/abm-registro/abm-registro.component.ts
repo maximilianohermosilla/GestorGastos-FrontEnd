@@ -70,6 +70,7 @@ export class AbmRegistroComponent {
       idCategoriaGasto: [data?.idCategoriaGasto ?? '', [Validators.required]],
       idCuenta: [data?.idCuenta ?? undefined,],
       idEmpresa: [data?.idEmpresa ?? undefined,],
+      idSuscripcion: [data?.idSuscripcion ?? undefined,],
       idRegistroVinculado: [data?.idRegistroVinculado ?? undefined,],
       numeroCuota: [data?.numeroCuota ?? undefined,],
       valor: [data?.valor ?? '', [Validators.required]],

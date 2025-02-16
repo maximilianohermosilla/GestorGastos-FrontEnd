@@ -58,15 +58,15 @@ export class LandingPageComponent {
 
   login(){
     const dialogRef = this.dialog.open(LoginComponent,{
-      width: '640px',disableClose: false, data: {
+      width: 'clamp(350px, 70vw, 100%)',disableClose: false, data: {
         title: "Ingresar",        
       } 
     });
     dialogRef.afterClosed().subscribe( res => {
-      setTimeout(() => {
-        window.location.reload();            
+      if(res){
         this.spinnerService.hide();
-      }, 1000);
+        window.location.reload();            
+      }
     })   
   }
 
