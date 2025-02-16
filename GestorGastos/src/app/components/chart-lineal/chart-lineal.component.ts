@@ -96,8 +96,9 @@ export class ChartLinealComponent {
   
   onSelect(data: any): void {
     const categoriaSelected = JSON.parse(JSON.stringify(data));
+    console.log(categoriaSelected)
     const registrosCategoria = this.dataRegistros.filter((r: any) => r.categoriaGasto.nombre == (categoriaSelected.series ?? categoriaSelected) &&
-                                                                    r.periodo == (categoriaSelected.name ?? categoriaSelected) );    
+                                                                    r.periodo == (categoriaSelected.name ?? r.periodo) );    
     this.getDetalle(registrosCategoria)
   }
 

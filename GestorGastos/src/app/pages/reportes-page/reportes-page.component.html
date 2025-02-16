@@ -10,6 +10,7 @@
                 <h6>No se encontraron resultados</h6>
             </div>
 
+            <h6 class="text-light mt-3 text-center text-md-start w-100 ps-2">Reporte anual por categoría</h6>
             <div class="d-flex justify-content-start" *ngIf="!(listaRegistros.length == 0 && listaIngresos.length == 0)">
                 <app-chart-lineal class="chart__container d-flex justify-content-center gap-2"
                     [dataRegistros]="listaRegistros" [dataIngresos]="listaIngresos"
