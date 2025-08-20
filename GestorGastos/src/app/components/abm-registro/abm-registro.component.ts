@@ -2,10 +2,10 @@ import 'moment/locale/ja';
 import 'moment/locale/fr';
 import * as _moment from 'moment';
 import { default as _rollupMoment } from 'moment';
-import { Component, Inject, Input, Optional, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Optional, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TarjetaComponent } from '../abm-tarjeta/abm-tarjeta.component';
 import { Registro } from 'src/app/models/registro';
 import { Empresa } from 'src/app/models/empresa';
@@ -46,6 +46,7 @@ export class AbmRegistroComponent {
   @Input() listaSuscripciones: Suscripcion[] = [];
   @Input() listaCuentas: Cuenta[] = [];
   @Input() listaCategoriasGasto: CategoriaGasto[] = [];
+  @Output() emitGuardarRegistro = new EventEmitter<any>();
 
   dataSource: any;
   formGroup: FormGroup;
@@ -58,7 +59,7 @@ export class AbmRegistroComponent {
   constructor(private formBuilder: FormBuilder, public dialogoConfirmacion: MatDialog, private tokenService: TokenService,
     private dateAdapter: DateAdapter<Date>, private registroService: RegistroService, private _snackBar: MatSnackBar,
     private categoriaGastoService: CategoriaGastoService, private empresaService: EmpresaService, private cuentaService: CuentaService,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
+    public dialogRef: MatDialogRef<AbmRegistroComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     let userId = this.tokenService.getUserId() || 0;
 
@@ -102,22 +103,20 @@ export class AbmRegistroComponent {
       this.registroService.Update(this.datos).subscribe(data => {
         if (data.id && data.id > 0) {
           this._snackBar.open("Gasto actualizado correctamente", "Cerrar");
+          this.dialogRef.close();
         }
-        setTimeout(() => {
-          //window.location.reload();
-        }, 2000);
+        
       });
     } else {
       this.registroService.Insert(this.datos).subscribe(data => {
         if (data.id && data.id > 0) {
           this._snackBar.open("Gasto registrado correctamente", "Cerrar");
-          setTimeout(() => {
-            //window.location.reload();
-          }, 2000);
+          this.dialogRef.close();
         }
       });
     }
 
+    this.emitGuardarRegistro.emit(this.datos);
     this.datos.fecha = moment(this.datos.fecha).format("YYYY-MM-DD[T]HH:mm:ss");
   }
 

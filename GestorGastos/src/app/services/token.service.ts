@@ -15,41 +15,41 @@ export class TokenService {
   constructor() { }
 
   public setToken(token: string): void{
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+    window.localStorage.removeItem(TOKEN_KEY);
+    window.localStorage.setItem(TOKEN_KEY, token);
   }
 
   public setUserName(userName: string): void{
-    window.sessionStorage.removeItem(USERNAME_KEY);
-    window.sessionStorage.setItem(USERNAME_KEY, userName);
+    window.localStorage.removeItem(USERNAME_KEY);
+    window.localStorage.setItem(USERNAME_KEY, userName);
   }
 
   public setUserId(userId: string): void{
-    window.sessionStorage.removeItem(USERNAME_ID);
-    window.sessionStorage.setItem(USERNAME_ID, userId);
+    window.localStorage.removeItem(USERNAME_ID);
+    window.localStorage.setItem(USERNAME_ID, userId);
   }
 
   public setAuthorities(authorities: string): void{
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+    window.localStorage.removeItem(AUTHORITIES_KEY);
+    window.localStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
   }
 
   public getToken(): string | null{
-    return sessionStorage.getItem(TOKEN_KEY);
+    return localStorage.getItem(TOKEN_KEY);
   }
 
   public getUserName(): string{
-    return sessionStorage.getItem(USERNAME_KEY)!;
+    return localStorage.getItem(USERNAME_KEY)!;
   }
 
   public getUserId(): string{
-    return sessionStorage.getItem(USERNAME_ID)!;
+    return localStorage.getItem(USERNAME_ID)!;
   }
 
   /*public getAuthoritiesMultiple(): string[]{
     this.perfiles = [];
-    if (sessionStorage.getItem(AUTHORITIES_KEY)){
-      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!).forEach( (authority: { authority: string; }) => {
+    if (localStorage.getItem(AUTHORITIES_KEY)){
+      JSON.parse(localStorage.getItem(AUTHORITIES_KEY)!).forEach( (authority: { authority: string; }) => {
         this.perfiles.push(authority.authority);
       });
     }
@@ -58,15 +58,15 @@ export class TokenService {
   
   public getAuthorities(): string{
     this.perfil = "";
-    //console.log(sessionStorage.getItem(AUTHORITIES_KEY));
-    if (sessionStorage.getItem(AUTHORITIES_KEY) != undefined)
+    //console.log(localStorage.getItem(AUTHORITIES_KEY));
+    if (localStorage.getItem(AUTHORITIES_KEY) != undefined)
     {      
-      this.perfil = JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!)
+      this.perfil = JSON.parse(localStorage.getItem(AUTHORITIES_KEY)!)
     }    
     return this.perfil;    
   }    
 
     public logOut(): void {
-      window.sessionStorage.clear();
+      window.localStorage.clear();
     }
 }

@@ -113,6 +113,7 @@ export class BalancePageComponent {
       data: undefined
     });
     dialogRef.afterClosed().subscribe(res => {
+      this.getRegistros(this.fechaPeriodo);
       this.cdr.detectChanges();
     })
   }
@@ -126,6 +127,7 @@ export class BalancePageComponent {
       data: undefined
     });
     dialogRef.afterClosed().subscribe(res => {
+      this.getIngresos(this.fechaPeriodo);
       this.cdr.detectChanges();
     })
   }

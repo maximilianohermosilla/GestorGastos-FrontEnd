@@ -25,7 +25,7 @@ export class LoginService {
   isExpired: any;
 
   constructor(private httpClient: HttpClient, private router: Router, private spinnerService: SpinnerService, private tokenService: TokenService) { 
-    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('currentUser') || '{}'));
+    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser') || '{}'));
   }
 
   public GetById(id: Number): Observable<any> {
@@ -43,7 +43,7 @@ export class LoginService {
         this.tokenService.setUserName(this.decodeToken.unique_name);
         this.tokenService.setUserId(this.decodeToken.nameid);
         this.tokenService.setAuthorities(this.decodeToken.role);
-        sessionStorage.setItem('curentUser', JSON.stringify(this.decodeToken));
+        localStorage.setItem('curentUser', JSON.stringify(this.decodeToken));
         this.currentUserSubject.next(this.decodeToken);
 
         return this.decodeToken;
