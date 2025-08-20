@@ -1,5 +1,224 @@
 <main class="w-100">
-  <div class="bg-dark">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Controla tus gastos, alcanza tus metas</h1>
+      <p>GestorGastos es la aplicación web que te ayuda a administrar tus finanzas personales de manera simple y efectiva.
+      </p>
+      <!-- <button mat-stroked-button class="cta-button mat-raised-button mat-primary">Comenzar ahora</button> -->
+      <button *ngIf="!isAdmin" mat-stroked-button id="download-button" (click)="toggleLogin()">Iniciar Sesión</button>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="section-title">Características Principales</h2>
+      <div class="features-grid">
+        <div class="feature-card d-flex flex-column justify-content-between bg-dark px-5 pb-5">
+          <div class="feature-icon">
+            <i class="material-icons mb-3">trending_up</i>
+            <h3>Seguimiento de Gastos</h3>
+          </div>
+          <p>Registra y categoriza todos tus gastos e ingresos en segundos con nuestra interfaz intuitiva.</p>
+        </div>
+        <div class="feature-card d-flex flex-column justify-content-between bg-dark px-5 pb-5">
+          <div class="feature-icon">
+            <i class="material-icons mb-3">insert_chart</i>
+            <h3>Reportes Detallados</h3>
+          </div>
+          <p>Visualiza tus patrones de gasto con gráficos interactivos y reportes personalizables.</p>
+        </div>
+        <div class="feature-card d-flex flex-column justify-content-between bg-dark px-5 pb-5">
+          <div class="feature-icon">
+            <i class="material-icons mb-3">notifications</i>
+            <h3>Suscripciones y Financiación</h3>
+          </div>
+          <p>Gestiona tus suscripciones y gastos en cuotas con tarjeta de crédito.</p>
+        </div>
+        <div class="feature-card d-flex flex-column justify-content-between bg-dark px-5 pb-5">
+          <div class="feature-icon">
+            <i class="material-icons mb-3">cloud_sync</i>
+            <h3>Sincronización Multi-dispositivo</h3>
+          </div>
+          <p>Accede a tu información desde cualquier dispositivo con nuestra sincronización en la nube.</p>
+        </div>
+        <div class="feature-card d-flex flex-column justify-content-between bg-dark px-5 pb-5">
+          <div class="feature-icon">
+            <i class="material-icons mb-3">security</i>
+            <h3>Seguridad de Datos</h3>
+          </div>
+          <p>Tus datos financieros están protegidos y no es necesario que ingreses números de cuenta o tarjeta.</p>
+        </div>
+        <div class="feature-card d-flex flex-column justify-content-between bg-dark px-5 pb-5">
+          <div class="feature-icon">
+            <i class="material-icons mb-3">savings</i>
+            <h3>Planificación de Metas</h3>
+          </div>
+          <p>Establece objetivos financieros y haz un seguimiento de tu progreso hacia ellos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- App Preview Section -->
+  <section class="app-preview" id="preview">
+    <div class="container">
+      <div class="preview-content px-3">
+        <div class="preview-image">
+          <img src="..\..\assets\img\graph5.png" alt="Vista previa de la aplicación">
+        </div>
+        <div class="preview-text">
+          <h2>Gestiona tus finanzas en pocos minutos al día</h2>
+          <p>Nuestra interfaz limpia y minimalista te permite registrar transacciones, ver resúmenes y analizar tus
+            patrones de gasto de forma rápida y sencilla.</p>
+          <ul>
+            <li>Registro rápido de gastos con categorización automática</li>
+            <li>Dashboard personalizable con la información que más te importa</li>
+            <li>Exportación de datos para tu contabilidad</li>
+          </ul>
+          <button mat-stroked-button (click)="isAdmin? btnClick('balance'): toggleLogin()" class="mat-raised-button mat-primary">Probar ahora</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <!-- <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros usuarios</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Desde que uso FinanTrack he podido ahorrar un 30% más cada mes. La categorización automática de gastos es increíble."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="material-icons mb-3">person</i>
+                        </div>
+                        <div>
+                            <strong>María López</strong>
+                            <p>Usuario desde 2022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"La aplicación es super intuitiva. En solo 10 minutos al día tengo control total sobre mis finanzas. ¡Los reportes son excelentes!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="material-icons mb-3">person</i>
+                        </div>
+                        <div>
+                            <strong>Carlos Mendoza</strong>
+                            <p>Usuario desde 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Por fin encontré una app de gastos que realmente se adapta a mis necesidades. Las alertas personalizadas me han evitado varios gastos impulsivos."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="material-icons mb-3">person</i>
+                        </div>
+                        <div>
+                            <strong>Ana Rodríguez</strong>
+                            <p>Usuario premium</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+  <!-- Pricing Section -->
+  <!-- <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Planes que se adaptan a ti</h2>
+            <p>Elige el plan que mejor se ajuste a tus necesidades financieras</p>
+            
+            <div class="pricing-options">
+                <div class="pricing-card">
+                    <h3>Básico</h3>
+                    <div class="price">Gratis<span>/siempre</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="material-icons mb-3">check_circle</i> Hasta 50 transacciones/mes</li>
+                        <li><i class="material-icons mb-3">check_circle</i> 3 categorías personalizadas</li>
+                        <li><i class="material-icons mb-3">check_circle</i> Reportes básicos</li>
+                        <li><i class="material-icons mb-3">check_circle</i> Soporte por email</li>
+                    </ul>
+                    <button class="mat-stroked-button">Empezar gratis</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Premium</h3>
+                    <div class="price">$4.99<span>/mes</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="material-icons mb-3">check_circle</i> Transacciones ilimitadas</li>
+                        <li><i class="material-icons mb-3">check_circle</i> Categorías ilimitadas</li>
+                        <li><i class="material-icons mb-3">check_circle</i> Reportes avanzados</li>
+                        <li><i class="material-icons mb-3">check_circle</i> Soporte prioritario</li>
+                        <li><i class="material-icons mb-3">check_circle</i> Sync multi-dispositivo</li>
+                        <li><i class="material-icons mb-3">check_circle</i> Exportación de datos</li>
+                    </ul>
+                    <button class="mat-raised-button mat-primary">Prueba 30 días gratis</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Familiar</h3>
+                    <div class="price">$7.99<span>/mes</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="material-icons mb-3">check_circle</i> Todas las features Premium</li>
+                        <li><i class="material-icons mb-3">check_circle</i> Hasta 5 usuarios</li>
+                        <li><i class="material-icons mb-3">check_circle</i> Presupuestos compartidos</li>
+                        <li><i class="material-icons mb-3">check_circle</i> Control parental</li>
+                        <li><i class="material-icons mb-3">check_circle</i> Dashboard familiar</li>
+                    </ul>
+                    <button class="mat-stroked-button">Contratar ahora</button>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content px-3">
+        <div class="footer-column">
+          <h4>GestorGastos</h4>
+          <p class="text-secondary">La forma más inteligente de gestionar tus gastos personales y alcanzar tus metas financieras.</p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Enlaces rápidos</h4>
+          <ul class="px-0">
+            <li><a class="text-secondary" href="#">Inicio</a></li>
+            <li><a class="text-secondary" href="#features">Características</a></li>
+            <li><a class="text-secondary" href="#preview">Cómo funciona</a></li>
+            <li><a class="text-secondary" href="#pricing">Precios</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul class="px-0">
+            <li><a class="text-secondary" href="#">Términos de servicio</a></li>
+            <li><a class="text-secondary" href="#">Política de privacidad</a></li>
+            <li><a class="text-secondary" href="#">Política de cookies</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Contacto</h4>
+          <div class="social-links">
+            <a href="#"><i class="material-icons">mail</i></a>
+            <a href="#"><i class="material-icons">phone</i></a>
+            <a href="#"><i class="material-icons">chat</i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- <div class="bg-dark">
     <app-header-banner title="Gestor de Gastos" icon="paid"></app-header-banner>
     <div class="container">
       <p class="text-secondary text-center pb-3">Gestor de gastos, ingresos y balances. Este gestor le permitirá
@@ -39,8 +258,8 @@
     </div>
 
     <app-charts-demo></app-charts-demo>
-  </div>
-<!-- 
+  </div> -->
+  <!-- 
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
@@ -61,7 +280,7 @@
       <div class="row">
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+            <h2 class="center brown-text"><i class="material-icons mb-3">flash_on</i></h2>
             <h5 class="center">Speeds up development</h5>
 
             <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our
@@ -73,7 +292,7 @@
 
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+            <h2 class="center brown-text"><i class="material-icons mb-3">group</i></h2>
             <h5 class="center">User Experience Focused</h5>
 
             <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework
@@ -84,7 +303,7 @@
 
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+            <h2 class="center brown-text"><i class="material-icons mb-3">settings</i></h2>
             <h5 class="center">Easy to work with</h5>
 
             <p class="light">We have provided detailed documentation as well as specific code examples to help new users

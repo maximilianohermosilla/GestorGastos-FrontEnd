@@ -56,6 +56,7 @@ import { ExportExcelComponent } from './components/export-excel/export-excel.com
 import { ChartsDemoComponent } from './components/charts-demo/charts-demo.component';
 import { ReportesPageComponent } from './pages/reportes-page/reportes-page.component';
 import { ChartLinealComponent } from './components/chart-lineal/chart-lineal.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { ChartLinealComponent } from './components/chart-lineal/chart-lineal.com
     SharedModule,
     NgxChartsModule,
     MatDialogModule,
+    MatGridListModule,
     ExportExcelComponent 
   ],
   providers: [DatePipe, FilterPipe,
