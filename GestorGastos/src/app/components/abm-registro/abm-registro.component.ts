@@ -5,7 +5,7 @@ import { default as _rollupMoment } from 'moment';
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { TarjetaComponent } from '../abm-tarjeta/abm-tarjeta.component';
 import { Registro } from 'src/app/models/registro';
 import { Empresa } from 'src/app/models/empresa';
@@ -38,6 +38,10 @@ const moment = _rollupMoment || _moment;
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
     { provide: MAT_DATE_FORMATS, useValue: FORMAT_DATE_DDMMYYYY },
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
   ],
   encapsulation: ViewEncapsulation.None,
 })
@@ -105,7 +109,7 @@ export class AbmRegistroComponent {
           this._snackBar.open("Gasto actualizado correctamente", "Cerrar");
           this.dialogRef.close();
         }
-        
+
       });
     } else {
       this.registroService.Insert(this.datos).subscribe(data => {
@@ -127,7 +131,7 @@ export class AbmRegistroComponent {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          this.registroService.eliminarById(this.data.id).subscribe(data => {   
+          this.registroService.eliminarById(this.data.id).subscribe(data => {
             setTimeout(() => {
               window.location.reload();
             }, 2000);
