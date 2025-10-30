@@ -62,7 +62,7 @@ export class FormPeriodoComponent {
 
     const month = normalizedMonthAndYear.month() + 1;
     const year = normalizedMonthAndYear.year();
-    var monthWithZero = month < 9 ? "0" + month : month;
+    var monthWithZero = month < 10 ? "0" + month : month;
     this.fechaPeriodo = year + "-" + monthWithZero;
 
     this.onChange.emit(this.fechaPeriodo);
