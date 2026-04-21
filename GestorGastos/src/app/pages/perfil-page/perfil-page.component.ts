@@ -24,13 +24,13 @@ export class PerfilPageComponent {
   listaTarjetas: any[] = [];
 
   constructor(private usuarioService: UsuarioService, private bancoService: BancoService, private tipoCuentaService: TipoCuentaService,
-    private tipoTarjetaService: TipoTarjetaService, private cuentaService: CuentaService, private tarjetaService: TarjetaService, 
+    private tipoTarjetaService: TipoTarjetaService, private cuentaService: CuentaService, private tarjetaService: TarjetaService,
     public dialog: MatDialog, private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.getUsuario();      
+      this.getUsuario();
       this.getCuentas();
       this.getTarjetas();
       this.getTipoCuentas();
@@ -74,41 +74,42 @@ export class PerfilPageComponent {
   getUsuario() {
     this.usuarioService.GetById().subscribe((response: any) => {
       this.user = response;
-      this.user.imagen = (!this.user.imagen || this.user.imagen.length === 0) ? `..\\..\\assets\\img\\user-placeholder.png`: this.user.imagen;
+      this.user.imagen = (!this.user.imagen || this.user.imagen.length === 0) ? `..\\..\\assets\\img\\user-placeholder.png` : this.user.imagen;
     });
-  }
-  
-  openCuenta(idCuenta?: any){
-    const dialogRef = this.dialog.open(AbmCuentaComponent,{
-      width: '640px',
-      maxWidth: '90vw',
-      disableClose: false, 
-      data: idCuenta 
-    });
-    dialogRef.afterClosed().subscribe( res => {
-        this.getCuentas();
-        this.cdr.detectChanges();
-      //}
-    })   
   }
 
-  getIdCuenta(idCuenta: any){
+  openCuenta(idCuenta?: any) {
+    const dialogRef = this.dialog.open(AbmCuentaComponent, {
+      width: '640px',
+      maxWidth: '90vw',
+      disableClose: false,
+      data: idCuenta
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.getCuentas();
+        this.cdr.detectChanges();
+      }
+    })
+  }
+
+  getIdCuenta(idCuenta: any) {
     this.openCuenta(idCuenta);
   }
 
-  toggleCuenta(cuenta: any){
+  toggleCuenta(cuenta: any) {
     if (cuenta.id > 0) {
       cuenta.habilitado = !cuenta.habilitado
-      this.cuentaService.actualizar(cuenta).subscribe( data => console.log(data));      
+      this.cuentaService.actualizar(cuenta).subscribe(data => console.log(data));
     }
     //this.openCuenta(cuenta);
   }
 
-  onCheckDeshabilitados(check: any){
-    if(!check){
+  onCheckDeshabilitados(check: any) {
+    if (!check) {
       this.listaCuentas = this.listaCuentas.filter(c => c.habilitado)
     }
-    else{
+    else {
       this.getCuentas();
     }
   }

@@ -7,7 +7,7 @@ import { Component, Inject, Input, Optional } from '@angular/core';
 import { CategoriaIngreso } from 'src/app/models/categoria-ingreso';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { formatDate } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Ingreso } from 'src/app/models/ingreso';
@@ -45,7 +45,8 @@ export class AbmIngresoComponent {
 
   constructor(private formBuilder: FormBuilder, public dialogoConfirmacion: MatDialog, private tokenService: TokenService,
     private dateAdapter: DateAdapter<Date>, private ingresoService: IngresoService, private _snackBar: MatSnackBar,
-    private categoriaIngresoService: CategoriaIngresoService, @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
+    private categoriaIngresoService: CategoriaIngresoService, @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
+    @Optional() public dialogRef: MatDialogRef<AbmIngresoComponent>) {
 
     let userId = this.tokenService.getUserId() || 0;
 
@@ -83,21 +84,14 @@ export class AbmIngresoComponent {
     this.datos.periodo = this.datos.fecha.substring(0, 7);
 
     if (this.datos.id > 0) {
-      this.ingresoService.Update(this.datos).subscribe(data => {
-        console.log(data);
-        this._snackBar.open("Ingreso actualizado correctamente", "Cerrar");
-        setTimeout(() => {
-          window.location.reload()
-        }, 2000);
-    });
+      this.ingresoService.Update(this.datos).subscribe(() => {
+        this._snackBar.open("Ingreso actualizado correctamente", "Cerrar", { duration: 3000 });
+        this.dialogRef?.close(true);
+      });
     } else {
-      this.ingresoService.Insert(this.datos).subscribe(data => {
-        if (data.id && data.id > 0) {
-          this._snackBar.open("Ingreso registrado correctamente", "Cerrar");
-          setTimeout(() => {
-            window.location.reload()
-          }, 2000);
-        }
+      this.ingresoService.Insert(this.datos).subscribe(() => {
+        this._snackBar.open("Ingreso registrado correctamente", "Cerrar", { duration: 3000 });
+        this.dialogRef?.close(true);
       });
     }
 
@@ -111,11 +105,9 @@ export class AbmIngresoComponent {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          this.ingresoService.eliminarById(this.data.id).subscribe(data => {
-            this._snackBar.open("Ingreso eliminado correctamente", "Cerrar");
-            setTimeout(() => {
-              window.location.reload();
-            }, 2000);
+          this.ingresoService.eliminarById(this.data.id).subscribe(() => {
+            this._snackBar.open("Ingreso eliminado correctamente", "Cerrar", { duration: 3000 });
+            this.dialogRef?.close(true);
           });
         }
       });

@@ -6,7 +6,7 @@ import { default as _rollupMoment } from 'moment';
 import { Component, Inject, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { formatDate } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
@@ -38,7 +38,7 @@ export class AbmCuentaComponent {
   constructor(private formBuilder: FormBuilder, public dialogoConfirmacion: MatDialog, private tokenService: TokenService,    
     private tipoCuentaService: TipoCuentaService, private tarjetaService: TarjetaService, private cuentaService: CuentaService,
     private _snackBar: MatSnackBar, public dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: any,) {
+    @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<AbmCuentaComponent>) {
     
     let userId = this.tokenService.getUserId() || 0;
     data = data ?? {id: 0, idUsuario: userId, nombre: '', idTipoCuenta: '', idTarjeta: undefined, habilitado: true};
@@ -65,15 +65,14 @@ export class AbmCuentaComponent {
     if(this.datos.idTipoCuenta == 3){ this.datos.idTarjeta = undefined; }
 
     if (this.datos.id > 0) {
-      this.cuentaService.actualizar(this.datos).subscribe( data => console.log(data));      
+      this.cuentaService.actualizar(this.datos).subscribe(() => {
+        this._snackBar.open("Cuenta actualizada correctamente", "Cerrar", { duration: 3000 });
+        this.dialogRef.close(true);
+      });      
     }else{
-      this.cuentaService.Insert(this.datos).subscribe( data => {
-        if(data.id && data.id > 0){
-          this._snackBar.open("Cuenta registrada correctamente", "Cerrar");
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-        }
+      this.cuentaService.Insert(this.datos).subscribe(() => {
+        this._snackBar.open("Cuenta registrada correctamente", "Cerrar", { duration: 3000 });
+        this.dialogRef.close(true);
       });
     }    
   }

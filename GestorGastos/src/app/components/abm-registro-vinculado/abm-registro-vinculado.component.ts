@@ -6,7 +6,7 @@ import { default as _rollupMoment } from 'moment';
 import { Component, Inject, Input, Optional } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Empresa } from 'src/app/models/empresa';
 import { Cuenta } from 'src/app/models/cuenta';
 import { CategoriaGasto } from 'src/app/models/categoria-gasto';
@@ -52,7 +52,7 @@ export class AbmRegistroVinculadoComponent {
   constructor(private formBuilder: FormBuilder, public dialogoConfirmacion: MatDialog, private tokenService: TokenService,
     private dateAdapter: DateAdapter<Date>, private registroVinculadoService: RegistroVinculadoService, private _snackBar: MatSnackBar,
     private categoriaGastoService: CategoriaGastoService, private empresaService: EmpresaService, private cuentaService: CuentaService,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any, @Optional() public dialogRef: MatDialogRef<AbmRegistroVinculadoComponent>) {
 
     let userId = this.tokenService.getUserId() || 0;
     this.valorCuota = (this.data?.valorFinal > 0 && this.data?.cuotas > 0) ? Math.round(this.data?.valorFinal / this.data?.cuotas) : 0;
@@ -119,14 +119,14 @@ export class AbmRegistroVinculadoComponent {
 
     console.log(this.datos)
     if (this.datos.id > 0) {
-      this.registroVinculadoService.Update(this.datos).subscribe(data => {
-        this._snackBar.open("Gasto actualizado correctamente", "Cerrar");
-        setTimeout(() => { window.location.reload(); }, 2000);
+      this.registroVinculadoService.Update(this.datos).subscribe(() => {
+        this._snackBar.open("Gasto actualizado correctamente", "Cerrar", { duration: 3000 });
+        this.dialogRef?.close(true);
       });
     } else {
-      this.registroVinculadoService.Insert(this.datos).subscribe(data => {
-        this._snackBar.open("Gasto registrado correctamente", "Cerrar");
-        setTimeout(() => { window.location.reload(); }, 2000);
+      this.registroVinculadoService.Insert(this.datos).subscribe(() => {
+        this._snackBar.open("Gasto registrado correctamente", "Cerrar", { duration: 3000 });
+        this.dialogRef?.close(true);
       });
     }
 
@@ -166,11 +166,9 @@ export class AbmRegistroVinculadoComponent {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          this.registroVinculadoService.eliminarById(this.data.id).subscribe(data => {
-            setTimeout(() => {
-              console.log(data)
-              window.location.reload();
-            }, 2000);
+          this.registroVinculadoService.eliminarById(this.data.id).subscribe(() => {
+            this._snackBar.open("Gasto eliminado correctamente", "Cerrar", { duration: 3000 });
+            this.dialogRef?.close(true);
           });
         }
       });

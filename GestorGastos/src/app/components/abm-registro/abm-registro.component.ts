@@ -38,10 +38,6 @@ const moment = _rollupMoment || _moment;
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
     { provide: MAT_DATE_FORMATS, useValue: FORMAT_DATE_DDMMYYYY },
-    {
-      provide: MatDialogRef,
-      useValue: {}
-    },
   ],
   encapsulation: ViewEncapsulation.None,
 })
@@ -63,7 +59,7 @@ export class AbmRegistroComponent {
   constructor(private formBuilder: FormBuilder, public dialogoConfirmacion: MatDialog, private tokenService: TokenService,
     private dateAdapter: DateAdapter<Date>, private registroService: RegistroService, private _snackBar: MatSnackBar,
     private categoriaGastoService: CategoriaGastoService, private empresaService: EmpresaService, private cuentaService: CuentaService,
-    public dialogRef: MatDialogRef<AbmRegistroComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Optional() public dialogRef: MatDialogRef<AbmRegistroComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     let userId = this.tokenService.getUserId() || 0;
 
@@ -104,19 +100,14 @@ export class AbmRegistroComponent {
     if (this.data) this.datos!.id = this.data.id ?? 0;
 
     if (this.datos.id > 0) {
-      this.registroService.Update(this.datos).subscribe(data => {
-        if (data.id && data.id > 0) {
-          this._snackBar.open("Gasto actualizado correctamente", "Cerrar");
-          this.dialogRef.close();
-        }
-
+      this.registroService.Update(this.datos).subscribe(() => {
+        this._snackBar.open("Gasto actualizado correctamente", "Cerrar", { duration: 3000 });
+        this.dialogRef?.close(true);
       });
     } else {
-      this.registroService.Insert(this.datos).subscribe(data => {
-        if (data.id && data.id > 0) {
-          this._snackBar.open("Gasto registrado correctamente", "Cerrar");
-          this.dialogRef.close();
-        }
+      this.registroService.Insert(this.datos).subscribe(() => {
+        this._snackBar.open("Gasto registrado correctamente", "Cerrar", { duration: 3000 });
+        this.dialogRef?.close(true);
       });
     }
 
@@ -131,10 +122,9 @@ export class AbmRegistroComponent {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          this.registroService.eliminarById(this.data.id).subscribe(data => {
-            setTimeout(() => {
-              window.location.reload();
-            }, 2000);
+          this.registroService.eliminarById(this.data.id).subscribe(() => {
+            this._snackBar.open("Gasto eliminado correctamente", "Cerrar", { duration: 3000 });
+            this.dialogRef?.close(true);
           });
         }
       });

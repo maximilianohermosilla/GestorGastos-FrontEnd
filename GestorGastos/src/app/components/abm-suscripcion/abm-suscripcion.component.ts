@@ -6,7 +6,7 @@ import { default as _rollupMoment } from 'moment';
 import { Component, Inject, Input, Optional } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Empresa } from 'src/app/models/empresa';
 import { Cuenta } from 'src/app/models/cuenta';
 import { CategoriaGasto } from 'src/app/models/categoria-gasto';
@@ -51,7 +51,7 @@ export class AbmSuscripcionComponent {
   constructor(private formBuilder: FormBuilder, public dialogoConfirmacion: MatDialog, private tokenService: TokenService,
     private dateAdapter: DateAdapter<Date>, private suscripcionService: SuscripcionService, private _snackBar: MatSnackBar,
     private categoriaGastoService: CategoriaGastoService, private empresaService: EmpresaService, private cuentaService: CuentaService,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any, @Optional() public dialogRef: MatDialogRef<AbmSuscripcionComponent>) {
 
     let userId = this.tokenService.getUserId() || 0;
 
@@ -89,14 +89,14 @@ export class AbmSuscripcionComponent {
 
     if (this.datos.id > 0) {
       this.datos.fechaUpdate = this.formGroup.value.fechaDesde;
-      this.suscripcionService.Update(this.datos).subscribe(data => {
-        this._snackBar.open("Suscripción actualizada correctamente", "Cerrar");
-        setTimeout(() => { window.location.reload(); }, 2000);
+      this.suscripcionService.Update(this.datos).subscribe(() => {
+        this._snackBar.open("Suscripción actualizada correctamente", "Cerrar", { duration: 3000 });
+        this.dialogRef?.close(true);
       });
     } else {
-      this.suscripcionService.Insert(this.datos).subscribe(data => {
-        this._snackBar.open("Suscripción registrada correctamente", "Cerrar");
-        setTimeout(() => { window.location.reload(); }, 2000);
+      this.suscripcionService.Insert(this.datos).subscribe(() => {
+        this._snackBar.open("Suscripción registrada correctamente", "Cerrar", { duration: 3000 });
+        this.dialogRef?.close(true);
       });
     }
 
@@ -137,10 +137,9 @@ export class AbmSuscripcionComponent {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          this.suscripcionService.eliminarById(this.data.id).subscribe(data => {
-            setTimeout(() => {
-              window.location.reload();
-            }, 2000);
+          this.suscripcionService.eliminarById(this.data.id).subscribe(() => {
+            this._snackBar.open("Suscripción eliminada correctamente", "Cerrar", { duration: 3000 });
+            this.dialogRef?.close(true);
           });
         }
       });

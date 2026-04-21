@@ -68,21 +68,21 @@ export class BalancePageComponent {
   constructor(private formBuilder: FormBuilder, private tokenService: TokenService, private registroService: RegistroService,
     public dialog: MatDialog, private cdr: ChangeDetectorRef, private ingresoService: IngresoService, private dateAdapter: DateAdapter<Date>,
     @Inject(MAT_DATE_LOCALE) private _locale: string) {
-      this._locale = 'fr';
-      this.dateAdapter.setLocale(this._locale);
-      this.formGroup = this.formBuilder.group({
-        periodo: ['', [Validators.required]]
-      })
-      this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
-      this.isAdmin = (this.tokenService.getToken() != null) ? true : false;
-      this.userName = this.tokenService.getUserName();
-      this.fechaPeriodo = new Date().getFullYear() + "-" + ("0" + (new Date().getMonth() + 1)).slice(-2);
-      this.getIngresos(this.fechaPeriodo);
-      this.getRegistros(this.fechaPeriodo);
+    this._locale = 'fr';
+    this.dateAdapter.setLocale(this._locale);
+    this.formGroup = this.formBuilder.group({
+      periodo: ['', [Validators.required]]
+    })
+    this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
+    this.isAdmin = (this.tokenService.getToken() != null) ? true : false;
+    this.userName = this.tokenService.getUserName();
+    this.fechaPeriodo = new Date().getFullYear() + "-" + ("0" + (new Date().getMonth() + 1)).slice(-2);
+    this.getIngresos(this.fechaPeriodo);
+    this.getRegistros(this.fechaPeriodo);
   }
 
-  
-  getPeriodo(periodo: string){
+
+  getPeriodo(periodo: string) {
     this.fechaPeriodo = periodo;
     this.getRegistros(periodo);
     this.getIngresos(periodo);
@@ -113,11 +113,13 @@ export class BalancePageComponent {
       data: undefined
     });
     dialogRef.afterClosed().subscribe(res => {
-      this.getRegistros(this.fechaPeriodo);
-      this.cdr.detectChanges();
+      if (res) {
+        this.getRegistros(this.fechaPeriodo);
+        this.cdr.detectChanges();
+      }
     })
   }
-  
+
   addIngreso() {
     const dialogRef = this.dialog.open(AbmIngresoComponent, {
       width: "99vw",
@@ -127,8 +129,10 @@ export class BalancePageComponent {
       data: undefined
     });
     dialogRef.afterClosed().subscribe(res => {
-      this.getIngresos(this.fechaPeriodo);
-      this.cdr.detectChanges();
+      if (res) {
+        this.getIngresos(this.fechaPeriodo);
+        this.cdr.detectChanges();
+      }
     })
   }
 }
