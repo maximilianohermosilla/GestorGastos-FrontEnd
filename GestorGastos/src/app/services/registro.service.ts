@@ -19,9 +19,13 @@ export class RegistroService {
     return this.http.get<any>(this.apiUrl + "/" + id);
   }
   
-  GetAll(idUsuario: number, periodo: string): Observable<any> {
+  GetAll(idUsuario: number, periodo: string, categoria?: number, descripcion?: string, pagado?: boolean): Observable<any> {
     let userId = this.tokenService.getUserId();
-    return this.http.get<any[]>(`${this.apiUrl}?idUsuario=${userId.toString()}&periodo=${periodo}`);    
+    let url = `${this.apiUrl}?idUsuario=${userId.toString()}&periodo=${periodo}`;
+    if (categoria) url += `&categoria=${categoria}`;
+    if (descripcion) url += `&descripcion=${descripcion}`;
+    if (pagado !== undefined && pagado !== null) url += `&pagado=${pagado}`;
+    return this.http.get<any[]>(url);    
   }
   
   Insert(element: Registro): Observable<any> {
