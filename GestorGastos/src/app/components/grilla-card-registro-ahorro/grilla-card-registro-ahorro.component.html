@@ -1,0 +1,34 @@
+<div class="p-2">
+    <section class="filters__container row">
+        <div class="col-12">
+            <label>Filtros:</label>
+        </div>
+        <mat-form-field class="col-12 m-0">
+            <mat-label>Cuentas</mat-label>
+            <mat-select [(value)]="selectedCuenta" (selectionChange)="selectCuenta($event.value)">
+                <mat-option value="0">Todas las cuentas</mat-option>
+                <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta.id">{{cuenta.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" #table matSort
+        (matSortChange)="announceSortChange($event)">
+        <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by date" class="">
+                Detalle </th>
+            <td class="border-0 py-1" mat-cell *matCellDef="let registro">
+                <app-card-registro-ahorro [registro]="registro" id={{registro.id}}></app-card-registro-ahorro>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="nombreColumnas" class="header"></tr>
+        <tr class="fila" mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
+    </table>
+    <mat-divider></mat-divider>
+    <p class="text-light fs-6 m-0 text-end pe-2">Total: ${{subtotal.toLocaleString("es-AR")}}</p>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="pageSize || 10" showFirstLastButtons
+        aria-label="Select page" *ngIf="length > 0 && !isModal">
+    </mat-paginator>
+    <footer class="d-flex justify-content-end align-items-end my-2">
+        <app-export-excel [data]="_data"></app-export-excel>
+    </footer>
+</div>

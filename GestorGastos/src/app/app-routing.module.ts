@@ -10,6 +10,7 @@ import { RegistroIngresosPageComponent } from './pages/registro-ingresos-page/re
 import { PerfilPageComponent } from './pages/perfil-page/perfil-page.component';
 import { GuardGuard } from './guards/guard.guard';
 import { ReportesPageComponent } from './pages/reportes-page/reportes-page.component';
+import { RegistroAhorroPageComponent } from './pages/registro-ahorro-page/registro-ahorro-page.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,11 @@ const routes: Routes = [
   {
     path: 'reportes',
     component: ReportesPageComponent,
+    canActivate: [GuardGuard]
+  },
+  {
+    path: 'registrar-ahorros',
+    component: RegistroAhorroPageComponent,
     canActivate: [GuardGuard]
   },
   // {

@@ -1,0 +1,34 @@
+<app-header-banner title="Registrar Ahorros" icon="savings"></app-header-banner>
+
+<section class="container-fluid p-2 my-2">
+    <div class="row p-2 bg-dark">
+        <div class="col-12 col-md-6 h-100 pb-3">
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="text-info">
+                        Nuevo Registro de Ahorro
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="container d-flex justify-content-center text-info pt-1 pb-5">
+                    <app-abm-registro-ahorro [listaCuentas]="listaCuentas" (emitGuardarRegistro)="getRegistros(periodo)"></app-abm-registro-ahorro>
+                </div>
+            </mat-expansion-panel>
+        </div>
+        <div class="col-12 col-md-6 pb-5">
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="text-info">
+                        Historial
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="container-fluid p-2 p-sm-0">
+                    <app-form-periodo (onChange)="getPeriodo($event)"></app-form-periodo>
+                </div>
+
+                <app-grilla-card-registro-ahorro [data]="listaRegistros" *ngIf="!(listaRegistros.length == 0)"
+                    [pageSize]=5>
+                </app-grilla-card-registro-ahorro>
+            </mat-expansion-panel>
+        </div>
+    </div>
+</section>

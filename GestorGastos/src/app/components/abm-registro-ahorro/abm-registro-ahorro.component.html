@@ -1,0 +1,59 @@
+<form [formGroup]="formGroup" class="form-horizontal row m-0 pt-3 p-0 p-sm-3 w-100">
+    <div class="col-md-12">
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label class="">Descripcion</mat-label>
+                <input formControlName="descripcion" matInput type="text" placeholder=""
+                    [(ngModel)]="datos.descripcion">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label>Cuenta</mat-label>
+                <mat-select formControlName="idCuenta" [(ngModel)]="datos.idCuenta">
+                    <mat-option *ngFor="let cuenta of listaCuentas" [value]="cuenta.id">{{cuenta.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label>Fecha</mat-label>
+                <input matInput placeholder="DD/MM/AAAA" formControlName="fecha" [matDatepicker]="dp" [(ngModel)]="datos.fecha">
+                <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label class="">Valor</mat-label>
+                <input formControlName="valor" matInput type="number" class="example-right-align" placeholder="" [(ngModel)]="datos.valor">
+                <span matTextPrefix>$&nbsp;</span>
+                <span matTextSuffix>.00</span>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label class="">Diferencia</mat-label>
+                <input formControlName="diferencia" matInput type="number" class="example-right-align" placeholder="" [(ngModel)]="datos.diferencia">
+                <span matTextPrefix>$&nbsp;</span>
+                <span matTextSuffix>.00</span>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field color="primary" appearance="fill" class="w-100">
+                <mat-label class="">Observaciones</mat-label>
+                <input formControlName="observaciones" matInput type="text" placeholder=""
+                    [(ngModel)]="datos.observaciones">
+            </mat-form-field>
+        </div>
+
+    </div>
+    <mat-divider></mat-divider><br>
+    <div mat-dialog-actions class="d-flex justify-content-between px-0">
+        <button type="button" mat-stroked-button color="warn" class="rounded-1 ms-0" mat-button mat-dialog-close>Cancelar</button>
+        <button type="button" mat-mini-fab [hidden]="!permiteEliminar" class="rounded-1 ms-0" (click)="delete()"><mat-icon>delete</mat-icon></button>
+        <button type="button" mat-stroked-button color="primary" class="rounded-1 ms-0" [disabled]="!formGroup.valid"
+            (click)="save()">Guardar</button>
+    </div>
+</form>

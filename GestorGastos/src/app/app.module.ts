@@ -57,6 +57,10 @@ import { ChartsDemoComponent } from './components/charts-demo/charts-demo.compon
 import { ReportesPageComponent } from './pages/reportes-page/reportes-page.component';
 import { ChartLinealComponent } from './components/chart-lineal/chart-lineal.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { RegistroAhorroPageComponent } from './pages/registro-ahorro-page/registro-ahorro-page.component';
+import { AbmRegistroAhorroComponent } from './components/abm-registro-ahorro/abm-registro-ahorro.component';
+import { CardRegistroAhorroComponent } from './components/card-registro-ahorro/card-registro-ahorro.component';
+import { GrillaCardRegistroAhorroComponent } from './components/grilla-card-registro-ahorro/grilla-card-registro-ahorro.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +100,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
     RegistroIngresosPageComponent,
     ChartsDemoComponent,
     ReportesPageComponent,
-    ChartLinealComponent
+    ChartLinealComponent,
+    RegistroAhorroPageComponent,
+    AbmRegistroAhorroComponent,
+    CardRegistroAhorroComponent,
+    GrillaCardRegistroAhorroComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-between align-items-center shadow rounded-4 p-1 w-100 bg-dark">
+    <div class="d-flex me-auto">
+        <button mat-fab color="primary" class="me-2" [ngStyle]="{backgroundColor: '#007bff', color: '#fff', opacity: 0.7}">
+            <mat-icon>savings</mat-icon>
+        </button>
+        <div class="d-flex flex-column">
+            <p class="m-0 text-light">{{registro.fecha.slice(0, 10)}} - <span
+                    class="text-secondary">{{registro.descripcion}}</span></p>
+            <p class="m-0 text-info">{{registro.cuenta?.nombre}}</p>
+            <div class="d-flex gap-2">
+                <p class="m-0 text-warning">$ {{registro.valor.toLocaleString("es-AR")}}</p>
+                <p class="m-0 text-success" *ngIf="registro.diferencia > 0"> (+ {{registro.diferencia.toLocaleString("es-AR")}})</p>
+                <p class="m-0 text-danger" *ngIf="registro.diferencia < 0"> ({{registro.diferencia.toLocaleString("es-AR")}})</p>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex">
+        <button mat-mini-fab color="primary" class="ms-2" matTooltip="Editar registro" (click)="updateRegistro()">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+</div>
