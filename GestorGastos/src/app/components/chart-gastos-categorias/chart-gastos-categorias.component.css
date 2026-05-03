@@ -1,0 +1,5 @@
+.chart-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-height: 350px;
+}

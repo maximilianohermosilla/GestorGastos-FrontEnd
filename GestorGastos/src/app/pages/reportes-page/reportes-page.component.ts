@@ -9,8 +9,11 @@ import { Registro } from 'src/app/models/registro';
 import { Usuario } from 'src/app/models/usuario';
 import { IngresoService } from 'src/app/services/ingreso.service';
 import { RegistroService } from 'src/app/services/registro.service';
+import { RegistroAhorroService } from 'src/app/services/registroahorro.service';
+import { RegistroAhorro } from 'src/app/models/registro-ahorro';
 import { TokenService } from 'src/app/services/token.service';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { CategoriaGastoService } from 'src/app/services/categoria-gasto.service';
 import { CategoriaGasto } from 'src/app/models/categoria-gasto';
 import { CategoriaIngreso } from 'src/app/models/categoria-ingreso';
 import { FORMAT_DATE } from 'src/app/models/format-date';
@@ -57,16 +60,20 @@ export class ReportesPageComponent {
   };
 
   dataSource: any;
-  fechaPeriodo: string = "";
-  fechaAnio: string = "";
+  fechaPeriodo: string = new Date().getFullYear().toString();
+  fechaAnio: string = new Date().getFullYear().toString();
+  selectedCategorias: number[] = [];
 
   listaRegistros: Registro[] = [];
   listaIngresos: Ingreso[] = [];
+  listaAhorros: RegistroAhorro[] = [];
   listaCategoriaGasto: CategoriaGasto[] = [];
   listaCategoriaIngreso: CategoriaIngreso[] = [];
 
   constructor(private formBuilder: FormBuilder, private tokenService: TokenService, private registroService: RegistroService,
-    public dialog: MatDialog, private cdr: ChangeDetectorRef, private ingresoService: IngresoService, private dateAdapter: DateAdapter<Date>,
+    public dialog: MatDialog, private cdr: ChangeDetectorRef, private ingresoService: IngresoService, private registroAhorroService: RegistroAhorroService,
+    private categoriaGastoService: CategoriaGastoService,
+    private dateAdapter: DateAdapter<Date>,
     @Inject(MAT_DATE_LOCALE) private _locale: string) {
     this._locale = 'fr';
     this.dateAdapter.setLocale(this._locale);
@@ -76,9 +83,10 @@ export class ReportesPageComponent {
     this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
     this.isAdmin = (this.tokenService.getToken() != null) ? true : false;
     this.userName = this.tokenService.getUserName();
-    this.fechaPeriodo = new Date().getFullYear() + "-" + ("0" + (new Date().getMonth() + 1)).slice(-2);
     this.getIngresos(this.fechaPeriodo);
     this.getRegistros(this.fechaPeriodo);
+    this.getAhorros(this.fechaPeriodo);
+    this.getCategorias();
   }
 
 
@@ -86,6 +94,7 @@ export class ReportesPageComponent {
     this.fechaPeriodo = periodo;
     this.getRegistros(periodo);
     this.getIngresos(periodo);
+    this.getAhorros(periodo);
   }
 
   getRegistros(periodo: string) {
@@ -101,6 +110,20 @@ export class ReportesPageComponent {
 
     this.ingresoService.GetAll(idUsuario, periodo).subscribe((rta: any[]) => {
       this.listaIngresos = rta;
+    });
+  }
+
+  getAhorros(periodo: string) {
+    let idUsuario: number = 1;
+
+    this.registroAhorroService.GetAll(idUsuario, periodo).subscribe((rta: any[]) => {
+      this.listaAhorros = rta;
+    });
+  }
+
+  getCategorias() {
+    this.categoriaGastoService.GetAll().subscribe((rta: CategoriaGasto[]) => {
+      this.listaCategoriaGasto = rta;
     });
   }
 

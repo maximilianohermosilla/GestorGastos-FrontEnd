@@ -1,0 +1,43 @@
+<div class="row w-100 m-0">
+    <div class="col-12 mb-4">
+        <h6 class="text-info">Avance mensual de ahorros (Total)</h6>
+        <div class="chart-container shadow rounded-3 bg-dark p-2">
+            <ngx-charts-line-chart
+                [view]="view"
+                [scheme]="colorScheme"
+                [results]="multiTotal"
+                [gradient]="gradient"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [legendPosition]="legendPosition"
+                (select)="onSelect($event)">
+            </ngx-charts-line-chart>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <h6 class="text-info">Ahorros por tipo de cuenta</h6>
+        <div class="chart-container shadow rounded-3 bg-dark p-2">
+            <ngx-charts-bar-vertical-2d
+                [view]="view"
+                [scheme]="colorScheme"
+                [results]="multiPorCuenta"
+                [gradient]="gradient"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [legendPosition]="legendPosition"
+                (select)="onSelect($event)">
+            </ngx-charts-bar-vertical-2d>
+        </div>
+    </div>
+</div>

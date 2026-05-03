@@ -32,6 +32,8 @@ export class FormPeriodoComponent {
   periodo = new FormControl(moment());
   anio = new FormControl();
 
+  selectedTabIndex: number = 0;
+
   dataSource: any;
   fechaPeriodo: string = "";
   fechaAnio: string = "";
@@ -76,6 +78,44 @@ export class FormPeriodoComponent {
 
     this.onChange.emit(this.fechaAnio);
     datepicker.close();
+  }
+
+  periodoAnterior() {
+    if (this.selectedTabIndex === 0 && !this.hiddenMonth) {
+      // Month mode
+      const newDate = moment(this.fechaPeriodo, "YYYY-MM").subtract(1, 'month');
+      this.fechaPeriodo = newDate.format("YYYY-MM");
+      this.periodo.setValue(newDate);
+      this.onChange.emit(this.fechaPeriodo);
+    } else {
+      // Year mode
+      const yearStr = this.fechaAnio || this.fechaPeriodo.split('-')[0];
+      const year = parseInt(yearStr);
+      this.fechaAnio = (year - 1).toString();
+      this.fechaPeriodo = this.fechaAnio;
+      this.onChange.emit(this.fechaAnio);
+    }
+  }
+
+  periodoSiguiente() {
+    if (this.selectedTabIndex === 0 && !this.hiddenMonth) {
+      // Month mode
+      const newDate = moment(this.fechaPeriodo, "YYYY-MM").add(1, 'month');
+      this.fechaPeriodo = newDate.format("YYYY-MM");
+      this.periodo.setValue(newDate);
+      this.onChange.emit(this.fechaPeriodo);
+    } else {
+      // Year mode
+      const yearStr = this.fechaAnio || this.fechaPeriodo.split('-')[0];
+      const year = parseInt(yearStr);
+      this.fechaAnio = (year + 1).toString();
+      this.fechaPeriodo = this.fechaAnio;
+      this.onChange.emit(this.fechaAnio);
+    }
+  }
+
+  onTabChange(index: number) {
+    this.selectedTabIndex = index;
   }
 
   formatearFecha(fecha: string) {

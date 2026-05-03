@@ -8,6 +8,7 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { SharedModule } from './modules/shared/shared.module';
 import { MaterialModule } from './modules/material/material.module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -61,6 +62,8 @@ import { RegistroAhorroPageComponent } from './pages/registro-ahorro-page/regist
 import { AbmRegistroAhorroComponent } from './components/abm-registro-ahorro/abm-registro-ahorro.component';
 import { CardRegistroAhorroComponent } from './components/card-registro-ahorro/card-registro-ahorro.component';
 import { GrillaCardRegistroAhorroComponent } from './components/grilla-card-registro-ahorro/grilla-card-registro-ahorro.component';
+import { ChartAhorrosComponent } from './components/chart-ahorros/chart-ahorros.component';
+import { ChartGastosCategoriasComponent } from './components/chart-gastos-categorias/chart-gastos-categorias.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +107,9 @@ import { GrillaCardRegistroAhorroComponent } from './components/grilla-card-regi
     RegistroAhorroPageComponent,
     AbmRegistroAhorroComponent,
     CardRegistroAhorroComponent,
-    GrillaCardRegistroAhorroComponent
+    GrillaCardRegistroAhorroComponent,
+    ChartAhorrosComponent,
+    ChartGastosCategoriasComponent
   ],
   imports: [
     BrowserModule,
@@ -115,6 +120,7 @@ import { GrillaCardRegistroAhorroComponent } from './components/grilla-card-regi
     NgxChartsModule,
     MatDialogModule,
     MatGridListModule,
+    FormsModule,
     ExportExcelComponent 
   ],
   providers: [DatePipe, FilterPipe,
