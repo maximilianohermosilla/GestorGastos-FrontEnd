@@ -1,6 +1,6 @@
 <div class="row w-100 m-0">
     <div class="col-12 mb-4">
-        <h6 class="text-info">Ahorros Totales</h6>
+        <h6 class="text-info">Ingresos Totales</h6>
         <div class="chart-container shadow rounded-3 bg-dark p-2">
             <ngx-charts-line-chart
                 [view]="view"
@@ -21,12 +21,22 @@
     </div>
 
     <div class="col-12">
-        <h6 class="text-info">Ahorros por tipo de cuenta</h6>
+        <h6 class="text-info">Ingresos por categoría</h6>
+        <div class="row px-2">
+            <mat-form-field class="col-12 col-md-6 mb-2">
+                <mat-label>Seleccionar Categorías</mat-label>
+                <mat-select [(ngModel)]="selectedCategories" (ngModelChange)="onCategoryChange()" multiple>
+                    <mat-option *ngFor="let cat of listaCategoriaIngreso" [value]="cat.id">
+                        {{cat.nombre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
         <div class="chart-container shadow rounded-3 bg-dark p-2">
             <ngx-charts-bar-vertical-2d
                 [view]="view"
                 [scheme]="colorScheme"
-                [results]="multiPorCuenta"
+                [results]="multiPorCategoria"
                 [gradient]="gradient"
                 [xAxis]="showXAxis"
                 [yAxis]="showYAxis"

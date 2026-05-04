@@ -1,0 +1,11 @@
+.chart-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-height: 320px;
+}
+
+h6 {
+    margin-top: 1.5rem;
+    padding-left: 0.5rem;
+    border-left: 4px solid #17a2b8;
+}

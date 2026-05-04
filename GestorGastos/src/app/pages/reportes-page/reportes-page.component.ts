@@ -20,6 +20,9 @@ import { FORMAT_DATE } from 'src/app/models/format-date';
 import { MatDialog } from '@angular/material/dialog';
 import { AbmRegistroComponent } from 'src/app/components/abm-registro/abm-registro.component';
 import { AbmIngresoComponent } from 'src/app/components/abm-ingreso/abm-ingreso.component';
+import { CuentaService } from 'src/app/services/cuenta.service';
+import { Cuenta } from 'src/app/models/cuenta';
+import { CategoriaIngresoService } from 'src/app/services/categoria-ingreso.service';
 
 @Component({
   selector: 'app-reportes-page',
@@ -63,16 +66,22 @@ export class ReportesPageComponent {
   fechaPeriodo: string = new Date().getFullYear().toString();
   fechaAnio: string = new Date().getFullYear().toString();
   selectedCategorias: number[] = [];
+  selectedCuentas: number[] = [];
+  selectedCuentasAhorro: number[] = [];
+  selectedCategoriasIngreso: number[] = [];
 
   listaRegistros: Registro[] = [];
   listaIngresos: Ingreso[] = [];
   listaAhorros: RegistroAhorro[] = [];
   listaCategoriaGasto: CategoriaGasto[] = [];
   listaCategoriaIngreso: CategoriaIngreso[] = [];
+  listaCuentas: Cuenta[] = [];
 
   constructor(private formBuilder: FormBuilder, private tokenService: TokenService, private registroService: RegistroService,
     public dialog: MatDialog, private cdr: ChangeDetectorRef, private ingresoService: IngresoService, private registroAhorroService: RegistroAhorroService,
     private categoriaGastoService: CategoriaGastoService,
+    private categoriaIngresoService: CategoriaIngresoService,
+    private cuentaService: CuentaService,
     private dateAdapter: DateAdapter<Date>,
     @Inject(MAT_DATE_LOCALE) private _locale: string) {
     this._locale = 'fr';
@@ -87,6 +96,8 @@ export class ReportesPageComponent {
     this.getRegistros(this.fechaPeriodo);
     this.getAhorros(this.fechaPeriodo);
     this.getCategorias();
+    this.getCuentas();
+    this.getCategoriaIngresos();
   }
 
 
@@ -124,6 +135,18 @@ export class ReportesPageComponent {
   getCategorias() {
     this.categoriaGastoService.GetAll().subscribe((rta: CategoriaGasto[]) => {
       this.listaCategoriaGasto = rta;
+    });
+  }
+
+  getCuentas() {
+    this.cuentaService.GetAll().subscribe((rta: Cuenta[]) => {
+      this.listaCuentas = rta.filter(c => c.habilitado);
+    });
+  }
+
+  getCategoriaIngresos() {
+    this.categoriaIngresoService.GetAll().subscribe((rta: CategoriaIngreso[]) => {
+      this.listaCategoriaIngreso = rta;
     });
   }
 

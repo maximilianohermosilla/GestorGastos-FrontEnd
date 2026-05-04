@@ -43,7 +43,7 @@ export class ExportExcelComponent implements OnInit{
 
   public updateLength(){    
     const lista: any = this.data();
-    this.length = lista.length
+    this.length = lista ? lista.length : 0;
   }
 
 }

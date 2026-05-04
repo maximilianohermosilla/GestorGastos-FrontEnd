@@ -64,6 +64,9 @@ import { CardRegistroAhorroComponent } from './components/card-registro-ahorro/c
 import { GrillaCardRegistroAhorroComponent } from './components/grilla-card-registro-ahorro/grilla-card-registro-ahorro.component';
 import { ChartAhorrosComponent } from './components/chart-ahorros/chart-ahorros.component';
 import { ChartGastosCategoriasComponent } from './components/chart-gastos-categorias/chart-gastos-categorias.component';
+import { ChartGastosCuentasComponent } from './components/chart-gastos-cuentas/chart-gastos-cuentas.component';
+import { ChartAhorrosMensualComponent } from './components/chart-ahorros-mensual/chart-ahorros-mensual.component';
+import { ChartIngresosComponent } from './components/chart-ingresos/chart-ingresos.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +112,10 @@ import { ChartGastosCategoriasComponent } from './components/chart-gastos-catego
     CardRegistroAhorroComponent,
     GrillaCardRegistroAhorroComponent,
     ChartAhorrosComponent,
-    ChartGastosCategoriasComponent
+    ChartGastosCategoriasComponent,
+    ChartGastosCuentasComponent,
+    ChartAhorrosMensualComponent,
+    ChartIngresosComponent
   ],
   imports: [
     BrowserModule,
